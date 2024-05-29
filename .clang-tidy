@@ -1,0 +1,22 @@
+---
+Checks: '
+bugprone-*,
+clang-diagnostic-*,
+clang-analyzer-*,
+cppcoreguidelines-*,
+misc-*,
+modernize-*,
+performance-*,
+readability-*,
+'
+HeaderFileExtensions:
+  - ''
+  - h
+  - hpp
+ImplementationFileExtensions:
+  - c
+  - cpp
+FormatStyle:     file
+WarningsAsErrors: ''
+...
+

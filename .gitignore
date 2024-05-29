@@ -1,0 +1,20 @@
+# CMake
+/build*/
+/cmake-build*
+.cmake/
+/lib/
+
+# Clang
+.clangd
+.clang-format-bin
+.clang-tidy-bin
+.lintbin
+.clangd/
+.cache/
+
+# Editors
+.dir-locals.el
+.vscode/
+
+# MacOS
+.DS_Store
