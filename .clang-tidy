@@ -4,11 +4,16 @@ bugprone-*,
 clang-diagnostic-*,
 clang-analyzer-*,
 cppcoreguidelines-*,
+-cppcoreguidelines-avoid-magic-numbers,
 misc-*,
+-misc-confusable-identifiers,
 modernize-*,
 -modernize-use-trailing-return-type,
+-modernize-use-nodiscard,
 performance-*,
 readability-*,
+-readability-identifier-length,
+-readability-magic-numbers,
 '
 HeaderFileExtensions:
   - ''
