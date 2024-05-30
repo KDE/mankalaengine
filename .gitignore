@@ -3,6 +3,7 @@
 /cmake-build*
 .cmake/
 /lib/
+compile_commands.json
 
 # Clang
 .clangd
