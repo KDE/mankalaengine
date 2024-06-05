@@ -1,6 +1,6 @@
 file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${MankalaEngine_SOURCE_DIR}/include/mankala-engine/*\.(h|hpp)")
 
-add_library(mankalaengine mankalaengine.cpp bohnenspielrules.cpp ${HEADER_LIST})
+add_library(mankalaengine mankalaengine.cpp bohnenspielrules.cpp moveselection.cpp ${HEADER_LIST})
 
 target_include_directories(mankalaengine PUBLIC ../include/mankalaengine)
 
