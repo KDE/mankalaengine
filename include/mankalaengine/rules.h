@@ -3,6 +3,8 @@
 #include <array>
 #include <vector>
 
+namespace MankalaEngine {
+
 enum Player { first_player, second_player };
 
 struct Board {
@@ -28,3 +30,5 @@ class Rules {
 
     virtual ~Rules() = default;
 };
+
+} // namespace MankalaEngine

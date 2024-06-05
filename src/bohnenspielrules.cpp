@@ -1,5 +1,7 @@
 #include <bohnenspielrules.h>
 
+namespace MankalaEngine {
+
 void BohnenspielRules::try_capture(int position, Player player,
                                    Board &state) const {
 
@@ -48,3 +50,5 @@ bool BohnenspielRules::validMove(int move, Player player,
     }
     return state.holes.at(position(move, player)) != 0;
 }
+
+} // namespace MankalaEngine
