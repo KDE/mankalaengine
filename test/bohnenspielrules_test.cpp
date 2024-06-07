@@ -99,9 +99,9 @@ TEST(BohnenspielRules, MoveWithMultipleCaptures) {
     board.holes = std::vector<int>(12, 0);
     next_board.holes = std::vector<int>(12, 0);
 
-    board.holes.at(0) = 1;
+    board.holes.at(0) = 2;
     board.holes.at(1) = 1;
-    board.holes.at(2) = 2;
+    board.holes.at(2) = 1;
 
     next_board.holes.at(0) = 0;
     next_board.holes.at(1) = 0;
@@ -121,12 +121,12 @@ TEST(BohnenspielRules, CaptureWithLap) {
     MankalaEngine::BohnenspielRules rules;
     MankalaEngine::Player p2 = MankalaEngine::second_player;
 
-    board.holes.at(8) = 1;
+    board.holes.at(8) = 5;
     board.holes.at(9) = 1;
-    board.holes.at(10) = 2;
-    board.holes.at(11) = 4;
-    board.holes.at(0) = 6;
-    board.holes.at(1) = 2;
+    board.holes.at(10) = 1;
+    board.holes.at(11) = 3;
+    board.holes.at(0) = 5;
+    board.holes.at(1) = 1;
     board.holes.at(2) = 0;
 
     next_board.holes.at(8) = 0;

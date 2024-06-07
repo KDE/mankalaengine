@@ -13,9 +13,9 @@ void BohnenspielRules::try_capture(int position, Player player,
         state.stores.at(player) += state.holes.at(position);
         state.holes.at(position) = 0;
 
-        // Advance to the next position
-        if (++position > max_index) {
-            position = 0;
+        // Go to the preceding hole
+        if (--position < 0) {
+            position = max_index;
         }
         pebbles = state.holes.at(position);
     }
