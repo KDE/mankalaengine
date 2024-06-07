@@ -1,6 +1,8 @@
 #pragma once
 
 #include <array>
+#include <string>
+#include <variantdescriptions.h>
 #include <vector>
 
 namespace MankalaEngine {
@@ -14,6 +16,7 @@ struct Board {
 
 class Rules {
     int _player_holes;
+    std::string _description;
 
   protected:
     int position(int move, Player player) const {
@@ -21,8 +24,14 @@ class Rules {
     }
 
   public:
-    Rules(int player_holes) : _player_holes(player_holes) {}
+    Rules(int player_holes)
+        : _player_holes(player_holes), _description(PLACEHOLDER_DESCRIPTION) {}
+
+    Rules(int player_holes, std::string description)
+        : _player_holes(player_holes), _description(std::move(description)) {}
+
     int player_holes() const { return _player_holes; }
+    const std::string &description() const { return _description; }
 
     virtual void move(int move, Player player, Board &state) const = 0;
     virtual bool validMove(int move, Player player,
