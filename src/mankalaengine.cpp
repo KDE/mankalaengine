@@ -3,10 +3,10 @@
 namespace MankalaEngine {
 
 bool MankalaEngine::play(Player player, const Rules& rules, Board& state) {
-    const int move = _selectMove(player, rules, state);
-    if (move == -1) {
+    if (rules.gameOver(player, state)) {
         return false;
     }
+    const int move = _selectMove(player, rules, state);
     rules.move(move, player, state);
     return true;
 }
