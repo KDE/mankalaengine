@@ -3,7 +3,11 @@
 
 namespace MankalaEngine {
 
-int random(const std::vector<int>& moves, Board& /*state*/) {
+int random(Player player, const Rules& rules, const Board& state) {
+    const std::vector<int> moves = rules.getMoves(player, state);
+    if (moves.empty()) {
+        return -1;
+    }
     return moves.at(std::rand() % moves.size());
 }
 

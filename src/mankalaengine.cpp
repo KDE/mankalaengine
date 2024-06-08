@@ -2,12 +2,11 @@
 
 namespace MankalaEngine {
 
-bool MankalaEngine::play(const Rules& rules, Player player, Board& state) {
-    const std::vector<int> moves = rules.getMoves(player, state);
-    if (moves.empty()) {
+bool MankalaEngine::play(Player player, const Rules& rules, Board& state) {
+    const int move = _selectMove(player, rules, state);
+    if (move == -1) {
         return false;
     }
-    const int move = _selectMove(moves, state);
     rules.move(move, player, state);
     return true;
 }

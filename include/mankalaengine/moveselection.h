@@ -1,10 +1,9 @@
 #pragma once
 
 #include <rules.h>
-#include <vector>
 
 namespace MankalaEngine {
 
-int random(const std::vector<int>& moves, Board& state);
+int random(Player player, const Rules& rules, const Board& state);
 
 } // namespace MankalaEngine

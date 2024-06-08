@@ -4,14 +4,14 @@
 namespace MankalaEngine {
 
 class MankalaEngine {
-    std::function<int(const std::vector<int>&, Board&)> _selectMove;
+    std::function<int(Player player, const Rules&, const Board&)> _selectMove;
 
   public:
     MankalaEngine(
-        std::function<int(const std::vector<int>&, Board&)> selectMove)
+        std::function<int(Player, const Rules&, const Board&)> selectMove)
         : _selectMove(std::move(selectMove)) {}
 
-    bool play(const Rules& rules, Player player, Board& state);
+    bool play(Player player, const Rules& rules, Board& state);
 };
 
 } // namespace MankalaEngine
