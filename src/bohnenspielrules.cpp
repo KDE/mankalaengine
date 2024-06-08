@@ -5,7 +5,7 @@ namespace MankalaEngine {
 void BohnenspielRules::try_capture(int position, Player player,
                                    Board &state) const {
 
-    int max_index = player_holes() * 2 - 1;
+    const int max_index = player_holes() * 2 - 1;
     int pebbles = state.holes.at(position);
     // Capture is only possible if the pebbles in the hole are 2, 4 or 6
     while (pebbles % 2 == 0 && pebbles < 7 && pebbles > 0) {
@@ -26,9 +26,9 @@ void BohnenspielRules::move(int move, Player player, Board &state) const {
         return;
     }
 
+    const int max_index = player_holes() * 2 - 1;
     int current_position = position(move, player);
     int pebbles = state.holes.at(current_position);
-    int max_index = player_holes() * 2 - 1;
 
     // Picking up all pebbles in the hole
     state.holes.at(current_position) = 0;
