@@ -26,6 +26,6 @@ ImplementationFileExtensions:
   - c
   - cpp
 FormatStyle:     file
-WarningsAsErrors: ''
+WarningsAsErrors: '*'
 ...
 
