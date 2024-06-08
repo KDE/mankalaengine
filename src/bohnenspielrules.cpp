@@ -3,7 +3,7 @@
 namespace MankalaEngine {
 
 void BohnenspielRules::try_capture(int position, Player player,
-                                   Board &state) const {
+                                   Board& state) const {
 
     const int max_index = player_holes() * 2 - 1;
     int pebbles = state.holes.at(position);
@@ -21,7 +21,7 @@ void BohnenspielRules::try_capture(int position, Player player,
     }
 }
 
-void BohnenspielRules::move(int move, Player player, Board &state) const {
+void BohnenspielRules::move(int move, Player player, Board& state) const {
     if (!validMove(move, player, state)) {
         return;
     }
@@ -43,7 +43,7 @@ void BohnenspielRules::move(int move, Player player, Board &state) const {
 }
 
 bool BohnenspielRules::validMove(int move, Player player,
-                                 const Board &state) const {
+                                 const Board& state) const {
 
     if (move >= player_holes() || move < 0) {
         return false;

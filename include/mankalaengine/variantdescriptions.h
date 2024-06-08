@@ -2,10 +2,10 @@
 
 namespace MankalaEngine {
 
-constexpr const char *PLACEHOLDER_DESCRIPTION =
+constexpr const char* PLACEHOLDER_DESCRIPTION =
     "No description was provided for this variant.";
 
-constexpr const char *BOHNENSPIEL_DESCRIPTION =
+constexpr const char* BOHNENSPIEL_DESCRIPTION =
     "Bohnenspiel is played on a board with 2 rows,"
     " each with 6 holes, and 2 end-holes, called stores."
     " Each player owns the store to their right hand and controls"

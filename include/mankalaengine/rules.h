@@ -31,11 +31,11 @@ class Rules {
         : _player_holes(player_holes), _description(std::move(description)) {}
 
     int player_holes() const { return _player_holes; }
-    const std::string &description() const { return _description; }
+    const std::string& description() const { return _description; }
 
-    virtual void move(int move, Player player, Board &state) const = 0;
+    virtual void move(int move, Player player, Board& state) const = 0;
     virtual bool validMove(int move, Player player,
-                           const Board &state) const = 0;
+                           const Board& state) const = 0;
 
     virtual ~Rules() = default;
 };

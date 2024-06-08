@@ -9,13 +9,13 @@ struct BohnenspielBoard : Board {
 };
 
 class BohnenspielRules : public Rules {
-    void try_capture(int position, Player player, Board &state) const;
+    void try_capture(int position, Player player, Board& state) const;
 
   public:
     BohnenspielRules() : Rules(6, BOHNENSPIEL_DESCRIPTION) {}
 
-    void move(int move, Player player, Board &state) const override;
-    bool validMove(int move, Player player, const Board &state) const override;
+    void move(int move, Player player, Board& state) const override;
+    bool validMove(int move, Player player, const Board& state) const override;
 };
 
 } // namespace MankalaEngine
