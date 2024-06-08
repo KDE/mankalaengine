@@ -13,8 +13,8 @@ TEST(MankalaEngine, RandomSelectionFullGame) {
     bool p2_can_play = true;
 
     while (p1_can_play && p2_can_play) {
-        p1_can_play = engine.play(rules, p1, board);
-        p2_can_play = engine.play(rules, p2, board);
+        p1_can_play = engine.play(p1, rules, board);
+        p2_can_play = engine.play(p2, rules, board);
     }
 
     int holes = rules.player_holes();
