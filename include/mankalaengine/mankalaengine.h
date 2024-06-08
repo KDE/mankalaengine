@@ -5,7 +5,6 @@ namespace MankalaEngine {
 
 class MankalaEngine {
     std::function<int(const std::vector<int>&, Board&)> _selectMove;
-    std::vector<int> getMoves(const Rules& rules, Player player, Board& state);
 
   public:
     MankalaEngine(

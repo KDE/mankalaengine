@@ -33,6 +33,8 @@ class Rules {
     int player_holes() const { return _player_holes; }
     const std::string& description() const { return _description; }
 
+    std::vector<int> getMoves(Player player, const Board& state) const;
+
     virtual void move(int move, Player player, Board& state) const = 0;
     virtual bool validMove(int move, Player player,
                            const Board& state) const = 0;
