@@ -3,7 +3,7 @@
 
 namespace MankalaEngine {
 
-int random(const std::vector<int> &moves, Board &state) {
+int random(const std::vector<int> &moves, Board & /*state*/) {
     return moves.at(std::rand() % moves.size());
 }
 
