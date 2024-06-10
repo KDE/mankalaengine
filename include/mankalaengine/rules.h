@@ -35,6 +35,7 @@ class Rules {
 
     std::vector<int> getMoves(Player player, const Board& state) const;
 
+    virtual void finishGame(Player winner, Board& state) const;
     virtual bool gameOver(Player player, const Board& state) const;
     virtual void move(int move, Player player, Board& state) const = 0;
     virtual bool validMove(int move, Player player,
