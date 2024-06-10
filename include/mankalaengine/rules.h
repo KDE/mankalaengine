@@ -7,7 +7,7 @@
 
 namespace MankalaEngine {
 
-enum Player { first_player, second_player };
+enum Player { player_1, player_2 };
 
 struct Board {
     std::vector<int> holes;

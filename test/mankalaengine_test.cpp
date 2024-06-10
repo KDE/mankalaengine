@@ -7,8 +7,8 @@ TEST(MankalaEngine, RandomSelectionFullGame) {
     MankalaEngine::MankalaEngine engine(MankalaEngine::random);
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::first_player;
-    MankalaEngine::Player p2 = MankalaEngine::second_player;
+    MankalaEngine::Player p1 = MankalaEngine::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::player_2;
     bool p1_can_play = true;
     bool p2_can_play = true;
 

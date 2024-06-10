@@ -4,8 +4,8 @@
 TEST(BohnenspielRules, ValidMove) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::first_player;
-    MankalaEngine::Player p2 = MankalaEngine::second_player;
+    MankalaEngine::Player p1 = MankalaEngine::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
         EXPECT_TRUE(rules.validMove(i, p1, board));
@@ -18,8 +18,8 @@ TEST(BohnenspielRules, InvalidMove) {
     std::vector<int> p1_holes(6, 0);
     board.holes.insert(board.holes.begin(), p1_holes.begin(), p1_holes.end());
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::first_player;
-    MankalaEngine::Player p2 = MankalaEngine::second_player;
+    MankalaEngine::Player p1 = MankalaEngine::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
         EXPECT_FALSE(rules.validMove(i, p1, board));
@@ -31,7 +31,7 @@ TEST(BohnenspielRules, SimpleMove) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::first_player;
+    MankalaEngine::Player p1 = MankalaEngine::player_1;
 
     next_board.holes.at(0) = 0;
     next_board.holes.at(1) += 1;
@@ -51,7 +51,7 @@ TEST(BohnenspielRules, LapMove) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p2 = MankalaEngine::second_player;
+    MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     next_board.holes.at(8) = 0;
     next_board.holes.at(9) += 1;
@@ -71,7 +71,7 @@ TEST(BohnenspielRules, MoveWithSingleCapture) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::first_player;
+    MankalaEngine::Player p1 = MankalaEngine::player_1;
 
     board.holes = std::vector<int>(12, 0);
     next_board.holes = std::vector<int>(12, 0);
@@ -94,7 +94,7 @@ TEST(BohnenspielRules, MoveWithMultipleCaptures) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::first_player;
+    MankalaEngine::Player p1 = MankalaEngine::player_1;
 
     board.holes = std::vector<int>(12, 0);
     next_board.holes = std::vector<int>(12, 0);
@@ -119,7 +119,7 @@ TEST(BohnenspielRules, CaptureWithLap) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p2 = MankalaEngine::second_player;
+    MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     board.holes.at(8) = 5;
     board.holes.at(9) = 1;
