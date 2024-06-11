@@ -13,6 +13,7 @@ else()
 endif()
 
 option(BUILD_TESTING "Build the tests" ${IS_PROJECT})
+option(BUILD_DOCS "Build the docs" ${IS_PROJECT})
 
 if(${IS_PROJECT})
     include(CTest)
@@ -22,4 +23,8 @@ add_subdirectory(src)
 
 if(${IS_PROJECT} AND BUILD_TESTING)
     add_subdirectory(test)
+endif()
+
+if(${IS_PROJECT} AND BUILD_DOCS)
+    add_subdirectory(docs)
 endif()
