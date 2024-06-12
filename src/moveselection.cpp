@@ -13,14 +13,14 @@ int _miniMax(Player player, const Rules& rules, const Board& state, int depth) {
         return _eval(state);
     }
 
-    auto moves = rules.getMoves(player, state);
+    const auto moves = rules.getMoves(player, state);
     Board new_state = state;
 
     if (player == player_1) {
         int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
-            int eval = _miniMax(player_2, rules, new_state, depth - 1);
+            const int eval = _miniMax(player_2, rules, new_state, depth - 1);
             highest_eval = std::max(highest_eval, eval);
             new_state = state; // Undo previous move
         }
@@ -30,7 +30,7 @@ int _miniMax(Player player, const Rules& rules, const Board& state, int depth) {
     int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
     for (const auto& move : moves) {
         rules.move(move, player, new_state);
-        int eval = _miniMax(player_1, rules, new_state, depth - 1);
+        const int eval = _miniMax(player_1, rules, new_state, depth - 1);
         lowest_eval = std::min(lowest_eval, eval);
         new_state = state; // Undo previous move
     }
@@ -55,7 +55,7 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     if (player == player_1) {
         int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
         for (const auto& move : moves) {
-            int eval = _miniMax(player, rules, state, 5);
+            const int eval = _miniMax(player, rules, state, 5);
             if (eval > highest_eval) {
                 highest_eval = eval;
                 chosen_move = move;
@@ -64,7 +64,7 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     } else {
         int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
         for (const auto& move : moves) {
-            int eval = _miniMax(player, rules, state, 5);
+            const int eval = _miniMax(player, rules, state, 5);
             if (eval < lowest_eval) {
                 lowest_eval = eval;
                 chosen_move = move;

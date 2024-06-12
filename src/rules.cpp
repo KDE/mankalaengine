@@ -5,7 +5,7 @@ namespace MankalaEngine {
 void Rules::finishGame(Player winner, Board& state) const {
     int pebbles = 0;
     for (int i = 0; i < _player_holes; i++) {
-        int pos = position(i, winner);
+        const int pos = position(i, winner);
         pebbles += state.holes.at(pos);
         state.holes.at(pos) = 0;
     }

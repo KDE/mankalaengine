@@ -4,7 +4,7 @@ namespace MankalaEngine {
 
 bool MankalaEngine::play(Player player, const Rules& rules, Board& state) {
     if (rules.gameOver(player, state)) {
-        Player winner = player == player_1 ? player_2 : player_1;
+        const Player winner = player == player_1 ? player_2 : player_1;
         rules.finishGame(winner, state);
         return false;
     }
