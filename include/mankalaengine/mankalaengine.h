@@ -17,7 +17,7 @@ class MankalaEngine {
      *
      * @see moveselection.h
      */
-    MankalaEngine(
+    explicit MankalaEngine(
         std::function<int(Player, const Rules&, const Board&)> selectMove)
         : _selectMove(std::move(selectMove)) {}
 
