@@ -19,12 +19,14 @@ if(${IS_PROJECT})
     include(CTest)
 endif()
 
-add_subdirectory(src)
-
-if(${IS_PROJECT} AND BUILD_TESTING)
-    add_subdirectory(test)
-endif()
-
 if(${IS_PROJECT} AND BUILD_DOCS)
     add_subdirectory(docs)
 endif()
+
+if(${IS_PROJECT} AND BUILD_TESTING)
+    add_subdirectory(test)
+    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+    set(CMAKE_CXX_CPPCHECK cppcheck --check-level=exhaustive --enable=warning,style,performance -I include/mankalaengine/ src)
+endif()
+
+add_subdirectory(src)
