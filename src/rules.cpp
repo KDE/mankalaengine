@@ -1,3 +1,8 @@
+/*
+    SPDX-FileCopyrightText: 2024 João Gouveia <jtalonegouveia@gmail.com>
+
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
 #include <rules.h>
 
 namespace MankalaEngine {
