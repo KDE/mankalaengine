@@ -6,6 +6,8 @@ project(
     DESCRIPTION "Engine used for creating computerized opponents for Mancala variants."
     LANGUAGES CXX)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     set(IS_PROJECT TRUE)
 else()
