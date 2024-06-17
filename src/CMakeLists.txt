@@ -4,6 +4,6 @@ add_library(mankalaengine mankalaengine.cpp rules.cpp bohnenspielrules.cpp moves
 
 target_include_directories(mankalaengine PUBLIC ../include/mankalaengine)
 
-target_compile_features(mankalaengine PUBLIC cxx_std_17)
+target_compile_features(mankalaengine PUBLIC cxx_std_11)
 set_target_properties(mankalaengine PROPERTIES CXX_EXTENSIONS OFF)
 set_target_properties(mankalaengine PROPERTIES CXX_STANDARD_REQUIRED ON)
