@@ -8,7 +8,8 @@
 
 namespace MankalaEngine {
 
-bool MankalaEngine::play(Player player, const Rules& rules, Board& state) {
+bool MankalaEngine::play(Player player, const Rules& rules,
+                         Board& state) const {
     if (rules.gameOver(player, state)) {
         const Player winner = player == player_1 ? player_2 : player_1;
         rules.finishGame(winner, state);

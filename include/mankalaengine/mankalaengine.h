@@ -43,7 +43,7 @@ class MankalaEngine {
      *
      * @see Player Rules Board
      */
-    bool play(Player player, const Rules& rules, Board& state);
+    bool play(Player player, const Rules& rules, Board& state) const;
 };
 
 } // namespace MankalaEngine
