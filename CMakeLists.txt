@@ -27,8 +27,17 @@ endif()
 
 if(${IS_PROJECT} AND BUILD_TESTING)
     add_subdirectory(test)
-    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
-    set(CMAKE_CXX_CPPCHECK cppcheck --check-level=exhaustive --enable=warning,style,performance -I include/mankalaengine/ src)
+
+    find_program(CLANG_TIDY clang-tidy)
+    if(${CLANG_TIDY})
+        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
+    endif()
+
+    find_program(CPPCHECK cppcheck)
+    if(${CPPCHECK})
+        set(CMAKE_CXX_CPPCHECK ${CPPCHECK} --check-level=exhaustive --enable=warning,style,performance -I include/mankalaengine/ src)
+    endif()
+
 endif()
 
 add_subdirectory(src)
