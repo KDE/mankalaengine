@@ -38,6 +38,7 @@ if(${IS_PROJECT} AND BUILD_TESTING)
         set(CMAKE_CXX_CPPCHECK ${CPPCHECK} --check-level=exhaustive --enable=warning,style,performance -I include/mankalaengine/ src)
     endif()
 
+    add_subdirectory(benchmark)
 endif()
 
 add_subdirectory(src)
