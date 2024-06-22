@@ -5,6 +5,7 @@
 */
 
 #include <cstdlib>
+#include <iostream>
 #include <limits>
 #include <moveselection.h>
 
@@ -41,6 +42,16 @@ int _miniMax(Player player, const Rules& rules, const Board& state, int depth) {
         new_state = state; // Undo previous move
     }
     return lowest_eval;
+}
+
+int user(Player player, const Rules& rules, const Board& state) {
+    int move = -1;
+    std::cin >> move;
+    while (!rules.validMove(move, player, state)) {
+        std::cout << "Please provide a valid move.\n";
+        std::cin >> move;
+    }
+    return move;
 }
 
 int random(Player player, const Rules& rules, const Board& state) {
