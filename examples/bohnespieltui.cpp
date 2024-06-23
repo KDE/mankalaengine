@@ -67,7 +67,6 @@ int main() {
     MankalaEngine::BohnenspielRules rules;
     MankalaEngine::Player p1 = MankalaEngine::player_1;
     MankalaEngine::Player p2 = MankalaEngine::player_2;
-    bool game_not_over = true;
 
     print_board(board);
     while (user.play(p1, rules, board) && opponent.play(p2, rules, board)) {
