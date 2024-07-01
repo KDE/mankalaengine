@@ -5,6 +5,7 @@
 */
 
 #include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <limits>
 #include <moveselection.h>
@@ -59,6 +60,7 @@ int random(Player player, const Rules& rules, const Board& state) {
     if (moves.empty()) {
         return -1;
     }
+    std::srand(std::time(0));
     return moves.at(std::rand() % moves.size());
 }
 
