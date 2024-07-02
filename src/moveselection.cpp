@@ -16,8 +16,8 @@ int _eval(const Board& state) {
     return state.stores.at(player_1) - state.stores.at(player_2);
 }
 
-int _miniMax(Player player, const Rules& rules, const Board& state, int depth,
-             int alpha, int beta) {
+int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
+               int alpha, int beta) {
     if (depth == 0 || rules.gameOver(player, state)) {
         return _eval(state);
     }
@@ -30,7 +30,7 @@ int _miniMax(Player player, const Rules& rules, const Board& state, int depth,
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
             const int eval =
-                _miniMax(player_2, rules, new_state, depth - 1, alpha, beta);
+                _alphaBeta(player_2, rules, new_state, depth - 1, alpha, beta);
             highest_eval = std::max(highest_eval, eval);
             if (highest_eval > beta) {
                 break;
@@ -45,7 +45,7 @@ int _miniMax(Player player, const Rules& rules, const Board& state, int depth,
     for (const auto& move : moves) {
         rules.move(move, player, new_state);
         const int eval =
-            _miniMax(player_1, rules, new_state, depth - 1, alpha, beta);
+            _alphaBeta(player_1, rules, new_state, depth - 1, alpha, beta);
         lowest_eval = std::min(lowest_eval, eval);
         if (lowest_eval < alpha) {
             break;
@@ -91,7 +91,8 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     if (player == player_1) {
         int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
         for (const auto& move : moves) {
-            const int eval = _miniMax(player, rules, state, depth, alpha, beta);
+            const int eval =
+                _alphaBeta(player, rules, state, depth, alpha, beta);
             if (eval > highest_eval) {
                 highest_eval = eval;
                 chosen_move = move;
@@ -100,7 +101,8 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     } else {
         int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
         for (const auto& move : moves) {
-            const int eval = _miniMax(player, rules, state, depth, alpha, beta);
+            const int eval =
+                _alphaBeta(player, rules, state, depth, alpha, beta);
             if (eval < lowest_eval) {
                 lowest_eval = eval;
                 chosen_move = move;
