@@ -9,15 +9,34 @@
 #include <iostream>
 #include <limits>
 #include <moveselection.h>
+#include <unordered_map>
 
 namespace MankalaEngine {
+
+int _hash(Player player, const Board& state) {
+    int hash = player;
+    for (auto x : state.holes) {
+        x = ((x >> 16) ^ x) * 0x45d9f3b;
+        x = ((x >> 16) ^ x) * 0x45d9f3b;
+        x = (x >> 16) ^ x;
+        hash ^= x + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+    }
+    return hash;
+}
 
 int _eval(const Board& state) {
     return state.stores.at(player_1) - state.stores.at(player_2);
 }
 
 int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
-               int alpha, int beta) {
+               int alpha, int beta, std::unordered_map<int, int>& table) {
+
+    const int hash = _hash(player, state);
+    const auto entry = table.find(hash);
+    if (entry != table.end()) {
+        return entry->second;
+    }
+
     if (depth == 0 || rules.gameOver(player, state)) {
         return _eval(state);
     }
@@ -29,8 +48,8 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
         int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
-            const int eval =
-                _alphaBeta(player_2, rules, new_state, depth - 1, alpha, beta);
+            const int eval = _alphaBeta(player_2, rules, new_state, depth - 1,
+                                        alpha, beta, table);
             highest_eval = std::max(highest_eval, eval);
             if (highest_eval > beta) {
                 break;
@@ -38,14 +57,16 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
             alpha = std::max(highest_eval, alpha);
             new_state = state; // Undo previous move
         }
+
+        table.emplace(hash, highest_eval);
         return highest_eval;
     }
 
     int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
     for (const auto& move : moves) {
         rules.move(move, player, new_state);
-        const int eval =
-            _alphaBeta(player_1, rules, new_state, depth - 1, alpha, beta);
+        const int eval = _alphaBeta(player_1, rules, new_state, depth - 1,
+                                    alpha, beta, table);
         lowest_eval = std::min(lowest_eval, eval);
         if (lowest_eval < alpha) {
             break;
@@ -53,6 +74,8 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
         alpha = std::min(lowest_eval, alpha);
         new_state = state; // Undo previous move
     }
+
+    table.emplace(hash, lowest_eval);
     return lowest_eval;
 }
 
@@ -82,17 +105,19 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     }
     int chosen_move = -1;
 
-    const int depth = 5;
+    const int depth = 6;
     // Negative infinity
     const int alpha = std::numeric_limits<int>::min();
     // Positive infinity
     const int beta = std::numeric_limits<int>::max();
+    // Transposition table
+    std::unordered_map<int, int> table;
 
     if (player == player_1) {
         int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
         for (const auto& move : moves) {
             const int eval =
-                _alphaBeta(player, rules, state, depth, alpha, beta);
+                _alphaBeta(player, rules, state, depth, alpha, beta, table);
             if (eval > highest_eval) {
                 highest_eval = eval;
                 chosen_move = move;
@@ -102,7 +127,7 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
         int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
         for (const auto& move : moves) {
             const int eval =
-                _alphaBeta(player, rules, state, depth, alpha, beta);
+                _alphaBeta(player, rules, state, depth, alpha, beta, table);
             if (eval < lowest_eval) {
                 lowest_eval = eval;
                 chosen_move = move;
