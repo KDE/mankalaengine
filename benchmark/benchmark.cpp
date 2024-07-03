@@ -5,6 +5,7 @@
 */
 
 #include <bohnenspielrules.h>
+#include <ctime>
 #include <functional>
 #include <iostream>
 #include <mankalaengine.h>
@@ -71,6 +72,8 @@ int run_games(int games, const int engine1_id, const int engine2_id,
 }
 
 int main() {
+    std::srand(std::time(0));
+
     int games = 0;
     std::cout << "How many games should be played: ";
     std::cin >> games;
