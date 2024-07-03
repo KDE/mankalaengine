@@ -71,7 +71,7 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
         if (lowest_eval < alpha) {
             break;
         }
-        alpha = std::min(lowest_eval, alpha);
+        beta = std::min(lowest_eval, beta);
         new_state = state; // Undo previous move
     }
 
