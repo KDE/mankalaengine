@@ -105,7 +105,7 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     }
     int chosen_move = -1;
 
-    const int depth = 6;
+    const int depth = 51;
     // Negative infinity
     const int alpha = std::numeric_limits<int>::min();
     // Positive infinity
@@ -114,23 +114,29 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     std::unordered_map<int, int> table;
 
     if (player == player_1) {
-        int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
-        for (const auto& move : moves) {
-            const int eval =
-                _alphaBeta(player, rules, state, depth, alpha, beta, table);
-            if (eval > highest_eval) {
-                highest_eval = eval;
-                chosen_move = move;
+        for (int d = 1; d < depth; ++d) {
+            // Negative infinity
+            int highest_eval = std::numeric_limits<int>::min();
+            for (const auto& move : moves) {
+                const int eval =
+                    _alphaBeta(player, rules, state, d, alpha, beta, table);
+                if (eval > highest_eval) {
+                    highest_eval = eval;
+                    chosen_move = move;
+                }
             }
         }
     } else {
-        int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
-        for (const auto& move : moves) {
-            const int eval =
-                _alphaBeta(player, rules, state, depth, alpha, beta, table);
-            if (eval < lowest_eval) {
-                lowest_eval = eval;
-                chosen_move = move;
+        for (int d = 1; d < depth; ++d) {
+            // Positive infinity
+            int lowest_eval = std::numeric_limits<int>::max();
+            for (const auto& move : moves) {
+                const int eval =
+                    _alphaBeta(player, rules, state, d, alpha, beta, table);
+                if (eval < lowest_eval) {
+                    lowest_eval = eval;
+                    chosen_move = move;
+                }
             }
         }
     }
