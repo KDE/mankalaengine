@@ -78,6 +78,24 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
     return lowest_eval;
 }
 
+int _mtdf(Player player, const Rules& rules, const Board& state,
+          int first_guess, int depth, std::unordered_map<int, int>& table) {
+    int beta, g = first_guess;
+    int upperbound = std::numeric_limits<int>::min();
+    int lowerbound = std::numeric_limits<int>::max();
+
+    while (lowerbound < upperbound) {
+        beta = g == lowerbound ? g + 1 : g;
+        g = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
+        if (g < beta) {
+            upperbound = g;
+        } else {
+            lowerbound = g;
+        }
+    }
+    return g;
+}
+
 int user(Player player, const Rules& rules, const Board& state) {
     int move = -1;
     std::cin >> move;
@@ -121,6 +139,37 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
         for (const auto& move : moves) {
             const int eval =
                 _alphaBeta(player, rules, state, d, alpha, beta, table);
+            if (is_better(eval, best_eval)) {
+                best_eval = eval;
+                chosen_move = move;
+            }
+        }
+    }
+
+    return chosen_move;
+}
+
+int mtdf(Player player, const Rules& rules, const Board& state) {
+    const std::vector<int> moves = rules.getMoves(player, state);
+    if (moves.empty()) {
+        return -1;
+    }
+
+    int chosen_move = -1;
+    int eval = 0;
+    int best_eval = player == player_1 ? std::numeric_limits<int>::min()
+                                       : std::numeric_limits<int>::max();
+
+    auto is_better = player == player_1 ? [](int x, int y) { return x > y; }
+                                        : [](int x, int y) { return x < y; };
+
+    const int depth = 51;
+    // Transposition table
+    std::unordered_map<int, int> table;
+
+    for (const auto& move : moves) {
+        for (int d = 1; d < depth; ++d) {
+            eval = _mtdf(player, rules, state, eval, d, table);
             if (is_better(eval, best_eval)) {
                 best_eval = eval;
                 chosen_move = move;

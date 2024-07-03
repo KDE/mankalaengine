@@ -13,7 +13,7 @@
 
 template <class T> T create() { return T(); }
 
-constexpr int engine_count = 2;
+constexpr int engine_count = 3;
 constexpr int rules_count = 1;
 
 const MankalaEngine::BohnenspielRules bohnenspiel_rules;
@@ -21,6 +21,7 @@ const MankalaEngine::BohnenspielRules bohnenspiel_rules;
 const std::array<const MankalaEngine::MankalaEngine, engine_count> engines = {
     MankalaEngine::MankalaEngine(MankalaEngine::random),
     MankalaEngine::MankalaEngine(MankalaEngine::miniMax),
+    MankalaEngine::MankalaEngine(MankalaEngine::mtdf),
 };
 
 const std::array<const MankalaEngine::Rules*, rules_count> rules = {
@@ -35,6 +36,7 @@ void list_engines() {
     std::cout << "\nMove selection:\n";
     std::cout << "0 - Random opponent\n";
     std::cout << "1 - Minimax opponent\n";
+    std::cout << "2 - MTDF opponent\n";
 }
 
 void list_rules() {
