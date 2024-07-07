@@ -24,3 +24,14 @@ is working correctly by running the tests:
 cd build
 ctest
 ```
+
+## How to use
+
+The `examples/` folder contains usage examples. You can also
+build the doxygen documentation by specifying the cmake option
+`BUILD_DOCS`.
+
+## Comparing different move selection functions
+
+The `benchmark/` folder contains an utility that can be used
+to compare different move selection functions.
