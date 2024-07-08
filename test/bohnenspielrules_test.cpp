@@ -5,21 +5,21 @@
 */
 
 #include <bohnenspielrules.h>
-#include <catch2/catch_test_macros.hpp>
+#include <gtest/gtest.h>
 
-TEST_CASE("Valid move", "BohnenspielRules") {
+TEST(BohnenspielRules, ValidMove) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
     MankalaEngine::Player p1 = MankalaEngine::player_1;
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
-        CHECK(rules.validMove(i, p1, board));
-        CHECK(rules.validMove(i, p2, board));
+        EXPECT_TRUE(rules.validMove(i, p1, board));
+        EXPECT_TRUE(rules.validMove(i, p2, board));
     }
 }
 
-TEST_CASE("Invalid move", "BohnenspielRules") {
+TEST(BohnenspielRules, InvalidMove) {
     MankalaEngine::BohnenspielBoard board;
     std::vector<int> p1_holes(6, 0);
     board.holes.insert(board.holes.begin(), p1_holes.begin(), p1_holes.end());
@@ -28,12 +28,12 @@ TEST_CASE("Invalid move", "BohnenspielRules") {
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
-        CHECK_FALSE(rules.validMove(i, p1, board));
-        CHECK(rules.validMove(i, p2, board));
+        EXPECT_FALSE(rules.validMove(i, p1, board));
+        EXPECT_TRUE(rules.validMove(i, p2, board));
     }
 }
 
-TEST_CASE("Simple move", "BohnenspielRules") {
+TEST(BohnenspielRules, SimpleMove) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -49,11 +49,11 @@ TEST_CASE("Simple move", "BohnenspielRules") {
 
     rules.move(0, p1, board);
     for (int i = 0; i < 12; ++i) {
-        CHECK(board.holes.at(i) == next_board.holes.at(i));
+        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
     }
 }
 
-TEST_CASE("Lap move", "BohnenspielRules") {
+TEST(BohnenspielRules, LapMove) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -69,11 +69,11 @@ TEST_CASE("Lap move", "BohnenspielRules") {
 
     rules.move(2, p2, board);
     for (int i = 0; i < 12; ++i) {
-        CHECK(board.holes.at(i) == next_board.holes.at(i));
+        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
     }
 }
 
-TEST_CASE("Move with single capture", "BohnenspielRules") {
+TEST(BohnenspielRules, MoveWithSingleCapture) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -90,13 +90,13 @@ TEST_CASE("Move with single capture", "BohnenspielRules") {
 
     rules.move(0, p1, board);
     for (int i = 0; i < 12; ++i) {
-        CHECK(board.holes.at(i) == next_board.holes.at(i));
+        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
     }
-    CHECK(board.stores.at(0) == 2);
-    CHECK(board.stores.at(1) == 0);
+    EXPECT_EQ(board.stores.at(0), 2);
+    EXPECT_EQ(board.stores.at(1), 0);
 }
 
-TEST_CASE("Move with multiple captures", "BohnenspielRules") {
+TEST(BohnenspielRules, MoveWithMultipleCaptures) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -115,13 +115,13 @@ TEST_CASE("Move with multiple captures", "BohnenspielRules") {
 
     rules.move(0, p1, board);
     for (int i = 0; i < 12; ++i) {
-        CHECK(board.holes.at(i) == next_board.holes.at(i));
+        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
     }
-    CHECK(board.stores.at(0) == 4);
-    CHECK(board.stores.at(1) == 0);
+    EXPECT_EQ(board.stores.at(0), 4);
+    EXPECT_EQ(board.stores.at(1), 0);
 }
 
-TEST_CASE("Capture with lap", "BohnenspielRules") {
+TEST(BohnenspielRules, CaptureWithLap) {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -145,8 +145,8 @@ TEST_CASE("Capture with lap", "BohnenspielRules") {
 
     rules.move(2, p2, board);
     for (int i = 0; i < 12; ++i) {
-        CHECK(board.holes.at(i) == next_board.holes.at(i));
+        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
     }
-    CHECK(board.stores.at(0) == 0);
-    CHECK(board.stores.at(1) == 16);
+    EXPECT_EQ(board.stores.at(0), 0);
+    EXPECT_EQ(board.stores.at(1), 16);
 }
