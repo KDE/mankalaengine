@@ -5,11 +5,11 @@
 */
 
 #include <bohnenspielrules.h>
-#include <gtest/gtest.h>
+#include <catch2/catch_test_macros.hpp>
 #include <mankalaengine.h>
 #include <moveselection.h>
 
-TEST(MankalaEngine, RandomSelectionFullBohnenspielGame) {
+TEST_CASE("Random selection full Bohnenspiel game", "MankalaEngine") {
     MankalaEngine::MankalaEngine engine(MankalaEngine::random);
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
@@ -21,13 +21,13 @@ TEST(MankalaEngine, RandomSelectionFullBohnenspielGame) {
 
     int holes = rules.player_holes();
     for (int i = 0; i < holes; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_FALSE(rules.validMove(i, p2, board));
+        CHECK_FALSE(rules.validMove(i, p1, board));
+        CHECK_FALSE(rules.validMove(i, p2, board));
     }
-    EXPECT_EQ(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
+    CHECK(board.stores.at(p1) + board.stores.at(p2) == 6 * 6 * 2);
 }
 
-TEST(MankalaEngine, MiniMaxSelectionFullBohnenspielGame) {
+TEST_CASE("Minimax selection full Bohnenspiel game", "MankalaEngine") {
     MankalaEngine::MankalaEngine engine(MankalaEngine::miniMax);
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
@@ -39,13 +39,13 @@ TEST(MankalaEngine, MiniMaxSelectionFullBohnenspielGame) {
 
     int holes = rules.player_holes();
     for (int i = 0; i < holes; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_FALSE(rules.validMove(i, p2, board));
+        CHECK_FALSE(rules.validMove(i, p1, board));
+        CHECK_FALSE(rules.validMove(i, p2, board));
     }
-    EXPECT_EQ(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
+    CHECK(board.stores.at(p1) + board.stores.at(p2) == 6 * 6 * 2);
 }
 
-TEST(MankalaEngine, MTDFSelectionFullBohnenspielGame) {
+TEST_CASE("MTDF selection full Bohnenspiel game", "MankalaEngine") {
     MankalaEngine::MankalaEngine engine(MankalaEngine::mtdf);
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
@@ -57,8 +57,8 @@ TEST(MankalaEngine, MTDFSelectionFullBohnenspielGame) {
 
     int holes = rules.player_holes();
     for (int i = 0; i < holes; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_FALSE(rules.validMove(i, p2, board));
+        CHECK_FALSE(rules.validMove(i, p1, board));
+        CHECK_FALSE(rules.validMove(i, p2, board));
     }
-    EXPECT_EQ(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
+    CHECK(board.stores.at(p1) + board.stores.at(p2) == 6 * 6 * 2);
 }

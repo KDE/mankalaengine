@@ -5,21 +5,21 @@
 */
 
 #include <bohnenspielrules.h>
-#include <gtest/gtest.h>
+#include <catch2/catch_test_macros.hpp>
 
-TEST(BohnenspielRules, ValidMove) {
+TEST_CASE("Valid move", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
     MankalaEngine::Player p1 = MankalaEngine::player_1;
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
-        EXPECT_TRUE(rules.validMove(i, p1, board));
-        EXPECT_TRUE(rules.validMove(i, p2, board));
+        CHECK(rules.validMove(i, p1, board));
+        CHECK(rules.validMove(i, p2, board));
     }
 }
 
-TEST(BohnenspielRules, InvalidMove) {
+TEST_CASE("Invalid move", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     std::vector<int> p1_holes(6, 0);
     board.holes.insert(board.holes.begin(), p1_holes.begin(), p1_holes.end());
@@ -28,12 +28,12 @@ TEST(BohnenspielRules, InvalidMove) {
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_TRUE(rules.validMove(i, p2, board));
+        CHECK_FALSE(rules.validMove(i, p1, board));
+        CHECK(rules.validMove(i, p2, board));
     }
 }
 
-TEST(BohnenspielRules, SimpleMove) {
+TEST_CASE("Simple move", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -49,11 +49,11 @@ TEST(BohnenspielRules, SimpleMove) {
 
     rules.move(0, p1, board);
     for (int i = 0; i < 12; ++i) {
-        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
+        CHECK(board.holes.at(i) == next_board.holes.at(i));
     }
 }
 
-TEST(BohnenspielRules, LapMove) {
+TEST_CASE("Lap move", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -69,11 +69,11 @@ TEST(BohnenspielRules, LapMove) {
 
     rules.move(2, p2, board);
     for (int i = 0; i < 12; ++i) {
-        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
+        CHECK(board.holes.at(i) == next_board.holes.at(i));
     }
 }
 
-TEST(BohnenspielRules, MoveWithSingleCapture) {
+TEST_CASE("Move with single capture", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -90,13 +90,13 @@ TEST(BohnenspielRules, MoveWithSingleCapture) {
 
     rules.move(0, p1, board);
     for (int i = 0; i < 12; ++i) {
-        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
+        CHECK(board.holes.at(i) == next_board.holes.at(i));
     }
-    EXPECT_EQ(board.stores.at(0), 2);
-    EXPECT_EQ(board.stores.at(1), 0);
+    CHECK(board.stores.at(0) == 2);
+    CHECK(board.stores.at(1) == 0);
 }
 
-TEST(BohnenspielRules, MoveWithMultipleCaptures) {
+TEST_CASE("Move with multiple captures", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -115,13 +115,13 @@ TEST(BohnenspielRules, MoveWithMultipleCaptures) {
 
     rules.move(0, p1, board);
     for (int i = 0; i < 12; ++i) {
-        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
+        CHECK(board.holes.at(i) == next_board.holes.at(i));
     }
-    EXPECT_EQ(board.stores.at(0), 4);
-    EXPECT_EQ(board.stores.at(1), 0);
+    CHECK(board.stores.at(0) == 4);
+    CHECK(board.stores.at(1) == 0);
 }
 
-TEST(BohnenspielRules, CaptureWithLap) {
+TEST_CASE("Capture with lap", "BohnenspielRules") {
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard next_board;
     MankalaEngine::BohnenspielRules rules;
@@ -145,8 +145,8 @@ TEST(BohnenspielRules, CaptureWithLap) {
 
     rules.move(2, p2, board);
     for (int i = 0; i < 12; ++i) {
-        EXPECT_EQ(board.holes.at(i), next_board.holes.at(i));
+        CHECK(board.holes.at(i) == next_board.holes.at(i));
     }
-    EXPECT_EQ(board.stores.at(0), 0);
-    EXPECT_EQ(board.stores.at(1), 16);
+    CHECK(board.stores.at(0) == 0);
+    CHECK(board.stores.at(1) == 16);
 }
