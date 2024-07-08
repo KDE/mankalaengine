@@ -15,6 +15,8 @@ cmake -S . -B build
 cmake --build build
 ```
 
+You only need CMake and a C++ compiler to build the library.
+
 ## Running Tests
 
 After you have built the library, you can check if everything
