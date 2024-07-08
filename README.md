@@ -27,11 +27,12 @@ ctest
 
 ## How to use
 
-The `examples/` folder contains usage examples. You can also
-build the doxygen documentation by specifying the cmake option
-`BUILD_DOCS`.
+The `examples/` folder contains usage examples, including a simple
+TUI that allows a user to play a game against a computerized opponent.
+You can also build the Doxygen documentation by specifying the cmake
+option `BUILD_DOCS`.
 
 ## Comparing different move selection functions
 
-The `benchmark/` folder contains an utility that can be used
+The `benchmark/` folder contains a utility that can be used
 to compare different move selection functions.
