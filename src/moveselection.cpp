@@ -8,6 +8,7 @@
 #include <iostream>
 #include <limits>
 #include <moveselection.h>
+#include <random>
 #include <unordered_map>
 
 namespace MankalaEngine {
@@ -112,10 +113,16 @@ int user(Player player, const Rules& rules, const Board& state) {
 
 int random(Player player, const Rules& rules, const Board& state) {
     const std::vector<int> moves = rules.getMoves(player, state);
+
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist(
+        0, moves.size() - 1);
+
     if (moves.empty()) {
         return -1;
     }
-    return moves.at(std::rand() % moves.size());
+    return moves.at(dist(rng));
 }
 
 int miniMax(Player player, const Rules& rules, const Board& state) {
