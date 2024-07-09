@@ -5,6 +5,7 @@
 */
 
 #include <cstdlib>
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <moveselection.h>
@@ -121,8 +122,9 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     }
     int chosen_move = -1;
 
-    auto is_better = player == player_1 ? [](int x, int y) { return x > y; }
-                                        : [](int x, int y) { return x < y; };
+    std::function<bool(int, int)> is_better =
+        player == player_1 ? [](int x, int y) { return x > y; }
+                           : [](int x, int y) { return x < y; };
 
     const int depth = 51;
     // Negative infinity
@@ -160,8 +162,9 @@ int mtdf(Player player, const Rules& rules, const Board& state) {
     int best_eval = player == player_1 ? std::numeric_limits<int>::min()
                                        : std::numeric_limits<int>::max();
 
-    auto is_better = player == player_1 ? [](int x, int y) { return x > y; }
-                                        : [](int x, int y) { return x < y; };
+    std::function<bool(int, int)> is_better =
+        player == player_1 ? [](int x, int y) { return x > y; }
+                           : [](int x, int y) { return x < y; };
 
     const int depth = 51;
     // Transposition table
