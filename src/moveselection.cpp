@@ -5,13 +5,16 @@
 */
 
 #include <cstdlib>
-#include <functional>
 #include <iostream>
 #include <limits>
 #include <moveselection.h>
 #include <unordered_map>
 
 namespace MankalaEngine {
+
+bool _greater(int x, int y) { return x > y; }
+
+bool _less(int x, int y) { return x < y; }
 
 int _hash(Player player, const Board& state) {
     int hash = player;
@@ -122,9 +125,7 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     }
     int chosen_move = -1;
 
-    std::function<bool(int, int)> is_better =
-        player == player_1 ? [](int x, int y) { return x > y; }
-                           : [](int x, int y) { return x < y; };
+    auto is_better = player == player_1 ? _greater : _less;
 
     const int depth = 51;
     // Negative infinity
@@ -162,9 +163,7 @@ int mtdf(Player player, const Rules& rules, const Board& state) {
     int best_eval = player == player_1 ? std::numeric_limits<int>::min()
                                        : std::numeric_limits<int>::max();
 
-    std::function<bool(int, int)> is_better =
-        player == player_1 ? [](int x, int y) { return x > y; }
-                           : [](int x, int y) { return x < y; };
+    auto is_better = player == player_1 ? _greater : _less;
 
     const int depth = 51;
     // Transposition table
