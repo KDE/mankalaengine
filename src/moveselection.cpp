@@ -7,11 +7,19 @@
 #include <cstdlib>
 #include <iostream>
 #include <limits>
+#include <memory>
 #include <moveselection.h>
 #include <random>
 #include <unordered_map>
 
 namespace MankalaEngine {
+
+struct NodeScore {
+    int lowerbound = std::numeric_limits<int>::min();
+    int upperbound = std::numeric_limits<int>::max();
+};
+
+typedef std::unordered_map<int, std::unique_ptr<NodeScore>> Table;
 
 bool _greater(int x, int y) { return x > y; }
 
@@ -33,63 +41,89 @@ int _eval(const Board& state) {
 }
 
 int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
-               int alpha, int beta, std::unordered_map<int, int>& table) {
+               int alpha, int beta, Table& table) {
 
+    int eval = 0;
     const int hash = _hash(player, state);
-    const auto entry = table.find(hash);
-    if (entry != table.end()) {
-        return entry->second;
+    auto emplace_result = table.emplace(hash, std::make_unique<NodeScore>());
+    const auto entry = emplace_result.first;
+
+    if (!emplace_result.second) { // Emplace failed, entry already exists
+        if (entry->second->lowerbound >= beta) {
+            return entry->second->lowerbound;
+        }
+        if (entry->second->upperbound <= alpha) {
+            return entry->second->upperbound;
+        }
+
+        alpha = std::max(alpha, entry->second->lowerbound);
+        beta = std::min(beta, entry->second->upperbound);
     }
 
-    if (depth == 0 || rules.gameOver(player, state)) {
-        return _eval(state);
-    }
+    if (depth == 0 || rules.gameOver(player, state)) { // Leaf node
+        eval = _eval(state);
+    } else if (player == player_1) { // Max node
+        int a = alpha;
+        eval = std::numeric_limits<int>::min(); // Negative infinity
 
-    const auto moves = rules.getMoves(player, state);
-    Board new_state = state;
+        Board new_state = state;
+        const auto moves = rules.getMoves(player, state);
 
-    if (player == player_1) {
-        int highest_eval = std::numeric_limits<int>::min(); // Negative infinity
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
-            const int eval = _alphaBeta(player_2, rules, new_state, depth - 1,
-                                        alpha, beta, table);
-            highest_eval = std::max(highest_eval, eval);
-            if (highest_eval > beta) {
+            eval = std::max(eval, _alphaBeta(player_2, rules, new_state,
+                                             depth - 1, a, beta, table));
+
+            if (eval >= beta) {
                 break;
             }
-            alpha = std::max(highest_eval, alpha);
+
+            a = std::max(a, eval);
             new_state = state; // Undo previous move
-        }
 
-        table.emplace(hash, highest_eval);
-        return highest_eval;
+        }
+    } else { // Min node
+        int b = beta;
+        eval = std::numeric_limits<int>::max(); // Positive infinity
+
+        Board new_state = state;
+        const auto moves = rules.getMoves(player, state);
+
+        for (const auto& move : moves) {
+            rules.move(move, player, new_state);
+            eval = std::min(eval, _alphaBeta(player_2, rules, new_state,
+                                             depth - 1, alpha, b, table));
+
+            if (eval <= alpha) {
+                break;
+            }
+
+            b = std::min(b, eval);
+            new_state = state; // Undo previous move
+
+        }
     }
 
-    int lowest_eval = std::numeric_limits<int>::max(); // Positive infinity
-    for (const auto& move : moves) {
-        rules.move(move, player, new_state);
-        const int eval = _alphaBeta(player_1, rules, new_state, depth - 1,
-                                    alpha, beta, table);
-        lowest_eval = std::min(lowest_eval, eval);
-        if (lowest_eval < alpha) {
-            break;
-        }
-        beta = std::min(lowest_eval, beta);
-        new_state = state; // Undo previous move
+    if (eval <= alpha) {
+        entry->second->lowerbound = eval;
     }
-
-    table.emplace(hash, lowest_eval);
-    return lowest_eval;
+    if (eval >= beta) {
+        entry->second->upperbound = eval;
+    }
+    if (eval > alpha && eval < beta) {
+        entry->second->lowerbound = eval;
+        entry->second->upperbound = eval;
+    }
+    return eval;
 }
 
 int _mtdf(Player player, const Rules& rules, const Board& state,
-          int first_guess, int depth, std::unordered_map<int, int>& table) {
+          int first_guess, int depth, Table& table) {
     int beta, g = first_guess;
     int upperbound = std::numeric_limits<int>::min();
     int lowerbound = std::numeric_limits<int>::max();
 
-    while (lowerbound < upperbound) {
+    do {
         beta = g == lowerbound ? g + 1 : g;
         g = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
         if (g < beta) {
@@ -97,7 +131,7 @@ int _mtdf(Player player, const Rules& rules, const Board& state,
         } else {
             lowerbound = g;
         }
-    }
+    } while (lowerbound < upperbound);
     return g;
 }
 
@@ -143,7 +177,7 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     // Positive infinity
     const int beta = std::numeric_limits<int>::max();
     // Transposition table
-    std::unordered_map<int, int> table;
+    Table table;
 
     Board new_state = state;
     for (const auto& move : moves) {
@@ -176,16 +210,19 @@ int mtdf(Player player, const Rules& rules, const Board& state) {
 
     const int depth = 51;
     // Transposition table
-    std::unordered_map<int, int> table;
+    Table table;
 
+    Board new_state = state;
     for (const auto& move : moves) {
+        rules.move(move, player, new_state);
         for (int d = 1; d < depth; ++d) {
-            eval = _mtdf(player, rules, state, eval, d, table);
+            eval = _mtdf(player, rules, new_state, eval, d, table);
             if (is_better(eval, best_eval)) {
                 best_eval = eval;
                 chosen_move = move;
             }
         }
+        new_state = state; // Undo previous move
     }
 
     return chosen_move;
