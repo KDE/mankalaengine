@@ -132,9 +132,12 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     }
     int chosen_move = -1;
 
+    int best_eval = player == player_1 ? std::numeric_limits<int>::min()
+                                       : std::numeric_limits<int>::max();
+
     auto is_better = player == player_1 ? _greater : _less;
 
-    const int depth = 51;
+    const int depth = 7;
     // Negative infinity
     const int alpha = std::numeric_limits<int>::min();
     // Positive infinity
@@ -142,18 +145,17 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     // Transposition table
     std::unordered_map<int, int> table;
 
-    for (int d = 1; d < depth; ++d) {
-        int best_eval = player == player_1 ? std::numeric_limits<int>::min()
-                                           : std::numeric_limits<int>::max();
+    Board new_state = state;
+    for (const auto& move : moves) {
+        rules.move(move, player, new_state);
+        const int eval =
+            _alphaBeta(player, rules, new_state, depth, alpha, beta, table);
 
-        for (const auto& move : moves) {
-            const int eval =
-                _alphaBeta(player, rules, state, d, alpha, beta, table);
-            if (is_better(eval, best_eval)) {
-                best_eval = eval;
-                chosen_move = move;
-            }
+        if (is_better(eval, best_eval)) {
+            best_eval = eval;
+            chosen_move = move;
         }
+        new_state = state; // Undo previous move
     }
 
     return chosen_move;
