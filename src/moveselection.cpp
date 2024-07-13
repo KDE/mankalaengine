@@ -14,9 +14,12 @@
 
 namespace MankalaEngine {
 
+constexpr int N_INFINITY = std::numeric_limits<int>::min();
+constexpr int P_INFINITY = std::numeric_limits<int>::max();
+
 struct NodeScore {
-    int lowerbound = std::numeric_limits<int>::min();
-    int upperbound = std::numeric_limits<int>::max();
+    int lowerbound = N_INFINITY;
+    int upperbound = P_INFINITY;
 };
 
 typedef std::unordered_map<int, std::unique_ptr<NodeScore>> Table;
@@ -64,7 +67,7 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
         eval = _eval(state);
     } else if (player == player_1) { // Max node
         int a = alpha;
-        eval = std::numeric_limits<int>::min(); // Negative infinity
+        eval = N_INFINITY;
 
         Board new_state = state;
         const auto moves = rules.getMoves(player, state);
@@ -80,11 +83,10 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
 
             a = std::max(a, eval);
             new_state = state; // Undo previous move
-
         }
     } else { // Min node
         int b = beta;
-        eval = std::numeric_limits<int>::max(); // Positive infinity
+        eval = P_INFINITY;
 
         Board new_state = state;
         const auto moves = rules.getMoves(player, state);
@@ -100,7 +102,6 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
 
             b = std::min(b, eval);
             new_state = state; // Undo previous move
-
         }
     }
 
@@ -120,8 +121,8 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
 int _mtdf(Player player, const Rules& rules, const Board& state,
           int first_guess, int depth, Table& table) {
     int beta, g = first_guess;
-    int upperbound = std::numeric_limits<int>::min();
-    int lowerbound = std::numeric_limits<int>::max();
+    int upperbound = P_INFINITY;
+    int lowerbound = N_INFINITY;
 
     do {
         beta = g == lowerbound ? g + 1 : g;
@@ -166,16 +167,12 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     }
     int chosen_move = -1;
 
-    int best_eval = player == player_1 ? std::numeric_limits<int>::min()
-                                       : std::numeric_limits<int>::max();
-
-    auto is_better = player == player_1 ? _greater : _less;
-
+    int best_eval = player == player_1 ? N_INFINITY : P_INFINITY;
+    const auto is_better = player == player_1 ? _greater : _less;
     const int depth = 7;
-    // Negative infinity
-    const int alpha = std::numeric_limits<int>::min();
-    // Positive infinity
-    const int beta = std::numeric_limits<int>::max();
+    const int alpha = N_INFINITY;
+    const int beta = P_INFINITY;
+
     // Transposition table
     Table table;
 
@@ -203,12 +200,10 @@ int mtdf(Player player, const Rules& rules, const Board& state) {
 
     int chosen_move = -1;
     int eval = 0;
-    int best_eval = player == player_1 ? std::numeric_limits<int>::min()
-                                       : std::numeric_limits<int>::max();
+    int best_eval = player == player_1 ? N_INFINITY : P_INFINITY;
+    const auto is_better = player == player_1 ? _greater : _less;
+    const int depth = 9;
 
-    auto is_better = player == player_1 ? _greater : _less;
-
-    const int depth = 51;
     // Transposition table
     Table table;
 
