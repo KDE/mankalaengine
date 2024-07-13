@@ -93,7 +93,7 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
 
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
-            eval = std::min(eval, _alphaBeta(player_2, rules, new_state,
+            eval = std::min(eval, _alphaBeta(player_1, rules, new_state,
                                              depth - 1, alpha, b, table));
 
             if (eval <= alpha) {
