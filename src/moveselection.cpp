@@ -212,12 +212,13 @@ int mtdf(Player player, const Rules& rules, const Board& state) {
         rules.move(move, player, new_state);
         for (int d = 1; d < depth; ++d) {
             eval = _mtdf(player, rules, new_state, eval, d, table);
-            if (is_better(eval, best_eval)) {
-                best_eval = eval;
-                chosen_move = move;
-            }
         }
         new_state = state; // Undo previous move
+
+        if (is_better(eval, best_eval)) {
+            best_eval = eval;
+            chosen_move = move;
+        }
     }
 
     return chosen_move;
