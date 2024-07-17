@@ -17,9 +17,15 @@ namespace MankalaEngine {
 constexpr int N_INFINITY = std::numeric_limits<int>::min();
 constexpr int P_INFINITY = std::numeric_limits<int>::max();
 
+struct SearchResult {
+    int move = -1;
+    int eval = 0;
+};
+
 struct NodeScore {
     int lowerbound = N_INFINITY;
     int upperbound = P_INFINITY;
+    int move = -1;
 };
 
 typedef std::unordered_map<int, std::unique_ptr<NodeScore>> Table;
@@ -43,20 +49,24 @@ int _eval(const Board& state) {
     return state.stores.at(player_1) - state.stores.at(player_2);
 }
 
-int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
-               int alpha, int beta, Table& table) {
+SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
+                        int depth, int alpha, int beta, Table& table) {
 
-    int eval = 0;
+    SearchResult result;
     const int hash = _hash(player, state);
     auto emplace_result = table.emplace(hash, std::make_unique<NodeScore>());
     const auto entry = emplace_result.first;
 
     if (!emplace_result.second) { // Emplace failed, entry already exists
+        result.move = entry->second->move;
+
         if (entry->second->lowerbound >= beta) {
-            return entry->second->lowerbound;
+            result.eval = entry->second->lowerbound;
+            return result;
         }
         if (entry->second->upperbound <= alpha) {
-            return entry->second->upperbound;
+            result.eval = entry->second->upperbound;
+            return result;
         }
 
         alpha = std::max(alpha, entry->second->lowerbound);
@@ -64,76 +74,92 @@ int _alphaBeta(Player player, const Rules& rules, const Board& state, int depth,
     }
 
     if (depth == 0 || rules.gameOver(player, state)) { // Leaf node
-        eval = _eval(state);
+        result.eval = _eval(state);
     } else if (player == player_1) { // Max node
         int a = alpha;
-        eval = N_INFINITY;
+        result.eval = N_INFINITY;
 
         Board new_state = state;
         const auto moves = rules.getMoves(player, state);
 
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
-            eval = std::max(eval, _alphaBeta(player_2, rules, new_state,
-                                             depth - 1, a, beta, table));
+            const int eval = _alphaBeta(player_2, rules, new_state, depth - 1,
+                                        a, beta, table)
+                                 .eval;
 
-            if (eval >= beta) {
+            if (eval > result.eval) {
+                result.eval = eval;
+                result.move = move;
+            }
+
+            if (result.eval >= beta) {
                 break;
             }
 
-            a = std::max(a, eval);
+            a = std::max(a, result.eval);
             new_state = state; // Undo previous move
         }
     } else { // Min node
         int b = beta;
-        eval = P_INFINITY;
+        result.eval = P_INFINITY;
 
         Board new_state = state;
         const auto moves = rules.getMoves(player, state);
 
         for (const auto& move : moves) {
             rules.move(move, player, new_state);
-            eval = std::min(eval, _alphaBeta(player_1, rules, new_state,
-                                             depth - 1, alpha, b, table));
+            const int eval = _alphaBeta(player_1, rules, new_state, depth - 1,
+                                        alpha, b, table)
+                                 .eval;
 
-            if (eval <= alpha) {
+            if (eval < result.eval) {
+                result.eval = eval;
+                result.move = move;
+            }
+
+            if (result.eval <= alpha) {
                 break;
             }
 
-            b = std::min(b, eval);
+            b = std::min(b, result.eval);
             new_state = state; // Undo previous move
         }
     }
 
-    if (eval <= alpha) {
-        entry->second->lowerbound = eval;
+    entry->second->move = result.move;
+
+    if (result.eval <= alpha) {
+        entry->second->lowerbound = result.eval;
     }
-    if (eval >= beta) {
-        entry->second->upperbound = eval;
+    if (result.eval > alpha && result.eval < beta) {
+        entry->second->lowerbound = result.eval;
+        entry->second->upperbound = result.eval;
     }
-    if (eval > alpha && eval < beta) {
-        entry->second->lowerbound = eval;
-        entry->second->upperbound = eval;
+    if (result.eval >= beta) {
+        entry->second->upperbound = result.eval;
     }
-    return eval;
+    return result;
 }
 
-int _mtdf(Player player, const Rules& rules, const Board& state,
-          int first_guess, int depth, Table& table) {
-    int beta, g = first_guess;
+SearchResult _mtdf(Player player, const Rules& rules, const Board& state,
+                   int first_guess, int depth, Table& table) {
+    int beta;
     int upperbound = P_INFINITY;
     int lowerbound = N_INFINITY;
+    SearchResult result;
 
+    result.eval = first_guess;
     do {
-        beta = g == lowerbound ? g + 1 : g;
-        g = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
-        if (g < beta) {
-            upperbound = g;
+        beta = result.eval == lowerbound ? result.eval + 1 : result.eval;
+        result = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
+        if (result.eval < beta) {
+            upperbound = result.eval;
         } else {
-            lowerbound = g;
+            lowerbound = result.eval;
         }
     } while (lowerbound < upperbound);
-    return g;
+    return result;
 }
 
 int user(Player player, const Rules& rules, const Board& state) {
@@ -161,14 +187,6 @@ int random(Player player, const Rules& rules, const Board& state) {
 }
 
 int miniMax(Player player, const Rules& rules, const Board& state) {
-    const std::vector<int> moves = rules.getMoves(player, state);
-    if (moves.empty()) {
-        return -1;
-    }
-    int chosen_move = -1;
-
-    int best_eval = player == player_1 ? N_INFINITY : P_INFINITY;
-    const auto is_better = player == player_1 ? _greater : _less;
     const int depth = 7;
     const int alpha = N_INFINITY;
     const int beta = P_INFINITY;
@@ -176,52 +194,20 @@ int miniMax(Player player, const Rules& rules, const Board& state) {
     // Transposition table
     Table table;
 
-    Board new_state = state;
-    for (const auto& move : moves) {
-        rules.move(move, player, new_state);
-        const int eval =
-            _alphaBeta(player, rules, new_state, depth, alpha, beta, table);
-
-        if (is_better(eval, best_eval)) {
-            best_eval = eval;
-            chosen_move = move;
-        }
-        new_state = state; // Undo previous move
-    }
-
-    return chosen_move;
+    return _alphaBeta(player, rules, state, depth, alpha, beta, table).move;
 }
 
 int mtdf(Player player, const Rules& rules, const Board& state) {
-    const std::vector<int> moves = rules.getMoves(player, state);
-    if (moves.empty()) {
-        return -1;
-    }
-
-    int chosen_move = -1;
-    int eval = 0;
-    int best_eval = player == player_1 ? N_INFINITY : P_INFINITY;
-    const auto is_better = player == player_1 ? _greater : _less;
+    SearchResult result;
     const int depth = 9;
-
     // Transposition table
     Table table;
 
-    Board new_state = state;
-    for (const auto& move : moves) {
-        rules.move(move, player, new_state);
-        for (int d = 1; d < depth; ++d) {
-            eval = _mtdf(player, rules, new_state, eval, d, table);
-        }
-        new_state = state; // Undo previous move
-
-        if (is_better(eval, best_eval)) {
-            best_eval = eval;
-            chosen_move = move;
-        }
+    for (int d = 1; d < depth; ++d) {
+        result = _mtdf(player, rules, state, result.eval, d, table);
     }
 
-    return chosen_move;
+    return result.move;
 }
 
 } // namespace MankalaEngine
