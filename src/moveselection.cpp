@@ -28,7 +28,7 @@ struct NodeScore {
     int move = -1;
 };
 
-typedef std::unordered_map<int, std::unique_ptr<NodeScore>> Table;
+using Table = std::unordered_map<int, std::unique_ptr<NodeScore>>;
 
 bool _greater(int x, int y) { return x > y; }
 
