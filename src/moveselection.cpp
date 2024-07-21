@@ -144,14 +144,13 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
 
 SearchResult _mtdf(Player player, const Rules& rules, const Board& state,
                    int first_guess, int depth, Table& table) {
-    int beta;
     int upperbound = P_INFINITY;
     int lowerbound = N_INFINITY;
     SearchResult result;
 
     result.eval = first_guess;
     do {
-        beta = result.eval == lowerbound ? result.eval + 1 : result.eval;
+        int beta = result.eval == lowerbound ? result.eval + 1 : result.eval;
         result = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
         if (result.eval < beta) {
             upperbound = result.eval;
