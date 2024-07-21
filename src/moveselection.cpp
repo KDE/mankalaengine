@@ -28,14 +28,14 @@ struct NodeScore {
     int move = -1;
 };
 
-using Table = std::unordered_map<int, std::unique_ptr<NodeScore>>;
+using Table = std::unordered_map<unsigned int, std::unique_ptr<NodeScore>>;
 
 bool _greater(int x, int y) { return x > y; }
 
 bool _less(int x, int y) { return x < y; }
 
-int _hash(Player player, const Board& state) {
-    int hash = player;
+unsigned int _hash(Player player, const Board& state) {
+    unsigned int hash = player;
     for (auto x : state.holes) {
         x = ((x >> 16) ^ x) * 0x45d9f3b;
         x = ((x >> 16) ^ x) * 0x45d9f3b;
@@ -49,11 +49,14 @@ int _eval(const Board& state) {
     return state.stores.at(player_1) - state.stores.at(player_2);
 }
 
+// Allow a cognitive complexity greater than 25, since that's how the referenced
+// pseudo-code describes the algorithm
+// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
                         int depth, int alpha, int beta, Table& table) {
 
     SearchResult result;
-    const int hash = _hash(player, state);
+    const unsigned int hash = _hash(player, state);
     auto emplace_result = table.emplace(hash, std::make_unique<NodeScore>());
     const auto entry = emplace_result.first;
 
@@ -79,10 +82,10 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
         int a = alpha;
         result.eval = N_INFINITY;
 
-        Board new_state = state;
         const auto moves = rules.getMoves(player, state);
 
         for (const auto& move : moves) {
+            Board new_state = state;
             rules.move(move, player, new_state);
             const int eval = _alphaBeta(player_2, rules, new_state, depth - 1,
                                         a, beta, table)
@@ -98,16 +101,15 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
             }
 
             a = std::max(a, result.eval);
-            new_state = state; // Undo previous move
         }
     } else { // Min node
         int b = beta;
         result.eval = P_INFINITY;
 
-        Board new_state = state;
         const auto moves = rules.getMoves(player, state);
 
         for (const auto& move : moves) {
+            Board new_state = state;
             rules.move(move, player, new_state);
             const int eval = _alphaBeta(player_1, rules, new_state, depth - 1,
                                         alpha, b, table)
@@ -123,7 +125,6 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
             }
 
             b = std::min(b, result.eval);
-            new_state = state; // Undo previous move
         }
     }
 
@@ -146,19 +147,22 @@ SearchResult _mtdf(Player player, const Rules& rules, const Board& state,
                    int first_guess, int depth, Table& table) {
     int upperbound = P_INFINITY;
     int lowerbound = N_INFINITY;
-    SearchResult result;
+    SearchResult guess;
 
-    result.eval = first_guess;
-    do {
-        int beta = result.eval == lowerbound ? result.eval + 1 : result.eval;
-        result = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
-        if (result.eval < beta) {
-            upperbound = result.eval;
+    guess.eval = first_guess;
+
+    // Allow using do-while, since that's how the original pseudo-code describes
+    // the algorithm
+    do { // NOLINT(cppcoreguidelines-avoid-do-while)
+        const int beta = guess.eval == lowerbound ? guess.eval + 1 : guess.eval;
+        guess = _alphaBeta(player, rules, state, depth, beta - 1, beta, table);
+        if (guess.eval < beta) {
+            upperbound = guess.eval;
         } else {
-            lowerbound = result.eval;
+            lowerbound = guess.eval;
         }
     } while (lowerbound < upperbound);
-    return result;
+    return guess;
 }
 
 int user(Player player, const Rules& rules, const Board& state) {
