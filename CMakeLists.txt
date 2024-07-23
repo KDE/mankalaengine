@@ -22,28 +22,32 @@ if(${IS_PROJECT})
     include(CTest)
 endif()
 
+if(${IS_PROJECT} AND BUILD_TESTING)
+    find_program(CLANG_TIDY NAMES "clang-tidy")
+    if(CLANG_TIDY)
+        set(CLANG_TIDY_COMMAND "${CLANG_TIDY}" "-p" "${CMAKE_BUILD_DIR}")
+    endif()
+
+    find_program(CPPCHECK NAMES "cppcheck")
+    if(CPPCHECK)
+      set(
+          CPPCHECK_COMMAND
+          "${CPPCHECK}"
+          "--check-level=exhaustive"
+          "--enable=warning,style,performance"
+          "-I include/mankalaengine/")
+    endif()
+
+    add_subdirectory(test)
+    add_subdirectory(benchmark)
+endif()
+
 if(${IS_PROJECT} AND BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
 if(${IS_PROJECT} AND BUILD_DOCS)
     add_subdirectory(docs)
-endif()
-
-if(${IS_PROJECT} AND BUILD_TESTING)
-    add_subdirectory(test)
-
-    find_program(CLANG_TIDY clang-tidy)
-    if(${CLANG_TIDY})
-        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
-    endif()
-
-    find_program(CPPCHECK cppcheck)
-    if(${CPPCHECK})
-        set(CMAKE_CXX_CPPCHECK ${CPPCHECK} --check-level=exhaustive --enable=warning,style,performance -I include/mankalaengine/ src)
-    endif()
-
-    add_subdirectory(benchmark)
 endif()
 
 add_subdirectory(src)
