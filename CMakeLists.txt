@@ -25,7 +25,7 @@ endif()
 if(${IS_PROJECT} AND BUILD_TESTING)
     find_program(CLANG_TIDY NAMES "clang-tidy")
     if(CLANG_TIDY)
-        set(CLANG_TIDY_COMMAND "${CLANG_TIDY}" "-p" "${CMAKE_BUILD_DIR}")
+        set(CLANG_TIDY_COMMAND "${CLANG_TIDY}" "-p" "${CMAKE_BINARY_DIR}")
     endif()
 
     find_program(CPPCHECK NAMES "cppcheck")
