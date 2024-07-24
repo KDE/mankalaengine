@@ -34,6 +34,26 @@ TUI that allows a user to play a game against a computerized opponent.
 You can also build the Doxygen documentation by specifying the cmake
 option `BUILD_DOCS`.
 
+### Installing
+
+If you've already followed the steps in [Building The Source](#Building The Source),
+you can install the library by running:
+
+```sh
+cmake --build build --target install
+```
+
+### Adding It To Your Project
+
+If you've the library installed, you can now add it to your project.
+Add the following lines to your `CMakeLists.txt`:
+
+```
+find_package(MankalaEngine REQUIRED)
+add_executable(MyApp myapp.cpp)
+target_link_libraries(MyApp MankalaEngine::MankalaEngine)
+```
+
 ### Comparing Different Move Selection Functions
 
 The `benchmark/` folder contains a utility that can be used
