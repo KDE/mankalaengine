@@ -6,29 +6,10 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <limits>
-#include <memory>
 #include <moveselection.h>
 #include <random>
-#include <unordered_map>
 
 namespace MankalaEngine {
-
-constexpr int N_INFINITY = std::numeric_limits<int>::min();
-constexpr int P_INFINITY = std::numeric_limits<int>::max();
-
-struct SearchResult {
-    int move = -1;
-    int eval = 0;
-};
-
-struct NodeScore {
-    int lowerbound = N_INFINITY;
-    int upperbound = P_INFINITY;
-    int move = -1;
-};
-
-using Table = std::unordered_map<unsigned int, std::unique_ptr<NodeScore>>;
 
 bool _greater(int x, int y) { return x > y; }
 

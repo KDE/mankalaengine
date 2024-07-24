@@ -7,6 +7,7 @@
 #pragma once
 
 #include <array>
+#include <mankalaengine_export.h>
 #include <string>
 #include <variantdescriptions.h>
 #include <vector>
@@ -16,7 +17,7 @@ namespace MankalaEngine {
 /**
  * @brief Used to define the two players that play a game.
  */
-enum Player { player_1, player_2 };
+enum MANKALAENGINE_EXPORT Player { player_1, player_2 };
 
 /**
  * @brief Used to define the board in which the game is played.
@@ -24,7 +25,7 @@ enum Player { player_1, player_2 };
  * Defines a general Mancala board, concrete variants should inherit from this
  * struct to define their own boards.
  */
-struct Board {
+struct MANKALAENGINE_EXPORT Board {
 
     /**
      * @brief The board holes.
@@ -56,7 +57,7 @@ struct Board {
  *
  * @see bohnenspielrules.h bohnenspielrules.cpp
  */
-class Rules {
+class MANKALAENGINE_EXPORT Rules {
     /**
      * @brief The amount of holes each player controls.
      */

@@ -4,6 +4,7 @@
 .cmake/
 /lib/
 compile_commands.json
+/include/mankalaengine/mankalaengine_export.h
 
 # Clang
 .clangd

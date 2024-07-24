@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <mankalaengine_export.h>
 #include <rules.h>
 
 namespace MankalaEngine {
@@ -18,14 +19,14 @@ namespace MankalaEngine {
  * on their side of the board. At the beginning, all holes are filled with 6
  * counters.
  */
-struct BohnenspielBoard : Board {
+struct MANKALAENGINE_EXPORT BohnenspielBoard : Board {
     BohnenspielBoard() { holes = std::vector<int>(12, 6); }
 };
 
 /**
  * @brief The rules for the Bohnespiel Mancala variation.
  */
-class BohnenspielRules : public Rules {
+class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
     /**
      * @brief Helper function for handling captures.
      *

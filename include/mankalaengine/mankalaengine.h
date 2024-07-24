@@ -5,6 +5,7 @@
 */
 
 #include <functional>
+#include <mankalaengine_export.h>
 #include <rules.h>
 
 namespace MankalaEngine {
@@ -12,7 +13,7 @@ namespace MankalaEngine {
 /**
  * @brief Used to generate, choose and play moves for any Mancala variant.
  */
-class MankalaEngine {
+class MANKALAENGINE_EXPORT MankalaEngine {
     std::function<int(Player player, const Rules&, const Board&)> _selectMove;
 
   public:
