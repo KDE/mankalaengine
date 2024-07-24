@@ -3,7 +3,7 @@
 MankalaEngine is an engine used for creating computerized
 opponents for Mancala variants.
 
-## Building the Source
+## Building The Source
 
 To build MankalaEngine, follow this steps:
 
@@ -17,7 +17,7 @@ cmake --build build
 
 You only need CMake and a C++ compiler to build the library.
 
-## Running Tests
+### Running The Tests
 
 After you have built the library, you can check if everything
 is working correctly by running the tests:
@@ -27,14 +27,14 @@ cd build
 ctest
 ```
 
-## How to use
+## Usage
 
 The `examples/` folder contains usage examples, including a simple
 TUI that allows a user to play a game against a computerized opponent.
 You can also build the Doxygen documentation by specifying the cmake
 option `BUILD_DOCS`.
 
-## Comparing different move selection functions
+### Comparing Different Move Selection Functions
 
 The `benchmark/` folder contains a utility that can be used
 to compare different move selection functions.
