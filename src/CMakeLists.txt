@@ -36,7 +36,8 @@ install(
     EXPORT MankalaEngineTargets
     PUBLIC_HEADER DESTINATION include/mankalaengine
     ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib)
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin)
 
 install(
     EXPORT MankalaEngineTargets
