@@ -14,6 +14,7 @@ else()
     set(IS_PROJECT FALSE)
 endif()
 
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 option(BUILD_TESTING "Build the tests" ${IS_PROJECT})
 option(BUILD_DOCS "Build the docs" ${IS_PROJECT})
 option(BUILD_EXAMPLES "Build the examples" ${IS_PROJECT})
