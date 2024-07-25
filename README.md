@@ -45,7 +45,7 @@ cmake --build build --target install
 
 ### Adding It To Your Project
 
-If you've the library installed, you can now add it to your project.
+If you have the library installed, you can now add it to your project.
 Add the following lines to your `CMakeLists.txt`:
 
 ```
