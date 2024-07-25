@@ -57,7 +57,7 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
         beta = std::min(beta, entry->second->upperbound);
     }
 
-    if (depth == 0 || rules.gameOver(player, state)) { // Leaf node
+    if (depth == 0 || rules.isGameOver(player, state)) { // Leaf node
         result.eval = _eval(state);
     } else if (player == player_1) { // Max node
         int a = alpha;
@@ -149,7 +149,7 @@ SearchResult _mtdf(Player player, const Rules& rules, const Board& state,
 int user(Player player, const Rules& rules, const Board& state) {
     int move = -1;
     std::cin >> move;
-    while (!rules.validMove(move, player, state)) {
+    while (!rules.isValidMove(move, player, state)) {
         std::cout << "Please provide a valid move.\n";
         std::cin >> move;
     }

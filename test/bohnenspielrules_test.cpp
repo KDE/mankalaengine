@@ -14,8 +14,8 @@ TEST(BohnenspielRules, ValidMove) {
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
-        EXPECT_TRUE(rules.validMove(i, p1, board));
-        EXPECT_TRUE(rules.validMove(i, p2, board));
+        EXPECT_TRUE(rules.isValidMove(i, p1, board));
+        EXPECT_TRUE(rules.isValidMove(i, p2, board));
     }
 }
 
@@ -28,8 +28,8 @@ TEST(BohnenspielRules, InvalidMove) {
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     for (int i = 0; i < 6; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_TRUE(rules.validMove(i, p2, board));
+        EXPECT_FALSE(rules.isValidMove(i, p1, board));
+        EXPECT_TRUE(rules.isValidMove(i, p2, board));
     }
 }
 

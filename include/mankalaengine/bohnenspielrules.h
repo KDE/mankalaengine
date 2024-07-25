@@ -71,7 +71,8 @@ class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
      *
      * @returns True if the move can be played, false otherwise.
      */
-    bool validMove(int move, Player player, const Board& state) const override;
+    bool isValidMove(int move, Player player,
+                     const Board& state) const override;
 };
 
 } // namespace MankalaEngine

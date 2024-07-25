@@ -28,7 +28,7 @@ void BohnenspielRules::try_capture(int position, Player player,
 }
 
 void BohnenspielRules::move(int move, Player player, Board& state) const {
-    if (!validMove(move, player, state)) {
+    if (!isValidMove(move, player, state)) {
         return;
     }
 
@@ -48,8 +48,8 @@ void BohnenspielRules::move(int move, Player player, Board& state) const {
     try_capture(current_position, player, state);
 }
 
-bool BohnenspielRules::validMove(int move, Player player,
-                                 const Board& state) const {
+bool BohnenspielRules::isValidMove(int move, Player player,
+                                   const Board& state) const {
 
     if (move >= player_holes() || move < 0) {
         return false;

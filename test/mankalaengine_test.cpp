@@ -21,8 +21,8 @@ TEST(MankalaEngine, RandomSelectionFullBohnenspielGame) {
 
     int holes = rules.player_holes();
     for (int i = 0; i < holes; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_FALSE(rules.validMove(i, p2, board));
+        EXPECT_FALSE(rules.isValidMove(i, p1, board));
+        EXPECT_FALSE(rules.isValidMove(i, p2, board));
     }
     EXPECT_EQ(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
 }
@@ -39,8 +39,8 @@ TEST(MankalaEngine, MiniMaxSelectionFullBohnenspielGame) {
 
     int holes = rules.player_holes();
     for (int i = 0; i < holes; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_FALSE(rules.validMove(i, p2, board));
+        EXPECT_FALSE(rules.isValidMove(i, p1, board));
+        EXPECT_FALSE(rules.isValidMove(i, p2, board));
     }
     EXPECT_EQ(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
 }
@@ -57,8 +57,8 @@ TEST(MankalaEngine, MTDFSelectionFullBohnenspielGame) {
 
     int holes = rules.player_holes();
     for (int i = 0; i < holes; ++i) {
-        EXPECT_FALSE(rules.validMove(i, p1, board));
-        EXPECT_FALSE(rules.validMove(i, p2, board));
+        EXPECT_FALSE(rules.isValidMove(i, p1, board));
+        EXPECT_FALSE(rules.isValidMove(i, p2, board));
     }
     EXPECT_EQ(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
 }

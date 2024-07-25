@@ -17,9 +17,9 @@ void Rules::finishGame(Player winner, Board& state) const {
     state.stores.at(winner) += pebbles;
 }
 
-bool Rules::gameOver(Player player, const Board& state) const {
+bool Rules::isGameOver(Player player, const Board& state) const {
     for (int i = 0; i < _player_holes; i++) {
-        if (validMove(i, player, state)) {
+        if (isValidMove(i, player, state)) {
             return false;
         }
     }
@@ -29,7 +29,7 @@ bool Rules::gameOver(Player player, const Board& state) const {
 std::vector<int> Rules::getMoves(Player player, const Board& state) const {
     std::vector<int> moves;
     for (int i = 0; i < _player_holes; i++) {
-        if (validMove(i, player, state)) {
+        if (isValidMove(i, player, state)) {
             moves.push_back(i);
         }
     }

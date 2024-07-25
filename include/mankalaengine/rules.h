@@ -148,7 +148,7 @@ class MANKALAENGINE_EXPORT Rules {
      *
      * @returns True if the game is finished, false otherwise.
      */
-    virtual bool gameOver(Player player, const Board& state) const;
+    virtual bool isGameOver(Player player, const Board& state) const;
 
     /**
      * @brief Plays a move.
@@ -168,8 +168,8 @@ class MANKALAENGINE_EXPORT Rules {
      *
      * @returns True if the move can be played, false otherwise.
      */
-    virtual bool validMove(int move, Player player,
-                           const Board& state) const = 0;
+    virtual bool isValidMove(int move, Player player,
+                             const Board& state) const = 0;
 
     virtual ~Rules() = default;
 };
