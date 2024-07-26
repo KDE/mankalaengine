@@ -7,6 +7,7 @@
 #pragma once
 
 #include <mankalaengine_export.h>
+#include <memory.h>
 #include <rules.h>
 
 namespace MankalaEngine {
@@ -28,22 +29,21 @@ struct MANKALAENGINE_EXPORT BohnenspielBoard : Board {
  */
 class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
     /**
-     * @brief Helper function for handling captures.
-     *
-     * Try to make a capture. If it's not possible, do nothing. If it is
-     * possible, try to capture the preceding hole.
-     *
-     * @param position The index of the hole being captured.
-     * @param player The player making the capture.
-     * @param state The board in which the game is being played.
+     * @brief Represents the BohnenspielRules private internal implementation
+     * details.
      */
-    void try_capture(int position, Player player, Board& state) const;
+    struct BohnenspielRulesImpl;
+
+    /**
+     * @brief BohnenspielRules private internal implementation details.
+     */
+    std::unique_ptr<BohnenspielRulesImpl> _impl;
 
   public:
     /**
      * @brief Class constructor.
      */
-    BohnenspielRules() : Rules(6, BOHNENSPIEL_DESCRIPTION) {}
+    BohnenspielRules();
 
     /**
      * @brief Plays a move.
@@ -73,6 +73,8 @@ class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
      */
     bool isValidMove(int move, Player player,
                      const Board& state) const override;
+
+    ~BohnenspielRules() override;
 };
 
 } // namespace MankalaEngine

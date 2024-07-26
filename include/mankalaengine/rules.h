@@ -8,6 +8,7 @@
 
 #include <array>
 #include <mankalaengine_export.h>
+#include <memory>
 #include <string>
 #include <variantdescriptions.h>
 #include <vector>
@@ -58,15 +59,16 @@ struct MANKALAENGINE_EXPORT Board {
  * @see bohnenspielrules.h bohnenspielrules.cpp
  */
 class MANKALAENGINE_EXPORT Rules {
-    /**
-     * @brief The amount of holes each player controls.
-     */
-    int _player_holes;
 
     /**
-     * @brief The description of this variant's rules.
+     * @brief Represents the Rules private internal implementation details.
      */
-    std::string _description;
+    struct RulesImpl;
+
+    /**
+     * @brief Rules private internal implementation details.
+     */
+    std::unique_ptr<RulesImpl> _impl;
 
   protected:
     /**
@@ -78,7 +80,7 @@ class MANKALAENGINE_EXPORT Rules {
      * @returns The index corresponding to the move.
      */
     int position(int move, Player player) const {
-        return player * _player_holes + move;
+        return player * player_holes() + move;
     }
 
   public:
@@ -89,8 +91,7 @@ class MANKALAENGINE_EXPORT Rules {
      *
      * @param player_holes The amount of holes each player controls.
      */
-    Rules(int player_holes)
-        : _player_holes(player_holes), _description(PLACEHOLDER_DESCRIPTION) {}
+    Rules(int player_holes);
 
     /**
      * @brief Class constructor.
@@ -98,22 +99,21 @@ class MANKALAENGINE_EXPORT Rules {
      * @param player_holes The amount of holes each player controls.
      * @param description This variant's description.
      */
-    Rules(int player_holes, std::string description)
-        : _player_holes(player_holes), _description(std::move(description)) {}
+    Rules(int player_holes, std::string description);
 
     /**
      * @brief Gets the amount of holes each player controls.
      *
      * @returns The amount of holes each player controls.
      */
-    int player_holes() const { return _player_holes; }
+    int player_holes() const;
 
     /**
      * @brief Gets the description of this variant's rules.
      *
      * @returns The description of this variant's rules.
      */
-    const std::string& description() const { return _description; }
+    const std::string& description() const;
 
     /**
      * @brief Calculate all possible moves.
@@ -171,7 +171,7 @@ class MANKALAENGINE_EXPORT Rules {
     virtual bool isValidMove(int move, Player player,
                              const Board& state) const = 0;
 
-    virtual ~Rules() = default;
+    virtual ~Rules();
 };
 
 } // namespace MankalaEngine

@@ -8,24 +8,26 @@
 
 namespace MankalaEngine {
 
-void BohnenspielRules::try_capture(int position, Player player,
-                                   Board& state) const {
+struct BohnenspielRules::BohnenspielRulesImpl {
+    void try_capture(int position, Player player, Board& state,
+                     int max_index) const {
+        int pebbles = state.holes.at(position);
+        // Capture is only possible if the pebbles in the hole are 2, 4 or 6
+        while (pebbles % 2 == 0 && pebbles < 7 && pebbles > 0) {
+            // Capturing
+            state.stores.at(player) += state.holes.at(position);
+            state.holes.at(position) = 0;
 
-    const int max_index = player_holes() * 2 - 1;
-    int pebbles = state.holes.at(position);
-    // Capture is only possible if the pebbles in the hole are 2, 4 or 6
-    while (pebbles % 2 == 0 && pebbles < 7 && pebbles > 0) {
-        // Capturing
-        state.stores.at(player) += state.holes.at(position);
-        state.holes.at(position) = 0;
-
-        // Go to the preceding hole
-        if (--position < 0) {
-            position = max_index;
+            // Go to the preceding hole
+            if (--position < 0) {
+                position = max_index;
+            }
+            pebbles = state.holes.at(position);
         }
-        pebbles = state.holes.at(position);
     }
-}
+};
+
+BohnenspielRules::BohnenspielRules() : Rules(6, BOHNENSPIEL_DESCRIPTION) {}
 
 void BohnenspielRules::move(int move, Player player, Board& state) const {
     if (!isValidMove(move, player, state)) {
@@ -45,7 +47,7 @@ void BohnenspielRules::move(int move, Player player, Board& state) const {
         state.holes.at(current_position) += 1;
     }
     // Capture, if possible, the pebbles in final position
-    try_capture(current_position, player, state);
+    _impl->try_capture(current_position, player, state, max_index);
 }
 
 bool BohnenspielRules::isValidMove(int move, Player player,
@@ -56,5 +58,7 @@ bool BohnenspielRules::isValidMove(int move, Player player,
     }
     return state.holes.at(position(move, player)) != 0;
 }
+
+BohnenspielRules::~BohnenspielRules() = default;
 
 } // namespace MankalaEngine

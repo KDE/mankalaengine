@@ -6,6 +6,7 @@
 
 #include <functional>
 #include <mankalaengine_export.h>
+#include <memory.h>
 #include <rules.h>
 
 namespace MankalaEngine {
@@ -14,7 +15,16 @@ namespace MankalaEngine {
  * @brief Used to generate, choose and play moves for any Mancala variant.
  */
 class MANKALAENGINE_EXPORT MankalaEngine {
-    std::function<int(Player player, const Rules&, const Board&)> _selectMove;
+    /**
+     * @brief Represents the MankalaEngine private internal implementation
+     * details.
+     */
+    struct MankalaEngineImpl;
+
+    /**
+     * @brief MankalaEngine private internal implementation details.
+     */
+    std::unique_ptr<MankalaEngineImpl> _impl;
 
   public:
     /**
@@ -25,8 +35,7 @@ class MANKALAENGINE_EXPORT MankalaEngine {
      * @see moveselection.h
      */
     explicit MankalaEngine(
-        std::function<int(Player, const Rules&, const Board&)> selectMove)
-        : _selectMove(std::move(selectMove)) {}
+        std::function<int(Player, const Rules&, const Board&)> selectMove);
 
     /**
      * @brief Play a move.
@@ -45,6 +54,8 @@ class MANKALAENGINE_EXPORT MankalaEngine {
      * @see Player Rules Board
      */
     bool play(Player player, const Rules& rules, Board& state) const;
+
+    ~MankalaEngine();
 };
 
 } // namespace MankalaEngine
