@@ -4,10 +4,14 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 #include <moveselection.h>
 #include <random>
+#include <rules.h>
+#include <vector>
 
 namespace MankalaEngine {
 

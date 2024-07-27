@@ -5,7 +5,10 @@
 */
 #include <memory>
 #include <rules.h>
+#include <string>
 #include <variantdescriptions.h>
+#include <vector>
+#include <utility>
 
 namespace MankalaEngine {
 

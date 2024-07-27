@@ -5,6 +5,8 @@
 */
 
 #include <bohnenspielrules.h>
+#include <rules.h>
+#include <variantdescriptions.h>
 
 namespace MankalaEngine {
 
