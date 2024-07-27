@@ -36,6 +36,10 @@ bool MankalaEngine::play(Player player, const Rules& rules,
     return true;
 }
 
+MankalaEngine::MankalaEngine(const MankalaEngine& other)
+    : _impl(std::make_unique<MankalaEngineImpl>(
+          MankalaEngineImpl(*other._impl))) {}
+
 MankalaEngine::~MankalaEngine() = default;
 
 } // namespace MankalaEngine

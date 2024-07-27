@@ -55,6 +55,8 @@ class MANKALAENGINE_EXPORT MankalaEngine {
      */
     bool play(Player player, const Rules& rules, Board& state) const;
 
+    MankalaEngine(const MankalaEngine& other);
+
     ~MankalaEngine();
 };
 
