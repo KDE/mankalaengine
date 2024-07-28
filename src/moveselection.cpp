@@ -5,7 +5,6 @@
 */
 
 #include <algorithm>
-#include <cstdlib>
 #include <iostream>
 #include <memory>
 #include <moveselection.h>
