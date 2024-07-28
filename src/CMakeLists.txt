@@ -37,7 +37,7 @@ set_target_properties(MankalaEngine PROPERTIES CXX_EXTENSIONS OFF)
 set_target_properties(MankalaEngine PROPERTIES CXX_STANDARD_REQUIRED ON)
 set_target_properties(MankalaEngine PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_LIST}")
 
-if(CLANG_TIDY_COMMAND AND NOT WIN32)
+if(CLANG_TIDY_COMMAND)
     set_target_properties(MankalaEngine PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
 if(CPPCHECK_COMMAND)
