@@ -41,8 +41,10 @@ if(${IS_PROJECT} AND BUILD_TESTING)
           "-I include/mankalaengine/")
     endif()
 
-    add_subdirectory(test)
     add_subdirectory(benchmark)
+    if (NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Android")
+        add_subdirectory(test)
+    endif()
 endif()
 
 if(${IS_PROJECT} AND BUILD_EXAMPLES)
