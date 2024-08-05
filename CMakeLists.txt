@@ -8,7 +8,7 @@ project(
 
 find_package(Qt6 COMPONENTS Test)
 
-find_package(ECM 6.0 REQUIRED NO_MODULE)
+find_package(ECM 5.85 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 set(KDE_COMPILERSETTINGS_LEVEL 5.85.0)
 
