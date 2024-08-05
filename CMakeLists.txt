@@ -6,6 +6,10 @@ project(
     DESCRIPTION "Engine used for creating computerized opponents for Mancala variants."
     LANGUAGES CXX)
 
+find_package(Qt6 COMPONENTS Test)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_INLINES_HIDDEN TRUE)
@@ -40,7 +44,7 @@ if (${IS_PROJECT} AND BUILD_LINTING)
     endif()
 endif()
 
-if(${IS_PROJECT} AND BUILD_TESTING AND NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Android")
+if(${IS_PROJECT} AND BUILD_TESTING AND Qt6_FOUND)
     include(CTest)
     add_subdirectory(test)
 endif()
