@@ -7,5 +7,6 @@ if(BUILD_EXAMPLES)
         target_link_libraries(${example_name} PRIVATE MankalaEngine)
 
         target_include_directories(${example_name} PUBLIC ../include/mankalaengine)
+        ecm_mark_nongui_executable(${example_name})
     endforeach()
 endif()
