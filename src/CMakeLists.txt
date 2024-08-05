@@ -30,11 +30,8 @@ file(
 target_include_directories(
     MankalaEngine PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include/mankalaengine>
-    $<INSTALL_INTERFACE:include/mankalaengine>)
+    $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/mankalaengine>)
 
-target_compile_features(MankalaEngine PUBLIC cxx_std_11)
-set_target_properties(MankalaEngine PROPERTIES CXX_EXTENSIONS OFF)
-set_target_properties(MankalaEngine PROPERTIES CXX_STANDARD_REQUIRED ON)
 set_target_properties(MankalaEngine PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_LIST}")
 
 if(CLANG_TIDY_COMMAND)
@@ -47,13 +44,11 @@ endif()
 install(
     TARGETS MankalaEngine
     EXPORT MankalaEngineTargets
-    PUBLIC_HEADER DESTINATION include/mankalaengine
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin)
+    PUBLIC_HEADER DESTINATION "${KDE_INSTALL_INCLUDEDIR}/mankalaengine"
+    ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(
     EXPORT MankalaEngineTargets
     NAMESPACE MankalaEngine::
     FILE MankalaEngineConfig.cmake
-    DESTINATION lib/cmake/mankalaengine)
+    DESTINATION "${KDE_INSTALL_LIBDIR}/cmake/mankalaengine")

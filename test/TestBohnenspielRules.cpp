@@ -6,7 +6,7 @@
 
 class TestBohnenspielRules : public QObject {
     Q_OBJECT
-  private slots:
+  private Q_SLOTS:
     void move_data();
     void move();
     void isValidMove_data();

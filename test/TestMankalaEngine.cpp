@@ -5,7 +5,7 @@
 
 class TestMankalaEngine : public QObject {
     Q_OBJECT
-  private slots:
+  private Q_SLOTS:
     void play_data();
     void play();
 };
