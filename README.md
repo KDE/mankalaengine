@@ -15,7 +15,9 @@ cmake -S . -B build
 cmake --build build
 ```
 
-You only need CMake and a C++ compiler to build the library.
+You need CMake, a C++ compiler and
+[ECM](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html) to
+build the library.
 
 ### Running The Tests
 
