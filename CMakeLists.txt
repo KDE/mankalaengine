@@ -18,6 +18,27 @@ include(KDECMakeSettings NO_POLICY_SCOPE)
 
 set(CMAKE_AUTOMOC OFF)
 
+if(NOT DEFINED CMAKE_LIBRARY_OUTPUT_DIRECTORY)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
+        ${${PROJECT_NAME}_BINARY_DIR}/bin
+        CACHE PATH
+        "Single directory for all libraries")
+endif()
+
+if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+        ${${PROJECT_NAME}_BINARY_DIR}/bin
+        CACHE PATH
+        "Single directory for all executables.")
+endif()
+
+if(NOT DEFINED CMAKE_ARCHIVE_OUTPUT_DIRECTORY)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
+        ${${PROJECT_NAME}_BINARY_DIR}/bin
+        CACHE PATH
+        "Single directory for all static libraries.")
+endif()
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_INLINES_HIDDEN TRUE)
