@@ -3,6 +3,7 @@ foreach(test_src ${TEST_FILES})
     get_filename_component(test_name ${test_src} NAME_WE)
     add_executable(${test_name} ${test_src})
     target_compile_features(${test_name} PRIVATE cxx_std_11)
+    set_target_properties(${test_name} PROPERTIES AUTOMOC ON)
     target_link_libraries(${test_name} PRIVATE MankalaEngine Qt6::Test)
 
     if (WIN32)
