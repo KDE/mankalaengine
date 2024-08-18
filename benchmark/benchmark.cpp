@@ -9,13 +9,15 @@
 #include <iostream>
 #include <mankalaengine.h>
 #include <moveselection.h>
+#include <owarerules.h>
 
 template <class T> T create() { return T(); }
 
 constexpr int engine_count = 3;
-constexpr int rules_count = 1;
+constexpr int rules_count = 2;
 
 const MankalaEngine::BohnenspielRules bohnenspiel_rules;
+const MankalaEngine::OwareRules oware_rules;
 
 const std::array<const MankalaEngine::MankalaEngine, engine_count> engines = {
     MankalaEngine::MankalaEngine(MankalaEngine::random),
@@ -25,10 +27,12 @@ const std::array<const MankalaEngine::MankalaEngine, engine_count> engines = {
 
 const std::array<const MankalaEngine::Rules*, rules_count> rules = {
     &bohnenspiel_rules,
+    &oware_rules,
 };
 
 const std::array<std::function<MankalaEngine::Board()>, rules_count> boards = {
     create<MankalaEngine::BohnenspielBoard>,
+    create<MankalaEngine::OwareBoard>,
 };
 
 void list_engines() {
@@ -41,6 +45,7 @@ void list_engines() {
 void list_rules() {
     std::cout << "\nRules:\n";
     std::cout << "0 - Bohnenspiel\n";
+    std::cout << "1 - Oware\n";
 }
 
 int run_games(int games, const int engine1_id, const int engine2_id,
