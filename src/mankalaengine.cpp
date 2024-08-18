@@ -4,6 +4,7 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include <cassert>
 #include <functional>
 #include <mankalaengine.h>
 #include <memory>
@@ -35,6 +36,10 @@ bool MankalaEngine::play(Player player, const Rules& rules,
         return false;
     }
     const int move = _impl->_selectMove(player, rules, state);
+
+    assert(rules.isValidMove(move, player, state) &&
+           "Move selection returned an invalid move.");
+
     rules.move(move, player, state);
     return true;
 }

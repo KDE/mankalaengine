@@ -32,10 +32,6 @@ struct BohnenspielRules::BohnenspielRulesImpl {
 BohnenspielRules::BohnenspielRules() : Rules(6, BOHNENSPIEL_DESCRIPTION) {}
 
 void BohnenspielRules::move(int move, Player player, Board& state) const {
-    if (!isValidMove(move, player, state)) {
-        return;
-    }
-
     const int max_index = player_holes() * 2 - 1;
     int current_position = position(move, player);
     int pebbles = state.holes.at(current_position);
