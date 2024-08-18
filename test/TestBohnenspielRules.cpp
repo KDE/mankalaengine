@@ -59,16 +59,12 @@ void TestBohnenspielRules::move_data() {
     // Testing a move with a single capture
     played_move = 0;
     player = MankalaEngine::player_1;
-    result = MankalaEngine::BohnenspielBoard();
 
     board.holes = std::vector<int>(12, 0);
     result.holes = std::vector<int>(12, 0);
 
     board.holes.at(0) = 1;
     board.holes.at(1) = 1;
-
-    result.holes.at(0) = 0;
-    result.holes.at(1) = 0;
 
     result.stores.at(0) = 2;
     result.stores.at(1) = 0;
@@ -79,7 +75,6 @@ void TestBohnenspielRules::move_data() {
     // Testing a move with mutiple captures
     played_move = 0;
     player = MankalaEngine::player_1;
-    result = MankalaEngine::BohnenspielBoard();
 
     board.holes = std::vector<int>(12, 0);
     result.holes = std::vector<int>(12, 0);
@@ -87,10 +82,6 @@ void TestBohnenspielRules::move_data() {
     board.holes.at(0) = 2;
     board.holes.at(1) = 1;
     board.holes.at(2) = 1;
-
-    result.holes.at(0) = 0;
-    result.holes.at(1) = 0;
-    result.holes.at(1) = 0;
 
     result.stores.at(0) = 4;
     result.stores.at(1) = 0;
