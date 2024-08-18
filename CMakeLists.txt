@@ -48,7 +48,6 @@ if (${IS_PROJECT} AND BUILD_LINTING)
 endif()
 
 if(${IS_PROJECT} AND BUILD_TESTING AND Qt6_FOUND)
-    include(CTest)
     add_subdirectory(test)
 endif()
 
