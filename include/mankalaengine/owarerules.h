@@ -81,8 +81,20 @@ class MANKALAENGINE_EXPORT OwareRules : public Rules {
      *
      * @returns True if the move can be played, false otherwise.
      */
-    bool isValidMove(int pos, Player player,
-                     const Board& state) const override;
+    bool isValidMove(int pos, Player player, const Board& state) const override;
+
+    /**
+     * @brief Checks if the game has ended.
+     *
+     * In Oware, a game ends when a player has 25 or more counters in their
+     * store or when a player has no more valid moves.
+     *
+     * @param player The player whose turn it is to play.
+     * @param state The board in which the game is being played.
+     *
+     * @returns True if the game is finished, false otherwise.
+     */
+    bool isGameOver(Player player, const Board& state) const override;
 
     ~OwareRules() override;
 };

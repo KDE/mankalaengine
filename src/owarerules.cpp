@@ -77,6 +77,10 @@ void OwareRules::move(int move, Player player, Board& state) const {
     _impl->try_capture(current_position, player, state);
 }
 
+bool OwareRules::isGameOver(Player player, const Board& state) const {
+    return state.stores.at(player) > 24 || Rules::isGameOver(player, state);
+}
+
 bool OwareRules::isValidMove(int pos, Player player, const Board& state) const {
     if (pos >= player_holes() || pos < 0 ||
         state.holes.at(position(pos, player)) == 0) {
