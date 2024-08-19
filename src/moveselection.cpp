@@ -18,6 +18,8 @@ bool _greater(int x, int y) { return x > y; }
 
 bool _less(int x, int y) { return x < y; }
 
+// This function was adapted from the following Stack Overflow answer:
+// https://stackoverflow.com/questions/20511347/a-good-hash-function-for-a-vector/72073933#72073933
 unsigned int _hash(Player player, const Board& state) {
     unsigned int hash = player;
     for (auto x : state.holes) {
