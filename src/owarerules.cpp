@@ -87,6 +87,13 @@ bool OwareRules::isValidMove(int pos, Player player, const Board& state) const {
     return _impl->opponent_has_pebbles(player, new_state);
 }
 
+void OwareRules::finishGame(Player player, Board& state) const {
+    // finishGame assumes the player whose turn ends the game is the loser, but
+    // in Oware, it's actually the opposite
+    const Player flipped_player = player == player_1 ? player_2 : player_1;
+    Rules::finishGame(flipped_player, state);
+}
+
 OwareRules::~OwareRules() = default;
 
 } // namespace MankalaEngine

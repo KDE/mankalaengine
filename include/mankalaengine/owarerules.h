@@ -60,6 +60,16 @@ class MANKALAENGINE_EXPORT OwareRules : public Rules {
     void move(int move, Player player, Board& state) const override;
 
     /**
+     * @brief Finishes the game.
+     *
+     * Moves all the remaining pebbles in the holes to the winner's store.
+     *
+     * @param player The player whose turn ended the game.
+     * @param state The board in which the game is being played.
+     */
+    void finishGame(Player player, Board& state) const override;
+
+    /**
      * @brief Checks if a move breaks the rules.
      *
      * In Oware, any move between 0 and 5 is valid, as long as there are

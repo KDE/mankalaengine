@@ -135,10 +135,10 @@ class MANKALAENGINE_EXPORT Rules {
      * moving all the remaining pebbles in the holes to the winner's store, per
      * example.
      *
-     * @param winner The player that won the game.
+     * @param player The player whose turn ended the game.
      * @param state The board in which the game is being played.
      */
-    virtual void finishGame(Player winner, Board& state) const;
+    virtual void finishGame(Player player, Board& state) const;
 
     /**
      * @brief Checks if the game has ended.

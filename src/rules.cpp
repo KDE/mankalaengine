@@ -6,9 +6,9 @@
 #include <memory>
 #include <rules.h>
 #include <string>
+#include <utility>
 #include <variantdescriptions.h>
 #include <vector>
-#include <utility>
 
 namespace MankalaEngine {
 
@@ -35,14 +35,13 @@ int Rules::player_holes() const { return _impl->_player_holes; }
 
 const std::string& Rules::description() const { return _impl->_description; }
 
-void Rules::finishGame(Player winner, Board& state) const {
-    int pebbles = 0;
+void Rules::finishGame(Player player, Board& state) const {
+    const Player winner = player == player_1 ? player_2 : player_1;
     for (int i = 0; i < _impl->_player_holes; i++) {
         const int pos = position(i, winner);
-        pebbles += state.holes.at(pos);
+        state.stores.at(winner) += state.holes.at(pos);
         state.holes.at(pos) = 0;
     }
-    state.stores.at(winner) += pebbles;
 }
 
 bool Rules::isGameOver(Player player, const Board& state) const {
