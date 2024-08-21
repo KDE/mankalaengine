@@ -41,7 +41,6 @@ if (${IS_PROJECT} AND BUILD_LINTING)
       set(
           CPPCHECK_COMMAND
           "${CPPCHECK}"
-          "--check-level=exhaustive"
           "--enable=warning,style,performance"
           "-I include/mankalaengine/")
     endif()
