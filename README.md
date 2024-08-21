@@ -15,8 +15,8 @@ cmake -S . -B build
 cmake --build build
 ```
 
-You need CMake, a C++ compiler and
-[ECM](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html) to
+You need CMake 3.23+, a C++ compiler and
+[ECM 6+](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html) to
 build the library. Optional build dependencies include Qt Test for testing,
 Doxygen for documentation, and cppcheck and clang-tidy for linting.
 
