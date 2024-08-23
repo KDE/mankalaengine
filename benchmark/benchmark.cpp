@@ -5,6 +5,7 @@
 */
 
 #include <bohnenspielrules.h>
+#include <cctype>
 #include <functional>
 #include <iostream>
 #include <mankalaengine.h>
@@ -48,8 +49,64 @@ void list_rules() {
     std::cout << "1 - Oware\n";
 }
 
+void print_board(const MankalaEngine::Board& board) {
+    size_t columns = board.holes.size() / 2;
+    std::cout << "     ";
+    for (size_t i = 0; i < columns; ++i) {
+        std::cout << " " << columns * 2 - 1 - i << " ";
+        if ((columns * 2 - 1 - i) / 10 < 1) {
+            std::cout << " ";
+        }
+    }
+    std::cout << "\n ";
+    for (size_t i = 0; i < columns + 2; ++i) {
+        std::cout << "--- ";
+    }
+    std::cout << "\n|   |";
+    for (size_t i = 0; i < columns; ++i) {
+        std::cout << " " << board.holes[columns * 2 - 1 - i];
+        if (board.holes[columns * 2 - 1 - i] / 10 < 1) {
+            std::cout << " ";
+        }
+        std::cout << "|";
+    }
+    std::cout << "   |";
+    std::cout << "\n| " << board.stores.at(MankalaEngine::player_2);
+    if (board.stores.at(MankalaEngine::player_2) / 10 < 1) {
+        std::cout << " ";
+    }
+    std::cout << "|";
+    for (size_t i = 0; i < columns - 1; ++i) {
+        std::cout << "--- ";
+    }
+    std::cout << "---";
+    std::cout << "| " << board.stores.at(MankalaEngine::player_1);
+    if (board.stores.at(MankalaEngine::player_1) / 10 < 1) {
+        std::cout << " ";
+    }
+    std::cout << "|";
+    std::cout << "\n|   |";
+    for (size_t i = 0; i < columns; ++i) {
+        std::cout << " " << board.holes[i];
+        if (board.holes[i] / 10 < 1) {
+            std::cout << " ";
+        }
+        std::cout << "|";
+    }
+    std::cout << "   |";
+    std::cout << "\n ";
+    for (size_t i = 0; i < columns + 2; ++i) {
+        std::cout << "--- ";
+    }
+    std::cout << "\n     ";
+    for (size_t i = 0; i < columns; ++i) {
+        std::cout << " " << i << "  ";
+    }
+    std::cout << "\n";
+}
+
 int run_games(int games, const int engine1_id, const int engine2_id,
-              const int rules_id) {
+              const int rules_id, bool verbose) {
 
     int p1_wins = 0;
     const MankalaEngine::Player p1 = MankalaEngine::player_1;
@@ -61,6 +118,10 @@ int run_games(int games, const int engine1_id, const int engine2_id,
 
         while (engines.at(engine1_id).play(p1, *rules.at(rules_id), board) &&
                engines.at(engine2_id).play(p2, *rules.at(rules_id), board)) {
+            if (verbose) {
+                std::cout << "\n";
+                print_board(board);
+            }
         }
 
         std::cout << "Game " << game << ": ";
@@ -114,7 +175,18 @@ int main() {
         std::cin >> rules_id;
     }
 
-    int p1_wins = run_games(games, engine1_id, engine2_id, rules_id);
+    char verbose;
+    std::cout << "\nPrint board? (y/N): ";
+    std::cin >> verbose;
+    verbose = std::tolower(verbose);
+    while (verbose != 'y' && verbose != 'n' && verbose != '\n') {
+        std::cout << "\nInvalid choice.\n";
+        std::cin >> verbose;
+        verbose = std::tolower(verbose);
+    }
+
+    int p1_wins =
+        run_games(games, engine1_id, engine2_id, rules_id, verbose == 'y');
     std::cout << "\nPlayer 1 won " << p1_wins << " out of " << games
               << " games.\n";
 }
