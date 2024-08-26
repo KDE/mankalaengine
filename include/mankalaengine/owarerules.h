@@ -96,6 +96,29 @@ class MANKALAENGINE_EXPORT OwareRules : public Rules {
      */
     bool isGameOver(Player player, const Board& state) const override;
 
+    /**
+     * @brief Copy constructor.
+     */
+    OwareRules(const OwareRules& other);
+
+    /**
+     * @brief Move constructor.
+     */
+    OwareRules(OwareRules&& other);
+
+    /**
+     * @brief Copy assignment.
+     */
+    OwareRules& operator=(const OwareRules& other);
+
+    /**
+     * @brief Move assignment.
+     */
+    OwareRules& operator=(OwareRules&& other);
+
+    /**
+     * @brief Class destructor.
+     */
     ~OwareRules() override;
 };
 

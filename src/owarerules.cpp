@@ -4,10 +4,11 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include <algorithm>
 #include <array>
+#include <memory>
 #include <owarerules.h>
 #include <rules.h>
+#include <utility>
 #include <variantdescriptions.h>
 
 namespace MankalaEngine {
@@ -96,6 +97,22 @@ void OwareRules::finishGame(Player player, Board& state) const {
     // in Oware, it's actually the opposite
     const Player flipped_player = player == player_1 ? player_2 : player_1;
     Rules::finishGame(flipped_player, state);
+}
+
+OwareRules::OwareRules(OwareRules&& other)
+    : Rules(6, BOHNENSPIEL_DESCRIPTION), _impl(std::move(other._impl)) {}
+
+OwareRules& OwareRules::operator=(const OwareRules& other) {
+    return *this = OwareRules(other);
+}
+
+OwareRules::OwareRules(const OwareRules& other)
+    : Rules(6, BOHNENSPIEL_DESCRIPTION),
+      _impl(std::make_unique<OwareRulesImpl>(*other._impl)) {}
+
+OwareRules& OwareRules::operator=(OwareRules&& other) {
+    std::swap(_impl, other._impl);
+    return *this;
 }
 
 OwareRules::~OwareRules() = default;

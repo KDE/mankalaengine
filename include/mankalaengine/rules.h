@@ -171,6 +171,29 @@ class MANKALAENGINE_EXPORT Rules {
     virtual bool isValidMove(int move, Player player,
                              const Board& state) const = 0;
 
+    /**
+     * @brief Copy constructor.
+     */
+    Rules(const Rules& other);
+
+    /**
+     * @brief Move constructor.
+     */
+    Rules(Rules&& other);
+
+    /**
+     * @brief Copy assignment.
+     */
+    Rules& operator=(const Rules& other);
+
+    /**
+     * @brief Move assignment.
+     */
+    Rules& operator=(Rules&& other);
+
+    /**
+     * @brief Class destructor.
+     */
     virtual ~Rules();
 };
 

@@ -43,9 +43,20 @@ bool MankalaEngine::play(Player player, const Rules& rules,
     return true;
 }
 
+MankalaEngine::MankalaEngine(MankalaEngine&& other)
+    : _impl(std::move(other._impl)) {}
+
+MankalaEngine& MankalaEngine::operator=(const MankalaEngine& other) {
+    return *this = MankalaEngine(other);
+}
+
 MankalaEngine::MankalaEngine(const MankalaEngine& other)
-    : _impl(std::make_unique<MankalaEngineImpl>(
-          MankalaEngineImpl(*other._impl))) {}
+    : _impl(std::make_unique<MankalaEngineImpl>(*other._impl)) {}
+
+MankalaEngine& MankalaEngine::operator=(MankalaEngine&& other) {
+    std::swap(_impl, other._impl);
+    return *this;
+}
 
 MankalaEngine::~MankalaEngine() = default;
 

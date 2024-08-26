@@ -5,7 +5,9 @@
 */
 
 #include <bohnenspielrules.h>
+#include <memory>
 #include <rules.h>
+#include <utility>
 #include <variantdescriptions.h>
 
 namespace MankalaEngine {
@@ -55,6 +57,22 @@ bool BohnenspielRules::isValidMove(int move, Player player,
         return false;
     }
     return state.holes.at(position(move, player)) != 0;
+}
+
+BohnenspielRules::BohnenspielRules(BohnenspielRules&& other)
+    : Rules(6, BOHNENSPIEL_DESCRIPTION), _impl(std::move(other._impl)) {}
+
+BohnenspielRules& BohnenspielRules::operator=(const BohnenspielRules& other) {
+    return *this = BohnenspielRules(other);
+}
+
+BohnenspielRules::BohnenspielRules(const BohnenspielRules& other)
+    : Rules(6, BOHNENSPIEL_DESCRIPTION),
+      _impl(std::make_unique<BohnenspielRulesImpl>(*other._impl)) {}
+
+BohnenspielRules& BohnenspielRules::operator=(BohnenspielRules&& other) {
+    std::swap(_impl, other._impl);
+    return *this;
 }
 
 BohnenspielRules::~BohnenspielRules() = default;

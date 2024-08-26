@@ -74,6 +74,29 @@ class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
     bool isValidMove(int move, Player player,
                      const Board& state) const override;
 
+    /**
+     * @brief Copy constructor.
+     */
+    BohnenspielRules(const BohnenspielRules& other);
+
+    /**
+     * @brief Move constructor.
+     */
+    BohnenspielRules(BohnenspielRules&& other);
+
+    /**
+     * @brief Copy assignment.
+     */
+    BohnenspielRules& operator=(const BohnenspielRules& other);
+
+    /**
+     * @brief Move assignment.
+     */
+    BohnenspielRules& operator=(BohnenspielRules&& other);
+
+    /**
+     * @brief Class destructor.
+     */
     ~BohnenspielRules() override;
 };
 

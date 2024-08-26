@@ -63,6 +63,21 @@ std::vector<int> Rules::getMoves(Player player, const Board& state) const {
     return moves;
 }
 
+Rules::Rules(Rules&& other) : _impl(std::move(other._impl)) {}
+
+Rules& Rules::operator=(const Rules& other) {
+    _impl = std::make_unique<RulesImpl>(*other._impl);
+    return *this;
+}
+
+Rules::Rules(const Rules& other)
+    : _impl(std::make_unique<RulesImpl>(*other._impl)) {}
+
+Rules& Rules::operator=(Rules&& other) {
+    std::swap(_impl, other._impl);
+    return *this;
+}
+
 Rules::~Rules() = default;
 
 } // namespace MankalaEngine

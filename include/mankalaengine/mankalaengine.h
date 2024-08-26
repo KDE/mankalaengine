@@ -4,6 +4,8 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#pragma once
+
 #include <functional>
 #include <mankalaengine_export.h>
 #include <memory.h>
@@ -55,8 +57,29 @@ class MANKALAENGINE_EXPORT MankalaEngine {
      */
     bool play(Player player, const Rules& rules, Board& state) const;
 
+    /**
+     * @brief Copy constructor.
+     */
     MankalaEngine(const MankalaEngine& other);
 
+    /**
+     * @brief Move constructor.
+     */
+    MankalaEngine(MankalaEngine&& other);
+
+    /**
+     * @brief Copy assignment.
+     */
+    MankalaEngine& operator=(const MankalaEngine& other);
+
+    /**
+     * @brief Move assignment.
+     */
+    MankalaEngine& operator=(MankalaEngine&& other);
+
+    /**
+     * @brief Class destructor.
+     */
     ~MankalaEngine();
 };
 
