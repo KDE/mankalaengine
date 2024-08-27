@@ -179,7 +179,7 @@ class MANKALAENGINE_EXPORT Rules {
     /**
      * @brief Move constructor.
      */
-    Rules(Rules&& other);
+    Rules(Rules&& other) noexcept;
 
     /**
      * @brief Copy assignment.
@@ -189,7 +189,7 @@ class MANKALAENGINE_EXPORT Rules {
     /**
      * @brief Move assignment.
      */
-    Rules& operator=(Rules&& other);
+    Rules& operator=(Rules&& other) noexcept;
 
     /**
      * @brief Class destructor.

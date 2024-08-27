@@ -43,7 +43,7 @@ bool MankalaEngine::play(Player player, const Rules& rules,
     return true;
 }
 
-MankalaEngine::MankalaEngine(MankalaEngine&& other)
+MankalaEngine::MankalaEngine(MankalaEngine&& other) noexcept
     : _impl(std::move(other._impl)) {}
 
 MankalaEngine& MankalaEngine::operator=(const MankalaEngine& other) {
@@ -53,7 +53,7 @@ MankalaEngine& MankalaEngine::operator=(const MankalaEngine& other) {
 MankalaEngine::MankalaEngine(const MankalaEngine& other)
     : _impl(std::make_unique<MankalaEngineImpl>(*other._impl)) {}
 
-MankalaEngine& MankalaEngine::operator=(MankalaEngine&& other) {
+MankalaEngine& MankalaEngine::operator=(MankalaEngine&& other) noexcept {
     std::swap(_impl, other._impl);
     return *this;
 }

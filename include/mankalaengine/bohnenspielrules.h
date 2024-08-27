@@ -82,7 +82,7 @@ class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
     /**
      * @brief Move constructor.
      */
-    BohnenspielRules(BohnenspielRules&& other);
+    BohnenspielRules(BohnenspielRules&& other) noexcept;
 
     /**
      * @brief Copy assignment.
@@ -92,7 +92,7 @@ class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
     /**
      * @brief Move assignment.
      */
-    BohnenspielRules& operator=(BohnenspielRules&& other);
+    BohnenspielRules& operator=(BohnenspielRules&& other) noexcept;
 
     /**
      * @brief Class destructor.

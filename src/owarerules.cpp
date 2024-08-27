@@ -99,7 +99,7 @@ void OwareRules::finishGame(Player player, Board& state) const {
     Rules::finishGame(flipped_player, state);
 }
 
-OwareRules::OwareRules(OwareRules&& other)
+OwareRules::OwareRules(OwareRules&& other) noexcept
     : Rules(6, BOHNENSPIEL_DESCRIPTION), _impl(std::move(other._impl)) {}
 
 OwareRules& OwareRules::operator=(const OwareRules& other) {
@@ -110,7 +110,7 @@ OwareRules::OwareRules(const OwareRules& other)
     : Rules(6, BOHNENSPIEL_DESCRIPTION),
       _impl(std::make_unique<OwareRulesImpl>(*other._impl)) {}
 
-OwareRules& OwareRules::operator=(OwareRules&& other) {
+OwareRules& OwareRules::operator=(OwareRules&& other) noexcept {
     std::swap(_impl, other._impl);
     return *this;
 }

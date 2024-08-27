@@ -59,7 +59,7 @@ bool BohnenspielRules::isValidMove(int move, Player player,
     return state.holes.at(position(move, player)) != 0;
 }
 
-BohnenspielRules::BohnenspielRules(BohnenspielRules&& other)
+BohnenspielRules::BohnenspielRules(BohnenspielRules&& other) noexcept
     : Rules(6, BOHNENSPIEL_DESCRIPTION), _impl(std::move(other._impl)) {}
 
 BohnenspielRules& BohnenspielRules::operator=(const BohnenspielRules& other) {
@@ -70,7 +70,8 @@ BohnenspielRules::BohnenspielRules(const BohnenspielRules& other)
     : Rules(6, BOHNENSPIEL_DESCRIPTION),
       _impl(std::make_unique<BohnenspielRulesImpl>(*other._impl)) {}
 
-BohnenspielRules& BohnenspielRules::operator=(BohnenspielRules&& other) {
+BohnenspielRules&
+BohnenspielRules::operator=(BohnenspielRules&& other) noexcept {
     std::swap(_impl, other._impl);
     return *this;
 }

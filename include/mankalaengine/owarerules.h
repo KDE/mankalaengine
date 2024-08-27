@@ -104,7 +104,7 @@ class MANKALAENGINE_EXPORT OwareRules : public Rules {
     /**
      * @brief Move constructor.
      */
-    OwareRules(OwareRules&& other);
+    OwareRules(OwareRules&& other) noexcept;
 
     /**
      * @brief Copy assignment.
@@ -114,7 +114,7 @@ class MANKALAENGINE_EXPORT OwareRules : public Rules {
     /**
      * @brief Move assignment.
      */
-    OwareRules& operator=(OwareRules&& other);
+    OwareRules& operator=(OwareRules&& other) noexcept;
 
     /**
      * @brief Class destructor.

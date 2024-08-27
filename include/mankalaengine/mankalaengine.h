@@ -65,7 +65,7 @@ class MANKALAENGINE_EXPORT MankalaEngine {
     /**
      * @brief Move constructor.
      */
-    MankalaEngine(MankalaEngine&& other);
+    MankalaEngine(MankalaEngine&& other) noexcept;
 
     /**
      * @brief Copy assignment.
@@ -75,7 +75,7 @@ class MANKALAENGINE_EXPORT MankalaEngine {
     /**
      * @brief Move assignment.
      */
-    MankalaEngine& operator=(MankalaEngine&& other);
+    MankalaEngine& operator=(MankalaEngine&& other) noexcept;
 
     /**
      * @brief Class destructor.

@@ -63,7 +63,7 @@ std::vector<int> Rules::getMoves(Player player, const Board& state) const {
     return moves;
 }
 
-Rules::Rules(Rules&& other) : _impl(std::move(other._impl)) {}
+Rules::Rules(Rules&& other) noexcept : _impl(std::move(other._impl)) {}
 
 Rules& Rules::operator=(const Rules& other) {
     _impl = std::make_unique<RulesImpl>(*other._impl);
@@ -73,7 +73,7 @@ Rules& Rules::operator=(const Rules& other) {
 Rules::Rules(const Rules& other)
     : _impl(std::make_unique<RulesImpl>(*other._impl)) {}
 
-Rules& Rules::operator=(Rules&& other) {
+Rules& Rules::operator=(Rules&& other) noexcept {
     std::swap(_impl, other._impl);
     return *this;
 }
