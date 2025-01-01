@@ -82,6 +82,4 @@ int main() {
     } else {
         std::cout << "Tie.\n";
     }
-
-    int holes = rules.player_holes();
 }
