@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.23)
 
 project(
     MankalaEngine
-    VERSION 0.1
+    VERSION 1.1
     DESCRIPTION "Engine used for creating computerized opponents for Mancala variants."
     LANGUAGES CXX)
 
