@@ -5,6 +5,17 @@ opponents for Mancala variants.
 
 ## Building The Source
 
+### Prerequisites
+
+You need CMake 3.23+, a C++ compiler and
+[ECM 6+](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html) to
+build the library. Optional build dependencies include Qt Test for testing,
+Doxygen for documentation, and cppcheck and clang-tidy for linting.
+
+Follow the instructions in the [INSTALL.md](INSTALL.md) file to set up the prerequisites for MankalaEngine.
+
+### Building the MankalaEngine
+
 To build MankalaEngine, follow this steps:
 
 ```sh
@@ -14,11 +25,6 @@ mkdir build
 cmake -S . -B build
 cmake --build build
 ```
-
-You need CMake 3.23+, a C++ compiler and
-[ECM 6+](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html) to
-build the library. Optional build dependencies include Qt Test for testing,
-Doxygen for documentation, and cppcheck and clang-tidy for linting.
 
 ### Running The Tests
 
