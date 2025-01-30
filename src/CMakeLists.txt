@@ -34,8 +34,11 @@ target_include_directories(
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include/mankalaengine>
     $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/mankalaengine>)
 
-set_target_properties(MankalaEngine PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_LIST}")
-
+set_target_properties(MankalaEngine PROPERTIES 
+    PUBLIC_HEADER "${PUBLIC_HEADER_LIST}"
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+)
 if(CLANG_TIDY_COMMAND)
     set_target_properties(MankalaEngine PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
