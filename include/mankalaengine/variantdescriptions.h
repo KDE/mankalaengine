@@ -63,4 +63,24 @@ constexpr const char* OWARE_DESCRIPTION =
     " territory, ending the game.\n"
     "The game ends when a player has 25 or more counters in their store.";
 
+constexpr const char* PALLANGULI_DESCRIPTION =
+    "Pallanguli is played with a rectangular board that has two rows and 7 pits on each side, "
+    "along with pebbles/coins. To begin, each pit is filled with 6 coins (the number of coins varies). "
+    "The first player picks up coins from one of the pits and starts to drop them "
+    "in an anti-clockwise direction in each succeeding pit. "
+    "If the player reaches the last pit in the row, he/she continues on their opponent's side. "
+    "Once the last coin is dropped, the player takes the coin from the next pit "
+    "and continues playing in the same way. "
+    "If the last coin falls into a pit where the next pit is empty, "
+    "the coins in the pit beyond the empty pit are captured and stored by the player. "
+    "The player continues playing from the next cup containing coins. "
+    "If the last coin falls into a pit with two empty holes beyond, "
+    "the player's turn comes to an end. "
+    "The opponent now continues to play in the same way, "
+    "taking coins from any of his pits and going around dropping the coins "
+    "in a counter-clockwise direction. "
+    "If, after dropping a pebble into a pit, the pit contains four coins, "
+    "these coins are also captured by the player. "
+    "The round is over when no coins remain.";
+
 } // namespace MankalaEngine
