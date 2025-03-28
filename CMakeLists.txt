@@ -35,15 +35,6 @@ if (${IS_PROJECT} AND BUILD_LINTING)
     if(CLANG_TIDY)
         set(CLANG_TIDY_COMMAND "${CLANG_TIDY}" "-p" "${CMAKE_BINARY_DIR}")
     endif()
-
-    find_program(CPPCHECK NAMES "cppcheck")
-    if(CPPCHECK)
-      set(
-          CPPCHECK_COMMAND
-          "${CPPCHECK}"
-          "--enable=warning,style,performance"
-          "-I include/mankalaengine/")
-    endif()
 endif()
 
 if(${IS_PROJECT} AND BUILD_TESTING AND Qt6_FOUND)
