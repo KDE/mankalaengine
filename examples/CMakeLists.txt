@@ -8,5 +8,6 @@ if(BUILD_EXAMPLES)
 
         target_include_directories(${example_name} PUBLIC ../include/mankalaengine)
         ecm_mark_nongui_executable(${example_name})
+        install(TARGETS ${example_name} RUNTIME DESTINATION bin)
     endforeach()
 endif()
