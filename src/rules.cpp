@@ -65,6 +65,8 @@ std::vector<int> Rules::getMoves(Player player, const Board& state) const {
 
 Rules::Rules(Rules&& other) noexcept : _impl(std::move(other._impl)) {}
 
+// Fix in a separate step for clang-tidy 20
+// NOLINTBEGIN(bugprone-unhandled-self-assignment)
 Rules& Rules::operator=(const Rules& other) {
     _impl = std::make_unique<RulesImpl>(*other._impl);
     return *this;
@@ -77,6 +79,8 @@ Rules& Rules::operator=(Rules&& other) noexcept {
     std::swap(_impl, other._impl);
     return *this;
 }
+// NOLINTEND(bugprone-unhandled-self-assignment)
+
 
 Rules::~Rules() = default;
 
