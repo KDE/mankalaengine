@@ -23,7 +23,7 @@ namespace MankalaEngine {
  */
 struct MANKALAENGINE_EXPORT KalahBoard : Board {
     KalahBoard() {
-        holes = std::vector<int>(14,6);
+        holes = std::vector<int>(12,6);
     }
 };
 
@@ -62,19 +62,9 @@ class MANKALAENGINE_EXPORT KalahRules : public Rules {
     void move(int pos, Player player, Board& state) const override;
 
     /**
-     * @brief Finishes the game.
-     *
-     * Moves all the remaining pebbles in the holes to the winner's store.
-     *
-     * @param player The player whose turn ended the game.
-     * @param state The board in which the game is being played.
-     */
-    void finishGame(Player player, Board& state) const override;
-
-    /**
      * @brief Checks if a move breaks the rules.
      *
-     * In Kalah, any move between 1 and 6 is valid, as long as there are
+     * In Kalah, any move between 0 and 5 is valid, as long as there are
      * pebbles in the hole
      *
      * @param player The player whose turn it is to play.

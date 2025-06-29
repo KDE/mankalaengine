@@ -62,16 +62,22 @@ void print_board(const MankalaEngine::Board& board) {
 
 int main() {
     MankalaEngine::MankalaEngine user(MankalaEngine::user);
-    MankalaEngine::MankalaEngine opponent(MankalaEngine::miniMax);
+    MankalaEngine::MankalaEngine opponent(MankalaEngine::random);
     MankalaEngine::KalahBoard board;
     MankalaEngine::KalahRules rules;
     MankalaEngine::Player p1 = MankalaEngine::player_1;
     MankalaEngine::Player p2 = MankalaEngine::player_2;
 
     print_board(board);
-    while (user.play(p1, rules, board) && opponent.play(p2, rules, board)) {
+    while (user.play(p1, rules, board)) {
         std::cout << "\n";
         print_board(board);
+        if (opponent.play(p2, rules, board)) {
+          std::cout << "\n";
+          print_board(board);
+        } else {
+          break;
+       }
     }
 
     std::cout << "\nGame finished.\n";

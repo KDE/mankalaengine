@@ -103,12 +103,6 @@ constexpr const char* KALAH_DESCRIPTION =
     " opponent opposite to it has beans in it, then all the"
     " beans in both the holes are removed and moved to the"
     " player's kalah. This is called capturing.\n"
-    "This is related to a more general rule, that states that a player"
-    " should make moves that allow the opponent to continue playing. If"
-    " the opponent's holes are all empty, the player should make a move"
-    " that places pebbles in the opponent's side of the board. If no such"
-    " move is possible, the current player captures all seeds in their own"
-    " territory, ending the game.\n"
     "The game ends when a player has more than 36 beans in their kalah.";
 
 } // namespace MankalaEngine
