@@ -5,6 +5,7 @@ set(
     "../include/mankalaengine/bohnenspielrules.h"
     "../include/mankalaengine/owarerules.h"
     "../include/mankalaengine/pallangulirules.h"
+    "../include/mankalaengine/kalahrules.h"
     "../include/mankalaengine/moveselection.h"
     "../include/mankalaengine/variantdescriptions.h")
 
@@ -20,6 +21,7 @@ add_library(
     bohnenspielrules.cpp
     owarerules.cpp
     pallangulirules.cpp
+    kalahrules.cpp
     moveselection.cpp
     ${HEADER_LIST})
 

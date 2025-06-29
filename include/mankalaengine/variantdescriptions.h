@@ -83,4 +83,26 @@ constexpr const char* PALLANGULI_DESCRIPTION =
     "these coins are also captured by the player. "
     "The round is over when no coins remain.";
 
+constexpr const char* KALAH_DESCRIPTION = 
+    "Kalah is played on a board with 2 rows,"
+    " each with 6 holes, and 2 end-holes, called kalahs."
+    " Each player owens the store to their right hand and controls"
+    " the holes on their side of the board.\n"
+    "At the beginning, all holes are filled with 6 beans"
+    "  and the kalahs are empty."
+    " The starting player chooses one of the holes on their side"
+    " and removes all the beans in it."
+    " The player goes through the holes next to the chosen one "
+    " anticlockwise, placing one bean in each one until they"
+    " have no more beans left. The opponent's kalah is skipped."
+    " This is called sowing. If after sowing, the last bean"
+    " falls in the player's kalah, the player must move again."
+    " Otherwise, the move is over.\n"
+    "If the last bean falls into an empty hole controlled"
+    " by the player and the hole controlled by the"
+    " opponent opposite to it has beans in it, then all the"
+    " beans in both the holes are removed and moved to the"
+    " player's kalah. This is called capturing.\n"
+    "The game ends when a player has more than 36 beans in their kalah.";
+
 } // namespace MankalaEngine

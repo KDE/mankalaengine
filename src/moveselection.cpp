@@ -199,4 +199,21 @@ int mtdf(Player player, const Rules& rules, const Board& state) {
     return result.move;
 }
 
+int greedy(Player player, const Rules& rules, const Board& state) {
+    int bestValue = N_INFINITY;
+    int bestMove = -1;
+    const auto moves = rules.getMoves(player, state);
+    
+    for (const auto& move : moves) {
+        Board new_state = state;
+        rules.move(move, player, new_state);
+        if (_eval(new_state) > bestValue) {
+            bestValue = _eval(new_state);
+            bestMove = move;
+        }
+    }
+
+    return bestMove;
+}
+
 } // namespace MankalaEngine

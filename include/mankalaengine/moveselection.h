@@ -60,4 +60,7 @@ MANKALAENGINE_EXPORT int miniMax(Player player, const Rules& rules,
 MANKALAENGINE_EXPORT int mtdf(Player player, const Rules& rules,
                               const Board& state);
 
+MANKALAENGINE_EXPORT int greedy(Player player, const Rules& rules,
+                                const Board& state);
+
 } // namespace MankalaEngine

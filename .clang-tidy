@@ -3,6 +3,7 @@ Checks: '
 bugprone-*,
 -bugprone-easily-swappable-parameters,
 clang-diagnostic-*,
+-clang-diagnostic-unused-command-line-argument,
 clang-analyzer-*,
 cppcoreguidelines-*,
 -cppcoreguidelines-avoid-magic-numbers,
