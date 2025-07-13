@@ -44,9 +44,10 @@ void TestPallanguliRules::move_data() {
     result.holes.at(5) += 1;
     result.holes.at(6) += 1;
 
-    QTest::newRow("simple-single-move") << played_move << player << board << result;
+    QTest::newRow("simple-single-move")
+        << played_move << player << board << result;
 
-    //Testing single lap move
+    // Testing single lap move
     played_move = 5;
     player = MankalaEngine::player_2;
     result = MankalaEngine::PallanguliBoard();
@@ -63,7 +64,8 @@ void TestPallanguliRules::move_data() {
     result.holes.at(3) += 1;
     result.holes.at(4) += 1;
 
-    QTest::newRow("single-lap-move") << played_move << player << board << result;
+    QTest::newRow("single-lap-move")
+        << played_move << player << board << result;
 
     // Testing a move with a single capture
     played_move = 0;
@@ -108,7 +110,7 @@ void TestPallanguliRules::move_data() {
     QTest::newRow("capture-with-lap-move")
         << played_move << player << board << result;
 
-    //Testing capture after empty pit
+    // Testing capture after empty pit
     played_move = 5;
     player = MankalaEngine::player_2;
 
@@ -116,18 +118,18 @@ void TestPallanguliRules::move_data() {
     result.holes = std::vector<int>(14, 0);
 
     board.holes.at(12) = 7;
-    board.holes.at(7)  = 5;
+    board.holes.at(7) = 5;
 
     result.holes.at(12) = 0;
     result.holes.at(13) = 1;
-    result.holes.at(0)  = 1;
-    result.holes.at(1)  = 1;
-    result.holes.at(2)  = 1;
-    result.holes.at(3)  = 1;
-    result.holes.at(4)  = 1;
-    result.holes.at(5)  = 1;
+    result.holes.at(0) = 1;
+    result.holes.at(1) = 1;
+    result.holes.at(2) = 1;
+    result.holes.at(3) = 1;
+    result.holes.at(4) = 1;
+    result.holes.at(5) = 1;
     // pit6 is empty.
-    result.holes.at(7)  = 0;
+    result.holes.at(7) = 0;
 
     result.stores.at(0) = 0;
     result.stores.at(1) = 5;

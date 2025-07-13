@@ -24,31 +24,29 @@ namespace MankalaEngine {
  * counters and the stores are empty.
  */
 struct MANKALAENGINE_EXPORT KalahBoard : Board {
-    KalahBoard() {
-        holes = std::vector<int>(12,6);
-    }
+    KalahBoard() { holes = std::vector<int>(12, 6); }
 };
 
 /**
  * @brief The rules for the Kalah Mancala variation.
-*/
+ */
 class MANKALAENGINE_EXPORT KalahRules : public Rules {
     /**
      * @brief Represents the KalahRules private internal implementation details
-    */
+     */
     struct KalahRulesImpl;
 
     /**
      * @brief KalahRules private internal implementation details
-    */
+     */
     std::unique_ptr<KalahRulesImpl> _impl;
 
   public:
     /**
      * @brief Class Constructor
-    */
+     */
     KalahRules();
-    
+
     /**
      * @brief Plays a move.
      *
@@ -116,4 +114,4 @@ class MANKALAENGINE_EXPORT KalahRules : public Rules {
     ~KalahRules() override;
 };
 
-}
+} // namespace MankalaEngine

@@ -81,7 +81,6 @@ Rules& Rules::operator=(Rules&& other) noexcept {
 }
 // NOLINTEND(bugprone-unhandled-self-assignment)
 
-
 Rules::~Rules() = default;
 
 } // namespace MankalaEngine

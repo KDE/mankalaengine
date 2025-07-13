@@ -20,12 +20,14 @@ struct KalahRules::KalahRulesImpl {
     }
 
     void try_capture(int pos, Player player, Board& state) const {
-        if (state.holes.at(pos) != 1) {return;}
-        state.stores.at(player) += state.holes.at(11-pos) + state.holes.at(pos);
-        state.holes.at(11-pos) = 0;
+        if (state.holes.at(pos) != 1) {
+            return;
+        }
+        state.stores.at(player) +=
+            state.holes.at(11 - pos) + state.holes.at(pos);
+        state.holes.at(11 - pos) = 0;
         state.holes.at(pos) = 0;
     }
-
 };
 
 KalahRules::KalahRules() : Rules(6, KALAH_DESCRIPTION) {}
@@ -44,8 +46,8 @@ void KalahRules::move(int pos, Player player, Board& state) const {
             current_position = 0;
         }
         // Check if need to drop in own kalah
-        if (current_position == ( (player==player_1) ? 6 : 0) ) {
-            state.stores.at(player) +=1;
+        if (current_position == ((player == player_1) ? 6 : 0)) {
+            state.stores.at(player) += 1;
             if (--pebbles == 0) {
                 own_kalah_last = true;
             }
@@ -58,7 +60,7 @@ void KalahRules::move(int pos, Player player, Board& state) const {
                     current_position = 0;
                 }
             }
-            state.holes.at(current_position) +=1;
+            state.holes.at(current_position) += 1;
             pebbles--;
         }
     }
@@ -69,11 +71,11 @@ void KalahRules::move(int pos, Player player, Board& state) const {
 }
 
 bool KalahRules::isGameOver(Player player, const Board& state) const {
-    return state.stores.at(player)>36 || Rules::isGameOver(player, state);
+    return state.stores.at(player) > 36 || Rules::isGameOver(player, state);
 }
 
 bool KalahRules::isValidMove(int pos, Player player, const Board& state) const {
-    if (pos >= player_holes() || pos < 0 ) {
+    if (pos >= player_holes() || pos < 0) {
         return false;
     }
     return state.holes.at(position(pos, player)) != 0;
@@ -97,4 +99,4 @@ KalahRules& KalahRules::operator=(KalahRules&& other) noexcept {
 
 KalahRules::~KalahRules() = default;
 
-}
+} // namespace MankalaEngine

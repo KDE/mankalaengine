@@ -6,10 +6,10 @@
 */
 
 #include "rules.h"
-#include <pallangulirules.h>
 #include <iostream>
 #include <mankalaengine.h>
 #include <moveselection.h>
+#include <pallangulirules.h>
 
 void print_board(const MankalaEngine::Board& board) {
     size_t columns = board.holes.size() / 2;
