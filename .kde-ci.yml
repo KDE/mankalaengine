@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: CC0-1.0
 
 Dependencies:
-- 'on': ['@all']
-  'require':
+ - 'on': ['@all']
+   'require':
     'frameworks/extra-cmake-modules': '@latest-kf6'
 
 Options:
-  setup-x-environment: False
-  setup-dbus-session: False
-  require-passing-tests-on: ['@all']
-  run-cppcheck: True
-  cppcheck-arguments: '--check-level=exhaustive --enable=warning,style,performance'
+ setup-x-environment: false
+ setup-dbus-session: false
+ require-passing-tests-on: ['@all']
+ run-cppcheck: true
+ cppcheck-arguments: '--check-level=exhaustive --enable=warning,style,performance'
