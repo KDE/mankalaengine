@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2025 Benson Muite <benson_muite@emailplus.org>
+# 
+# SPDX-License-Identifier: CC0-1.0
+
+version = 1
+SPDX-PackageName = "mankalaengine"
+SPDX-PackageDownloadLocation = "https://invent.kde.org/joaotgouveia/mankalaengine"
+
+[[annotations]]
+path = [".clang-format", ".clang-tidy", "INSTALL.md", "README.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "None"
+SPDX-License-Identifier = "CC0-1.0"
+

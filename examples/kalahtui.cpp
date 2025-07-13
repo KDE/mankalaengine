@@ -1,3 +1,12 @@
+/*
+    SPDX-FileCopyrightText: 2025 Rishav Ray Chaudhury <rrcemon@gmail.com>
+    SPDX-FileCopyrightText: 2025 Benson Muite <benson_muite@emailplus.org>
+    SPDX-FileCopyrightText: 2024 João Gouveia <jtalonegouveia@gmail.com>
+
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+
 #include "rules.h"
 #include <kalahrules.h>
 #include <iostream>

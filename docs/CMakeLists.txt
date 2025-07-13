@@ -1,3 +1,9 @@
+#=============================================================================
+# SPDX-FileCopyrightText: 2024 João Gouveia <jtalonegouveia@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#=============================================================================
+
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
     set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/docs/Doxyfile.in)

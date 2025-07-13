@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2025 Srisharan V S <srisharan.psgtech@gmail.com>
+    SPDX-FileCopyrightText: 2024 João Gouveia <jtalonegouveia@gmail.com>
+
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
 #include "rules.h"
 #include <pallangulirules.h>
 #include <iostream>
