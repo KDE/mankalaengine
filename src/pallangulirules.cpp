@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include <pallangulirules.h>
 #include <memory>
+#include <pallangulirules.h>
 #include <rules.h>
 #include <utility>
 #include <variantdescriptions.h>
@@ -13,7 +13,8 @@
 namespace MankalaEngine {
 
 struct PallanguliRules::PallanguliRulesImpl {
-    void recursive_move(int current_position, Player player, Board& state, int max_index) const {
+    void recursive_move(int current_position, Player player, Board& state,
+                        int max_index) const {
         int pebbles = state.holes.at(current_position);
         // Picking up all counters in the selected pit
         state.holes.at(current_position) = 0;
@@ -33,30 +34,30 @@ struct PallanguliRules::PallanguliRulesImpl {
         }
         int next_position = 0;
         int next2_position = 0;
-        if(++current_position > max_index) {
+        if (++current_position > max_index) {
             next_position = 0;
             next2_position = 1;
-        }
-        else {
+        } else {
             next_position = current_position;
-            if(next_position + 1 > max_index) {
+            if (next_position + 1 > max_index) {
                 next2_position = 0;
-            }
-            else {
+            } else {
                 next2_position = next_position + 1;
             }
         }
-        //check for termination
-        if(state.holes.at(next_position) == 0 && state.holes.at(next2_position) == 0) {
+        // check for termination
+        if (state.holes.at(next_position) == 0 &&
+            state.holes.at(next2_position) == 0) {
             return;
         }
-        //check for Capture
-        if(state.holes.at(next_position) == 0 && state.holes.at(next2_position) > 0) {
+        // check for Capture
+        if (state.holes.at(next_position) == 0 &&
+            state.holes.at(next2_position) > 0) {
             state.stores.at(player) += state.holes.at(next2_position);
             state.holes.at(next2_position) = 0;
         }
-        //check for Continue
-        else if(state.holes.at(next_position) > 0) {
+        // check for Continue
+        else if (state.holes.at(next_position) > 0) {
             recursive_move(next_position, player, state, max_index);
         }
     }
@@ -67,11 +68,12 @@ PallanguliRules::PallanguliRules() : Rules(7, PALLANGULI_DESCRIPTION) {}
 void PallanguliRules::move(int move, Player player, Board& state) const {
     const int max_index = player_holes() * 2 - 1;
     int const current_position = position(move, player);
-    
+
     _impl->recursive_move(current_position, player, state, max_index);
 }
 
-bool PallanguliRules::isValidMove(int move, Player player, const Board& state) const {
+bool PallanguliRules::isValidMove(int move, Player player,
+                                  const Board& state) const {
     if (move >= player_holes() || move < 0) {
         return false;
     }
@@ -89,8 +91,7 @@ PallanguliRules::PallanguliRules(const PallanguliRules& other)
     : Rules(6, PALLANGULI_DESCRIPTION),
       _impl(std::make_unique<PallanguliRulesImpl>(*other._impl)) {}
 
-PallanguliRules& 
-PallanguliRules::operator=(PallanguliRules&& other) noexcept {
+PallanguliRules& PallanguliRules::operator=(PallanguliRules&& other) noexcept {
     std::swap(_impl, other._impl);
     return *this;
 }

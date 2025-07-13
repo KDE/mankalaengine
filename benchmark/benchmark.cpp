@@ -8,10 +8,10 @@
 #include <cctype>
 #include <functional>
 #include <iostream>
+#include <kalahrules.h>
 #include <mankalaengine.h>
 #include <moveselection.h>
 #include <owarerules.h>
-#include <kalahrules.h>
 
 template <class T> T create() { return T(); }
 

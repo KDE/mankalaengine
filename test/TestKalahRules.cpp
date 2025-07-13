@@ -5,11 +5,11 @@
 */
 
 #include <QTest>
+#include <iostream>
 #include <kalahrules.h>
 #include <rules.h>
 #include <utility>
 #include <vector>
-#include <iostream>
 
 class TestKalahRules : public QObject {
     Q_OBJECT
@@ -77,10 +77,9 @@ void TestKalahRules::move_data() {
     result.stores.at(0) = 3;
     result.stores.at(1) = 0;
 
-    QTest::newRow("capture-move")
-        << played_move << player << board << result;
+    QTest::newRow("capture-move") << played_move << player << board << result;
 
-   // Testing a move with a capture with passing over kalahs
+    // Testing a move with a capture with passing over kalahs
     played_move = 4;
     player = MankalaEngine::player_1;
     board = MankalaEngine::KalahBoard();
@@ -116,11 +115,14 @@ void TestKalahRules::move() {
     rules.move(played_move, player, board);
 
     for (int i = 0; i < 12; ++i) {
-        std::cout << "i " << i << " b(i) " << board.holes.at(i) << " r(i) " << result.holes.at(i) << "\n";
+        std::cout << "i " << i << " b(i) " << board.holes.at(i) << " r(i) "
+                  << result.holes.at(i) << "\n";
         QCOMPARE(board.holes.at(i), result.holes.at(i));
     }
-    QCOMPARE(board.stores.at(MankalaEngine::player_1), result.stores.at(MankalaEngine::player_1));
-    QCOMPARE(board.stores.at(MankalaEngine::player_2), result.stores.at(MankalaEngine::player_2));
+    QCOMPARE(board.stores.at(MankalaEngine::player_1),
+             result.stores.at(MankalaEngine::player_1));
+    QCOMPARE(board.stores.at(MankalaEngine::player_2),
+             result.stores.at(MankalaEngine::player_2));
 }
 
 void TestKalahRules::isValidMove_data() {

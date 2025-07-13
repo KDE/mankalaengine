@@ -6,10 +6,9 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-
 #include "rules.h"
-#include <kalahrules.h>
 #include <iostream>
+#include <kalahrules.h>
 #include <mankalaengine.h>
 #include <moveselection.h>
 
@@ -82,11 +81,11 @@ int main() {
         std::cout << "\n";
         print_board(board);
         if (opponent.play(p2, rules, board)) {
-          std::cout << "\n";
-          print_board(board);
+            std::cout << "\n";
+            print_board(board);
         } else {
-          break;
-       }
+            break;
+        }
     }
 
     std::cout << "\nGame finished.\n";

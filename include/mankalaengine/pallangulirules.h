@@ -39,7 +39,7 @@ class MANKALAENGINE_EXPORT PallanguliRules : public Rules {
      */
     std::unique_ptr<PallanguliRulesImpl> _impl;
 
-public:
+  public:
     /**
      * @brief Class constructor.
      */
@@ -79,7 +79,7 @@ public:
      * @returns True if the move can be played, false otherwise.
      */
     bool isValidMove(int move, Player player,
-                    const Board& state) const override;
+                     const Board& state) const override;
 
     /**
      * @brief Copy constructor.
