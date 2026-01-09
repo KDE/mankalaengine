@@ -46,6 +46,8 @@ target_include_directories(
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include/mankalaengine>
     $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/mankalaengine>)
 
+target_link_libraries(MankalaEngine PUBLIC KF6::I18n)
+
 set_target_properties(MankalaEngine PROPERTIES 
     PUBLIC_HEADER "${PUBLIC_HEADER_LIST}"
     VERSION ${PROJECT_VERSION}

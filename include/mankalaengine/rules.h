@@ -6,10 +6,10 @@
 
 #pragma once
 
+#include <QString>
 #include <array>
 #include <mankalaengine_export.h>
 #include <memory>
-#include <string>
 #include <variantdescriptions.h>
 #include <vector>
 
@@ -99,7 +99,7 @@ class MANKALAENGINE_EXPORT Rules {
      * @param player_holes The amount of holes each player controls.
      * @param description This variant's description.
      */
-    Rules(int player_holes, std::string description);
+    Rules(int player_holes, QString description);
 
     /**
      * @brief Gets the amount of holes each player controls.
@@ -113,7 +113,7 @@ class MANKALAENGINE_EXPORT Rules {
      *
      * @returns The description of this variant's rules.
      */
-    const std::string& description() const;
+    QString description() const;
 
     /**
      * @brief Calculate all possible moves.

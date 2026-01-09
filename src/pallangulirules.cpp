@@ -63,7 +63,7 @@ struct PallanguliRules::PallanguliRulesImpl {
     }
 };
 
-PallanguliRules::PallanguliRules() : Rules(7, PALLANGULI_DESCRIPTION) {}
+PallanguliRules::PallanguliRules() : Rules(7, pallanguliDescription()) {}
 
 void PallanguliRules::move(int move, Player player, Board& state) const {
     const int max_index = player_holes() * 2 - 1;
@@ -81,14 +81,14 @@ bool PallanguliRules::isValidMove(int move, Player player,
 }
 
 PallanguliRules::PallanguliRules(PallanguliRules&& other) noexcept
-    : Rules(6, PALLANGULI_DESCRIPTION), _impl(std::move(other._impl)) {}
+    : Rules(6, pallanguliDescription()), _impl(std::move(other._impl)) {}
 
 PallanguliRules& PallanguliRules::operator=(const PallanguliRules& other) {
     return *this = PallanguliRules(other);
 }
 
 PallanguliRules::PallanguliRules(const PallanguliRules& other)
-    : Rules(6, PALLANGULI_DESCRIPTION),
+    : Rules(6, pallanguliDescription()),
       _impl(std::make_unique<PallanguliRulesImpl>(*other._impl)) {}
 
 PallanguliRules& PallanguliRules::operator=(PallanguliRules&& other) noexcept {

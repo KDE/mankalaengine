@@ -13,6 +13,9 @@ project(
     DESCRIPTION "Engine used for creating computerized opponents for Mancala variants."
     LANGUAGES CXX)
 
+set(QT_MIN_VERSION "6.5.0")
+set(KF6_DEP_VERSION "6.0.0")
+set(QT_MAJOR_VERSION "6")
 find_package(Qt6 COMPONENTS Test)
 
 find_package(ECM 6.0 REQUIRED NO_MODULE)
@@ -22,6 +25,11 @@ include(KDEInstallDirs6)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings NO_POLICY_SCOPE)
 include(ECMMarkNonGuiExecutable)
+
+find_package(KF6 ${KF6_DEP_VERSION}
+    REQUIRED COMPONENTS
+        I18n
+)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 

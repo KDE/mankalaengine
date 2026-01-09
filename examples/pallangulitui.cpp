@@ -6,6 +6,7 @@
 */
 
 #include "rules.h"
+#include <KLocalizedString>
 #include <iostream>
 #include <mankalaengine.h>
 #include <moveselection.h>
@@ -81,12 +82,12 @@ int main() {
         print_board(board);
     }
 
-    std::cout << "\nGame finished.\n";
+    std::cout << "\n" << i18n("Game finished.").toStdString() << "\n";
     if (board.stores.at(p1) > board.stores.at(p2)) {
-        std::cout << "Player 1 wins.\n";
+        std::cout << i18n("Player 1 wins.").toStdString() << "\n";
     } else if (board.stores.at(p2) > board.stores.at(p1)) {
-        std::cout << "Player 2 wins.\n";
+        std::cout << i18n("Player 2 wins.").toStdString() << "\n";
     } else {
-        std::cout << "Tie.\n";
+        std::cout << i18n("Tie.").toStdString() << "\n";
     }
 }
