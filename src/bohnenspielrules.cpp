@@ -31,7 +31,7 @@ struct BohnenspielRules::BohnenspielRulesImpl {
     }
 };
 
-BohnenspielRules::BohnenspielRules() : Rules(6, BOHNENSPIEL_DESCRIPTION) {}
+BohnenspielRules::BohnenspielRules() : Rules(6, bohnenspielDescription()) {}
 
 void BohnenspielRules::move(int move, Player player, Board& state) const {
     const int max_index = player_holes() * 2 - 1;
@@ -60,14 +60,14 @@ bool BohnenspielRules::isValidMove(int move, Player player,
 }
 
 BohnenspielRules::BohnenspielRules(BohnenspielRules&& other) noexcept
-    : Rules(6, BOHNENSPIEL_DESCRIPTION), _impl(std::move(other._impl)) {}
+    : Rules(6, bohnenspielDescription()), _impl(std::move(other._impl)) {}
 
 BohnenspielRules& BohnenspielRules::operator=(const BohnenspielRules& other) {
     return *this = BohnenspielRules(other);
 }
 
 BohnenspielRules::BohnenspielRules(const BohnenspielRules& other)
-    : Rules(6, BOHNENSPIEL_DESCRIPTION),
+    : Rules(6, bohnenspielDescription()),
       _impl(std::make_unique<BohnenspielRulesImpl>(*other._impl)) {}
 
 BohnenspielRules&

@@ -30,7 +30,7 @@ struct KalahRules::KalahRulesImpl {
     }
 };
 
-KalahRules::KalahRules() : Rules(6, KALAH_DESCRIPTION) {}
+KalahRules::KalahRules() : Rules(6, kalahDescription()) {}
 
 void KalahRules::move(int pos, Player player, Board& state) const {
     const int max_index = player_holes() * 2 - 1;
@@ -82,14 +82,14 @@ bool KalahRules::isValidMove(int pos, Player player, const Board& state) const {
 }
 
 KalahRules::KalahRules(KalahRules&& other) noexcept
-    : Rules(6, KALAH_DESCRIPTION), _impl(std::move(other._impl)) {}
+    : Rules(6, kalahDescription()), _impl(std::move(other._impl)) {}
 
 KalahRules& KalahRules::operator=(const KalahRules& other) {
     return *this = KalahRules(other);
 }
 
 KalahRules::KalahRules(const KalahRules& other)
-    : Rules(6, KALAH_DESCRIPTION),
+    : Rules(6, kalahDescription()),
       _impl(std::make_unique<KalahRulesImpl>(*other._impl)) {}
 
 KalahRules& KalahRules::operator=(KalahRules&& other) noexcept {

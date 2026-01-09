@@ -53,7 +53,7 @@ struct OwareRules::OwareRulesImpl {
     }
 };
 
-OwareRules::OwareRules() : Rules(6, OWARE_DESCRIPTION) {}
+OwareRules::OwareRules() : Rules(6, owareDescription()) {}
 
 void OwareRules::move(int move, Player player, Board& state) const {
     const int max_index = player_holes() * 2 - 1;
@@ -100,14 +100,14 @@ void OwareRules::finishGame(Player player, Board& state) const {
 }
 
 OwareRules::OwareRules(OwareRules&& other) noexcept
-    : Rules(6, BOHNENSPIEL_DESCRIPTION), _impl(std::move(other._impl)) {}
+    : Rules(6, owareDescription()), _impl(std::move(other._impl)) {}
 
 OwareRules& OwareRules::operator=(const OwareRules& other) {
     return *this = OwareRules(other);
 }
 
 OwareRules::OwareRules(const OwareRules& other)
-    : Rules(6, BOHNENSPIEL_DESCRIPTION),
+    : Rules(6, owareDescription()),
       _impl(std::make_unique<OwareRulesImpl>(*other._impl)) {}
 
 OwareRules& OwareRules::operator=(OwareRules&& other) noexcept {
