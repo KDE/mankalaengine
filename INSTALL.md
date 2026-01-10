@@ -19,6 +19,10 @@ sudo apt install extra-cmake-modules
 ```sh
 sudo apt install qt6-tools-dev qt6-tools-dev-tools
 ```
+#### Installing internationalization tools
+```sh
+sudo apt install libkf6i18n6 libkf6i18n-dev
+```
 ### For Fedora Based Systems
 #### Installing GCC Compiler
 ```sh
@@ -39,4 +43,8 @@ sudo dnf install extra-cmake-modules
 #### Installing Qt
 ```sh
 sudo dnf install qt6-qtbase qt6-qtbase-devel
+```
+#### Installing internationalization tools
+```sh
+sudo dnf install kf6-ki18n kf6-ki18n-devel
 ```
