@@ -7,8 +7,10 @@ opponents for Mancala variants.
 
 ### Prerequisites
 
-You need CMake 3.23+, a C++ compiler and
-[ECM 6+](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html) to
+You need CMake 3.23+, a C++ compiler,
+[ECM 6+](https://api.kde.org/frameworks/extra-cmake-modules/html/index.html)
+and
+[KI18n](https://api.kde.org/ki18n-index.html) to
 build the library. Optional build dependencies include Qt Test for testing,
 Doxygen for documentation, and cppcheck and clang-tidy for linting.
 
