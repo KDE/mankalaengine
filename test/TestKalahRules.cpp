@@ -4,10 +4,14 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include "kalahrules.h"
+#include "rules.h"
+
+// Qt
 #include <QTest>
+
+// C++
 #include <iostream>
-#include <kalahrules.h>
-#include <rules.h>
 #include <utility>
 #include <vector>
 

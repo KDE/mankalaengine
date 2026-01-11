@@ -4,14 +4,16 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include <bohnenspielrules.h>
+#include "bohnenspielrules.h"
+#include "kalahrules.h"
+#include "mankalaengine.h"
+#include "moveselection.h"
+#include "owarerules.h"
+
+// C++
 #include <cctype>
 #include <functional>
 #include <iostream>
-#include <kalahrules.h>
-#include <mankalaengine.h>
-#include <moveselection.h>
-#include <owarerules.h>
 
 template <class T> T create() { return T(); }
 

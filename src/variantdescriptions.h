@@ -10,7 +10,9 @@
 #pragma once
 
 #include <KLocalizedString>
-#include <QString>
+
+// Qt
+#include <QtCore/QString>
 
 namespace MankalaEngine {
 

@@ -6,11 +6,16 @@
 
 #pragma once
 
-#include <QString>
+#include "variantdescriptions.h"
+
+#include "mankalaengine_export.h"
+
+// Qt
+#include <QtCore/QString>
+
+// C++
 #include <array>
-#include <mankalaengine_export.h>
 #include <memory>
-#include <variantdescriptions.h>
 #include <vector>
 
 namespace MankalaEngine {

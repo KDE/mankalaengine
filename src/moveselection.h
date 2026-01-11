@@ -7,10 +7,12 @@
 
 #pragma once
 
+#include "mankalaengine_export.h"
+#include "rules.h"
+
+// C++
 #include <limits>
-#include <mankalaengine_export.h>
 #include <memory>
-#include <rules.h>
 #include <unordered_map>
 
 namespace MankalaEngine {

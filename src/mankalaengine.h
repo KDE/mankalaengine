@@ -6,10 +6,14 @@
 
 #pragma once
 
+#include "mankalaengine_export.h"
+#include "rules.h"
+
+// C++
 #include <functional>
-#include <mankalaengine_export.h>
+
+// C
 #include <memory.h>
-#include <rules.h>
 
 namespace MankalaEngine {
 

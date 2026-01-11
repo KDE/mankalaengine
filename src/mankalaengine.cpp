@@ -4,11 +4,14 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include "mankalaengine.h"
+
+#include "rules.h"
+
+// C++
 #include <cassert>
 #include <functional>
-#include <mankalaengine.h>
 #include <memory>
-#include <rules.h>
 #include <utility>
 
 namespace MankalaEngine {

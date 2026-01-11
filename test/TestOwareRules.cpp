@@ -4,9 +4,13 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include "owarerules.h"
+#include "rules.h"
+
+// Qt
 #include <QTest>
-#include <owarerules.h>
-#include <rules.h>
+
+// C++
 #include <utility>
 #include <vector>
 

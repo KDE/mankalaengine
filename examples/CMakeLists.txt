@@ -13,7 +13,7 @@ if(BUILD_EXAMPLES)
         add_executable(${example_name} ${example_src})
         target_link_libraries(${example_name} PRIVATE MankalaEngine)
 
-        target_include_directories(${example_name} PUBLIC ../include/mankalaengine)
+        target_include_directories(${example_name} PUBLIC ../src)
         ecm_mark_nongui_executable(${example_name})
         install(TARGETS ${example_name} RUNTIME DESTINATION bin)
     endforeach()

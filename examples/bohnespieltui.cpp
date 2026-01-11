@@ -4,12 +4,16 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include "bohnenspielrules.h"
+#include "mankalaengine.h"
+#include "moveselection.h"
 #include "rules.h"
+
+// KDE
 #include <KLocalizedString>
-#include <bohnenspielrules.h>
+
+// C++
 #include <iostream>
-#include <mankalaengine.h>
-#include <moveselection.h>
 
 void print_board(const MankalaEngine::Board& board) {
     size_t columns = board.holes.size() / 2;
