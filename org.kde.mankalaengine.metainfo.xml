@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-License-Identifier: CC0-1.0
+  SPDX-FileCopyrightText: 2026 Benson Muite <benson_muite@emailplus.org>
+ -->
+<component type="console-application">
+  <id>org.kde.mankalaengine</id>
+  <name>MankalaEngine</name>
+  <summary>TUI demos for a game library</summary>
+  <description>
+    <p>Demonstration games for engine used for verifying rules and creating computerized opponents for Mancala variants.</p>
+  </description>
+  <url type="homepage">https://invent.kde.org/games/mankalaengine</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=Mankalaengine</url>
+  <url type="vcs-browser">https://invent.kde.org/games/mankalaengine</url>
+  <url type="donation">https://kde.org/community/donations/</url>
+  <url type="contribute">https://community.kde.org/Get_Involved/</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <content_rating type="oars-1.1"/>
+  <icon type="stock">utilities-terminal</icon>
+  <categories>
+    <category>Game</category>
+    <category>StrategyGame</category>
+  </categories>
+  <keywords>
+    <keyword>Console</keyword>
+    <keyword>Counting</keyword>
+  </keywords>
+  <provides>
+    <binary>bohnenspieltui</binary>
+    <binary>kallahtui</binary>
+    <binary>pallangulitui</binary>
+  </provides>
+  <developer id="org.kde">
+    <name translate="no">KDE</name>
+    <url>https://kde.org</url>
+  </developer>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://cdn.kde.org/screenshots/mankalaengine/mankalaengine.png</image>
+      <caption/>
+    </screenshot>
+  </screenshots>
+</component>
