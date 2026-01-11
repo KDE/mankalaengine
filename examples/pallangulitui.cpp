@@ -5,12 +5,16 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include "mankalaengine.h"
+#include "moveselection.h"
+#include "pallangulirules.h"
 #include "rules.h"
+
+// KDE
 #include <KLocalizedString>
+
+// C++
 #include <iostream>
-#include <mankalaengine.h>
-#include <moveselection.h>
-#include <pallangulirules.h>
 
 void print_board(const MankalaEngine::Board& board) {
     size_t columns = board.holes.size() / 2;

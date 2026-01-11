@@ -1,70 +1,80 @@
 /*
-    SPDX-FileCopyrightText: 2025 Rishav Ray Chaudhury <rrcemon@gmail.com>
     SPDX-FileCopyrightText: 2024 João Gouveia <jtalonegouveia@gmail.com>
-    SPDX-FileCopyrightText: 2025 Benson Muite <benson_muite@emailplus.org>
 
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
 #pragma once
 
-#include <mankalaengine_export.h>
+#include "mankalaengine_export.h"
+#include "rules.h"
+
+// C
 #include <memory.h>
-#include <memory>
-#include <rules.h>
 
 namespace MankalaEngine {
 
 /**
- * @brief The board for the Kalah Mancala variation.
+ * @brief The board for the Oware Mancala variation.
  *
- * Kalah is played on a board with 2 rows, each with 6 holes, and 2
+ * Oware is played on a board with 2 rows, each with 6 holes, and 2
  * stores. Each player owns the store to their right hand and controls the holes
- * on their side of the board. At the beginning, all holes are filled with 6
- * counters and the stores are empty.
+ * on their side of the board. At the beginning, all holes are filled with 4
+ * counters.
  */
-struct MANKALAENGINE_EXPORT KalahBoard : Board {
-    KalahBoard() { holes = std::vector<int>(12, 6); }
+struct MANKALAENGINE_EXPORT OwareBoard : Board {
+    OwareBoard() { holes = std::vector<int>(12, 4); }
 };
 
 /**
- * @brief The rules for the Kalah Mancala variation.
+ * @brief The rules for the Oware Mancala variation.
  */
-class MANKALAENGINE_EXPORT KalahRules : public Rules {
+class MANKALAENGINE_EXPORT OwareRules : public Rules {
     /**
-     * @brief Represents the KalahRules private internal implementation details
+     * @brief Represents the OwareRules private internal implementation
+     * details.
      */
-    struct KalahRulesImpl;
+    struct OwareRulesImpl;
 
     /**
-     * @brief KalahRules private internal implementation details
+     * @brief OwareRules private internal implementation details.
      */
-    std::unique_ptr<KalahRulesImpl> _impl;
+    std::unique_ptr<OwareRulesImpl> _impl;
 
   public:
     /**
-     * @brief Class Constructor
+     * @brief Class constructor.
      */
-    KalahRules();
+    OwareRules();
 
     /**
      * @brief Plays a move.
      *
-     * In Kalah, a move consists of a player picking up all the pebbles in
+     * In Oware, a move consists of a player picking up all the pebbles in
      * a hole and going through the holes next to the chosen one anticlockwise,
-     * placing one counter in each one including their own store until they have
-     * no more counters in their hand.
+     * placing one counter in each one until they have no more counters in their
+     * hand.
      *
      * @param player The player whose turn it is to play.
      * @param move The move to be played.
      * @param state The board in which the move is going to be played.
      */
-    void move(int pos, Player player, Board& state) const override;
+    void move(int move, Player player, Board& state) const override;
+
+    /**
+     * @brief Finishes the game.
+     *
+     * Moves all the remaining pebbles in the holes to the winner's store.
+     *
+     * @param player The player whose turn ended the game.
+     * @param state The board in which the game is being played.
+     */
+    void finishGame(Player player, Board& state) const override;
 
     /**
      * @brief Checks if a move breaks the rules.
      *
-     * In Kalah, any move between 0 and 5 is valid, as long as there are
+     * In Oware, any move between 0 and 5 is valid, as long as there are
      * pebbles in the hole
      *
      * @param player The player whose turn it is to play.
@@ -78,7 +88,7 @@ class MANKALAENGINE_EXPORT KalahRules : public Rules {
     /**
      * @brief Checks if the game has ended.
      *
-     * In Kalah, a game ends when a player has 37 or more counters in their
+     * In Oware, a game ends when a player has 25 or more counters in their
      * store or when a player has no more valid moves.
      *
      * @param player The player whose turn it is to play.
@@ -91,27 +101,27 @@ class MANKALAENGINE_EXPORT KalahRules : public Rules {
     /**
      * @brief Copy constructor.
      */
-    KalahRules(const KalahRules& other);
+    OwareRules(const OwareRules& other);
 
     /**
      * @brief Move constructor.
      */
-    KalahRules(KalahRules&& other) noexcept;
+    OwareRules(OwareRules&& other) noexcept;
 
     /**
      * @brief Copy assignment.
      */
-    KalahRules& operator=(const KalahRules& other);
+    OwareRules& operator=(const OwareRules& other);
 
     /**
      * @brief Move assignment.
      */
-    KalahRules& operator=(KalahRules&& other) noexcept;
+    OwareRules& operator=(OwareRules&& other) noexcept;
 
     /**
      * @brief Class destructor.
      */
-    ~KalahRules() override;
+    ~OwareRules() override;
 };
 
 } // namespace MankalaEngine

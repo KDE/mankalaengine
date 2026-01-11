@@ -5,11 +5,14 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include <kalahrules.h>
+#include "kalahrules.h"
+
+#include "rules.h"
+#include "variantdescriptions.h"
+
+// C++
 #include <memory>
-#include <rules.h>
 #include <utility>
-#include <variantdescriptions.h>
 
 namespace MankalaEngine {
 

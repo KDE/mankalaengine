@@ -4,11 +4,14 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include <bohnenspielrules.h>
+#include "bohnenspielrules.h"
+
+#include "rules.h"
+#include "variantdescriptions.h"
+
+// C++
 #include <memory>
-#include <rules.h>
 #include <utility>
-#include <variantdescriptions.h>
 
 namespace MankalaEngine {
 

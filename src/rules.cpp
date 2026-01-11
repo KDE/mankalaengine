@@ -3,12 +3,18 @@
 
     SPDX-License-Identifier: GPL-3.0-or-later
 */
-#include <QString>
+
+#include "rules.h"
+
+#include "variantdescriptions.h"
+
+// C++
 #include <memory>
-#include <rules.h>
 #include <utility>
-#include <variantdescriptions.h>
 #include <vector>
+
+// Qt
+#include <QtCore/QString>
 
 namespace MankalaEngine {
 

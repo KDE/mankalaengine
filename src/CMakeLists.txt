@@ -8,19 +8,19 @@
 
 set(
     HEADER_LIST
-    "../include/mankalaengine/mankalaengine.h"
-    "../include/mankalaengine/rules.h"
-    "../include/mankalaengine/bohnenspielrules.h"
-    "../include/mankalaengine/owarerules.h"
-    "../include/mankalaengine/pallangulirules.h"
-    "../include/mankalaengine/kalahrules.h"
-    "../include/mankalaengine/moveselection.h"
-    "../include/mankalaengine/variantdescriptions.h")
+    "mankalaengine.h"
+    "rules.h"
+    "bohnenspielrules.h"
+    "owarerules.h"
+    "pallangulirules.h"
+    "kalahrules.h"
+    "moveselection.h"
+    "variantdescriptions.h")
 
 set(
     PUBLIC_HEADER_LIST
     "${HEADER_LIST}"
-    "../include/mankalaengine/mankalaengine_export.h")
+    "mankalaengine_export.h")
 
 add_library(
     MankalaEngine
@@ -39,11 +39,11 @@ file(
     COPY
     ${CMAKE_CURRENT_BINARY_DIR}/mankalaengine_export.h
     DESTINATION
-    ${PROJECT_SOURCE_DIR}/include/mankalaengine)
+    ${PROJECT_SOURCE_DIR}/src)
 
 target_include_directories(
     MankalaEngine PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include/mankalaengine>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/mankalaengine>)
 
 target_link_libraries(MankalaEngine PUBLIC KF6::I18n)

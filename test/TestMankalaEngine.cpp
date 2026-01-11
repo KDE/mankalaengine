@@ -4,10 +4,12 @@
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#include "bohnenspielrules.h"
+#include "mankalaengine.h"
+#include "moveselection.h"
+
+// Qt
 #include <QTest>
-#include <bohnenspielrules.h>
-#include <mankalaengine.h>
-#include <moveselection.h>
 
 class TestMankalaEngine : public QObject {
     Q_OBJECT
