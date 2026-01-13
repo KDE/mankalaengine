@@ -9,9 +9,6 @@
 #include "moveselection.h"
 #include "rules.h"
 
-// KDE
-#include <KLocalizedString>
-
 // C++
 #include <iostream>
 
@@ -85,12 +82,12 @@ int main() {
         print_board(board);
     }
 
-    std::cout << "\n" << i18n("Game finished.").toStdString() << "\n";
+    std::cout << "\nGame finished.\n";
     if (board.stores.at(p1) > board.stores.at(p2)) {
-        std::cout << i18n("Player 1 wins.").toStdString() << "\n";
+        std::cout << "Player 1 wins.\n";
     } else if (board.stores.at(p2) > board.stores.at(p1)) {
-        std::cout << i18n("Player 2 wins.").toStdString() << "\n";
+        std::cout << "Player 2 wins.\n";
     } else {
-        std::cout << i18n("Tie.").toStdString() << "\n";
+        std::cout << "Tie.\n";
     }
 }
