@@ -39,6 +39,8 @@ else()
     set(IS_PROJECT FALSE)
 endif()
 
+add_definitions(-DTRANSLATION_DOMAIN="mankalaengine")
+
 option(BUILD_TESTING "Build the tests" ${IS_PROJECT})
 option(BUILD_DOCS "Build the docs" ${IS_PROJECT})
 option(BUILD_EXAMPLES "Build the examples" ${IS_PROJECT})
@@ -69,3 +71,6 @@ if(${IS_PROJECT} AND BUILD_DOCS)
 endif()
 
 add_subdirectory(src)
+
+ki18n_install(po)
+
