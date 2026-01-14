@@ -57,7 +57,7 @@ inline QString owareDescription() {
         " have no more counters in their hand. Both stores are skipped and"
         " the starting hole is always left empty, so it will also be skipped"
         " if there were 12 or more counters inside it. This is called sowing.\n"
-        "If the last counter falls into a hole controlled by the oponent,"
+        "If the last counter falls into a hole controlled by the opponent,"
         " bringing the total number of counters in the hole to 2 or 3,"
         " these counters are captured and put in the player's store. When"
         " a capture is made, the preceding hole is checked and captured"
@@ -114,7 +114,7 @@ inline QString kalahDescription() {
     return i18n(
         "Kalah is played on a board with 2 rows,"
         " each with 6 holes, and 2 end-holes, called kalahs."
-        " Each player owens the store to their right hand and controls"
+        " Each player owns the store to their right hand and controls"
         " the holes on their side of the board.\n"
         "At the beginning, all holes are filled with 6 beans"
         "  and the kalahs are empty."
