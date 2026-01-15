@@ -7,17 +7,26 @@
   <id>org.kde.mankalaengine</id>
   <name>MankalaEngine</name>
   <name xml:lang="ca">MankalaEngine</name>
+  <name xml:lang="ca-valencia">MankalaEngine</name>
   <name xml:lang="nl">Mankala-engine</name>
   <name xml:lang="pt-BR">MankalaEngine</name>
+  <name xml:lang="tr">Mankala İşletkesi</name>
+  <name xml:lang="uk">MankalaEngine</name>
   <summary>TUI demos for a game library</summary>
   <summary xml:lang="ca">Mostre de TUI per a la biblioteca de jocs</summary>
+  <summary xml:lang="ca-valencia">Mostre de TUI per a la biblioteca de jocs</summary>
   <summary xml:lang="nl">TUI-demo's voor een spelbibliotheek</summary>
   <summary xml:lang="pt-BR">Demonstrações de TUI para uma biblioteca de jogos</summary>
+  <summary xml:lang="tr">Oyun kitaplığı için metin tabanlı arayüz tanıtımları</summary>
+  <summary xml:lang="uk">Демонстрації ігрової бібліотеки</summary>
   <description>
     <p>Demonstration games for engine used for verifying rules and creating computerized opponents for Mancala variants.</p>
     <p xml:lang="ca">Jocs de mostra per al motor utilitzats per a verificar regles i crear oponents informatitzats de variants del Mancala.</p>
+    <p xml:lang="ca-valencia">Jocs de mostra per al motor utilitzats per a verificar regles i crear oponents informatitzats de variants de Mancala.</p>
     <p xml:lang="nl">Demonstratiespellen voor engine gebruikt voor het verifiëren van regels en het maken van gecomputeriseerde tegenstanders voor varianten van Mancala.</p>
     <p xml:lang="pt-BR">Jogos de demonstração para o motor utilizado na verificação de regras e na criação de oponentes computadorizados para variantes de Mancala.</p>
+    <p xml:lang="tr">Mancala çeşitleri için kuralları doğrulamak ve bilgisayar rakipleri oluşturmak üzere kullanılan işletke için tanıtım oyunları.</p>
+    <p xml:lang="uk">Ігри-демонстрації для рушія, які використовують для перевірки правил та створення комп'ютерних суперників для варіантів манкали.</p>
   </description>
   <url type="homepage">https://invent.kde.org/games/mankalaengine</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=Mankalaengine</url>
