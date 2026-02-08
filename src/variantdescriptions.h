@@ -134,4 +134,25 @@ inline QString kalahDescription() {
         "The game ends when a player has more than 36 beans in their kalah.");
 }
 
+inline QString vamanaguntaluDescription() {
+    return i18n(
+        "Vamana Guntalu is a two-player game featuring 2 rows and 7 pits per "
+        "row. The board is prepared by filling each pit with 12 tamarind seeds "
+        "or cowrie shells, except for the middle pits (kaashi) which contain "
+        "only 1 seed.\n"
+        "The player selects any pit from their row and sows the seeds one by "
+        "one. If sowing ends and the next pit is occupied, the player scoops "
+        "up those seeds to continue. If the next pit is empty, they capture "
+        "the seeds in the pit immediately following it. If a capture occurs "
+        "in the opponent's row, the player also takes the seeds from the "
+        "pit directly opposite it in their own row.\n"
+        "A player's turn ends if they must pick up seeds from a kaashi to "
+        "continue. Seeds in a kaashi can be captured but remain on the board "
+        "as 'shared' assets. Whenever a pit reaches exactly 4 seeds, they are "
+        "captured instantly.\n"
+        "The round ends when only kaashis contain seeds. Players then attempt "
+        "to refill pits with 12 seeds from their winnings. Pits that cannot "
+        "be fully refilled become 'unplayable.' The game ends when a player "
+        "cannot fill even a single pit.");
+}
 } // namespace MankalaEngine
