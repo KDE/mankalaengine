@@ -15,7 +15,7 @@
 namespace MankalaEngine {
 
 /**
- * @brief The board for the Bohnespiel Mancala variation.
+ * @brief The board for the Bohnenspiel Mancala variation.
  *
  * Bohnenspiel is played on a board with 2 rows, each with 6 holes, and 2
  * stores. Each player owns the store to their right hand and controls the holes
@@ -27,7 +27,7 @@ struct MANKALAENGINE_EXPORT BohnenspielBoard : Board {
 };
 
 /**
- * @brief The rules for the Bohnespiel Mancala variation.
+ * @brief The rules for the Bohnenspiel Mancala variation.
  */
 class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
     /**
@@ -65,7 +65,7 @@ class MANKALAENGINE_EXPORT BohnenspielRules : public Rules {
      * @brief Checks if a move breaks the rules.
      *
      * In Bohnenspiel, any move between 0 and 5 is valid, as long as there are
-     * pebbles in the hole
+     * pebbles in the hole.
      *
      * @param player The player whose turn it is to play.
      * @param move The move to be played.

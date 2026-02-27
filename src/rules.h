@@ -36,8 +36,8 @@ struct MANKALAENGINE_EXPORT Board {
     /**
      * @brief The board holes.
      *
-     * Array representing the holes in a board. Each index represents an hole,
-     * and it's value represents the amount of pebbles in said hole. The first
+     * Array representing the holes in a board. Each index represents a hole,
+     * and its value represents the amount of pebbles in said hole. The first
      * half of the array corresponds to the holes controlled by player 1 and the
      * second half to the holes controlled by player 2.
      */
@@ -137,7 +137,7 @@ class MANKALAENGINE_EXPORT Rules {
      * @brief Finishes the game.
      *
      * Performs any actions that should be done after the game ended, such as
-     * moving all the remaining pebbles in the holes to the winner's store, per
+     * moving all the remaining pebbles in the holes to the winner's store, for
      * example.
      *
      * @param player The player whose turn ended the game.
