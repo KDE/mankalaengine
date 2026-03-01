@@ -152,7 +152,7 @@ inline QString vamanaguntaluDescription() {
         "captured instantly.\n"
         "The round ends when only kaashis contain seeds. Players then attempt "
         "to refill pits with 12 seeds from their winnings. Pits that cannot "
-        "be fully refilled become 'unplayable.' The game ends when a player "
+        "be fully refilled become 'unplayable'. The game ends when a player "
         "cannot fill even a single pit.");
 }
 } // namespace MankalaEngine
