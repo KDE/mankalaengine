@@ -138,7 +138,7 @@ inline QString vamanaguntaluDescription() {
     return i18n(
         "Vamana Guntalu is a two-player game featuring 2 rows and 7 pits per "
         "row. The board is prepared by filling each pit with 12 tamarind seeds "
-        "or cowrie shells, except for the middle pits (kaashi) which contain "
+        "or cowrie shells, except for the middle pits (kaashis) which contain "
         "only 1 seed.\n"
         "The player selects any pit from their row and sows the seeds one by "
         "one. If sowing ends and the next pit is occupied, the player scoops "
