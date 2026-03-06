@@ -1,3 +1,10 @@
+/**
+ * Greedy Algorithm Implementation:
+ * This function iterates through all legal moves for the current player.
+ * It selects the move that results in the maximum immediate seed capture.
+ * If multiple moves give the same capture count, it chooses the first one.
+ */
+ 
 /*
     SPDX-FileCopyrightText: 2024 João Gouveia <jtalonegouveia@gmail.com>
     SPDX-FileCopyrightText: 2025 Rishav Ray Chaudhury <rrcemon@gmail.com>
