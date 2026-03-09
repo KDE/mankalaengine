@@ -33,6 +33,8 @@ struct MANKALAENGINE_NO_EXPORT NodeScore {
 
 using Table = std::unordered_map<unsigned int, std::unique_ptr<NodeScore>>;
 
+MANKALAENGINE_NO_EXPORT void ignoreLine();
+
 MANKALAENGINE_NO_EXPORT bool _greater(int x, int y);
 
 MANKALAENGINE_NO_EXPORT bool _less(int x, int y);

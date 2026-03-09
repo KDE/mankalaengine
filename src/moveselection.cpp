@@ -12,11 +12,15 @@
 // C++
 #include <algorithm>
 #include <iostream>
+#include <limits>
 #include <memory>
 #include <random>
 #include <vector>
-
 namespace MankalaEngine {
+
+void ignoreLine() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
 
 bool _greater(int x, int y) { return x > y; }
 
@@ -158,10 +162,21 @@ SearchResult _mtdf(Player player, const Rules& rules, const Board& state,
 int user(Player player, const Rules& rules, const Board& state) {
     int move = -1;
     std::cin >> move;
-    while (!rules.isValidMove(move, player, state)) {
-        std::cout << "Please provide a valid move.\n";
+
+    while (!std::cin || !rules.isValidMove(move, player, state)) {
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            ignoreLine();
+            std::cout << "Please enter an integer between 0 and "
+                      << rules.player_holes() - 1 << ".\n";
+        } else {
+            std::cout << "Please provide a valid move.\n";
+        }
+
         std::cin >> move;
     }
+
     return move;
 }
 
