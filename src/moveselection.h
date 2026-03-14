@@ -65,6 +65,19 @@ MANKALAENGINE_EXPORT int miniMax(Player player, const Rules& rules,
 MANKALAENGINE_EXPORT int mtdf(Player player, const Rules& rules,
                               const Board& state);
 
+/**
+ * @brief Greedy Algorithm Implementation.
+ *
+ * Selects the move that maximizes the immediate board score.
+ * Using a greedy approach, evaluates all valid moves to find
+ * the move that yields the highest immediate score.
+ *
+ * @param player The player whose turn it is to play.
+ * @param rules The game rules used to validate and apply moves.
+ * @param state The board in which the game is being played.
+ *
+ * @return The index of the move that yields the highest immediate score.
+ */
 MANKALAENGINE_EXPORT int greedy(Player player, const Rules& rules,
                                 const Board& state);
 
