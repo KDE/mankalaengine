@@ -38,6 +38,13 @@ sudo dnf install mesa-libGL mesa-libGLU
 ```
 #### Installing Extra CMake Modules (ECM)
 ```sh
+
+
+## Build using KDE Craft
+KDE Craft is a cross-platform build system. If you have [KDE Craft](https://community.kde.org/Craft) installed on your system, you can automatically build and install Mankala Engine by running:
+
+```powershell
+craft mankalaengine
 sudo dnf install extra-cmake-modules
 ```
 #### Installing Qt
