@@ -55,7 +55,18 @@ MANKALAENGINE_NO_EXPORT SearchResult _mtdf(Player player, const Rules& rules,
 
 MANKALAENGINE_EXPORT int user(Player player, const Rules& rules,
                               const Board& state);
-
+/**
+ * @brief Random Algorithm Implementation .
+ *
+ * Determines the available valid moves and picks one uniformly at random.
+ *
+ * @param player The player whose turn it is to play.
+ * @param rules The game rules used to validate and apply moves.
+ * @param state The board in which the game is being played.
+ *
+ * @return The index of the randomly selected move, or -1 if no moves are
+ * available.
+ */
 MANKALAENGINE_EXPORT int random(Player player, const Rules& rules,
                                 const Board& state);
 
