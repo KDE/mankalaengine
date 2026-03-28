@@ -184,14 +184,15 @@ int user(Player player, const Rules& rules, const Board& state) {
 int random(Player player, const Rules& rules, const Board& state) {
     const std::vector<int> moves = rules.getMoves(player, state);
 
+    if (moves.empty()) {
+        return -1;
+    }
+
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist(
         0, moves.size() - 1);
 
-    if (moves.empty()) {
-        return -1;
-    }
     return moves.at(dist(rng));
 }
 
