@@ -1,8 +1,16 @@
+/*
+    SPDX-FileCopyrightText: 2026 Zanal Sorathiya
+    SPDX-FileCopyrightText: 2025 Benson Muite <benson_muite@emailplus.org>
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#include "mankalaengine.h"
+#include "moveselection.h"
+#include "owarerules.h"
 #include "rules.h"
-#include <owarerules.h>
+
+// C++
 #include <iostream>
-#include <mankalaengine.h>
-#include <moveselection.h>
 
 void print_board(const MankalaEngine::Board& board) {
     size_t columns = board.holes.size() / 2;
@@ -26,59 +34,89 @@ void print_board(const MankalaEngine::Board& board) {
         std::cout << "|";
     }
     std::cout << "   |";
-    std::cout << "\n| " << board.stores.at(MankalaEngine::player_2);
-    if (board.stores.at(MankalaEngine::player_2) / 10 < 1) {
+
+    std::cout << "\n| "
+              << board.stores.at((int)MankalaEngine::Player::player_2);
+    if (board.stores.at((int)MankalaEngine::Player::player_2) / 10 < 1) {
         std::cout << " ";
     }
     std::cout << "|";
+
     for (size_t i = 0; i < columns - 1; ++i) {
         std::cout << "--- ";
     }
+
     std::cout << "---";
-    std::cout << "| " << board.stores.at(MankalaEngine::player_1);
-    if (board.stores.at(MankalaEngine::player_1) / 10 < 1) {
+    std::cout << "| " << board.stores.at((int)MankalaEngine::Player::player_1);
+
+    if (board.stores.at((int)MankalaEngine::Player::player_1) / 10 < 1) {
         std::cout << " ";
     }
+
     std::cout << "|";
+
     std::cout << "\n|   |";
+
     for (size_t i = 0; i < columns; ++i) {
         std::cout << " " << board.holes[i];
+
         if (board.holes[i] / 10 < 1) {
             std::cout << " ";
         }
+
         std::cout << "|";
     }
+
     std::cout << "   |";
+
     std::cout << "\n ";
+
     for (size_t i = 0; i < columns + 2; ++i) {
         std::cout << "--- ";
     }
+
     std::cout << "\n     ";
+
     for (size_t i = 0; i < columns; ++i) {
         std::cout << " " << i << "  ";
     }
+
     std::cout << "\n";
 }
 
 int main() {
+
     MankalaEngine::MankalaEngine user(MankalaEngine::user);
-    MankalaEngine::MankalaEngine opponent(MankalaEngine::miniMax);
+    MankalaEngine::MankalaEngine opponent(MankalaEngine::random);
+
     MankalaEngine::OwareBoard board;
     MankalaEngine::OwareRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     print_board(board);
-    while (user.play(p1, rules, board) && opponent.play(p2, rules, board)) {
+
+    while (user.play(p1, rules, board)) {
+
         std::cout << "\n";
         print_board(board);
-        if ((board.stores.at(p1) > 24) || (board.stores.at(p2) > 24)) break;
+
+        if (opponent.play(p2, rules, board)) {
+            std::cout << "\n";
+            print_board(board);
+        } else {
+            break;
+        }
     }
 
     std::cout << "\nGame finished.\n";
-    if (board.stores.at(p1) > board.stores.at(p2)) {
+
+    if (board.stores.at((int)p1) > board.stores.at((int)p2)) {
         std::cout << "Player 1 wins.\n";
-    } else {
+    } else if (board.stores.at((int)p2) > board.stores.at((int)p1)) {
         std::cout << "Player 2 wins.\n";
+    } else {
+        std::cout << "Tie.\n";
     }
 }
