@@ -18,6 +18,7 @@
   <name xml:lang="ka">MankalaEngine</name>
   <name xml:lang="nl">Mankala-engine</name>
   <name xml:lang="pt-BR">MankalaEngine</name>
+  <name xml:lang="sk">MankalaEngine</name>
   <name xml:lang="sl">MankalaEngine</name>
   <name xml:lang="tr">Mankala İşletkesi</name>
   <name xml:lang="uk">MankalaEngine</name>
@@ -33,6 +34,7 @@
   <summary xml:lang="ka">TUI დემოები თამაშის ბიბლიოთეკისთვის</summary>
   <summary xml:lang="nl">TUI-demo's voor een spelbibliotheek</summary>
   <summary xml:lang="pt-BR">Demonstrações de TUI para uma biblioteca de jogos</summary>
+  <summary xml:lang="sk">TUI ukážky pre hernú knižnicu</summary>
   <summary xml:lang="sl">Demo različice TUI za knjižnico iger</summary>
   <summary xml:lang="tr">Oyun kitaplığı için metin tabanlı arayüz tanıtımları</summary>
   <summary xml:lang="uk">Демонстрації ігрової бібліотеки</summary>
@@ -49,6 +51,7 @@
     <p xml:lang="ka">სადემონსტრაციო თამაშები ძრავისთვის, რომელიც გამოიყენება წესების გადამოწმებისთვის და Mancala-ის ვარიანტების კომპიუტერიზებული ოპონენტების შესაქმნელად.</p>
     <p xml:lang="nl">Demonstratiespellen voor engine gebruikt voor het verifiëren van regels en het maken van gecomputeriseerde tegenstanders voor varianten van Mancala.</p>
     <p xml:lang="pt-BR">Jogos de demonstração para o motor utilizado na verificação de regras e na criação de oponentes computadorizados para variantes de Mancala.</p>
+    <p xml:lang="sk">Ukážkové hry pre engine používaný na overovanie pravidiel a vytváranie počítačových súperov pre varianty Mankaly.</p>
     <p xml:lang="sl">Demonstracijske igre za mehanizem, ki se uporablja za preverjanje pravil in ustvarjanje računalniških nasprotnikov za različice Mancale.</p>
     <p xml:lang="tr">Mancala çeşitleri için kuralları doğrulamak ve bilgisayar rakipleri oluşturmak üzere kullanılan işletke için tanıtım oyunları.</p>
     <p xml:lang="uk">Ігри-демонстрації для рушія, які використовують для перевірки правил та створення комп'ютерних суперників для варіантів манкали.</p>
