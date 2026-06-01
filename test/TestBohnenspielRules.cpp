@@ -31,7 +31,7 @@ void TestBohnenspielRules::move_data() {
 
     // Testing a simple move
     int played_move = 0;
-    MankalaEngine::Player player = MankalaEngine::player_1;
+    MankalaEngine::Player player = MankalaEngine::Player::player_1;
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielBoard result;
 
@@ -47,7 +47,7 @@ void TestBohnenspielRules::move_data() {
 
     // Testing a lap move
     played_move = 2;
-    player = MankalaEngine::player_2;
+    player = MankalaEngine::Player::player_2;
     result = MankalaEngine::BohnenspielBoard();
 
     result.holes.at(8) = 0;
@@ -62,7 +62,7 @@ void TestBohnenspielRules::move_data() {
 
     // Testing a move with a single capture
     played_move = 0;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
 
     board.holes = std::vector<int>(12, 0);
     result.holes = std::vector<int>(12, 0);
@@ -78,7 +78,7 @@ void TestBohnenspielRules::move_data() {
 
     // Testing a move with mutiple captures
     played_move = 0;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
 
     board.holes = std::vector<int>(12, 0);
     result.holes = std::vector<int>(12, 0);
@@ -95,7 +95,7 @@ void TestBohnenspielRules::move_data() {
 
     // Testing a move with a capture with a lap
     played_move = 2;
-    player = MankalaEngine::player_2;
+    player = MankalaEngine::Player::player_2;
     board = MankalaEngine::BohnenspielBoard();
     result = MankalaEngine::BohnenspielBoard();
 
@@ -160,8 +160,8 @@ void TestBohnenspielRules::isValidMove() {
     QFETCH(bool, p1_result);
     QFETCH(bool, p2_result);
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     for (int i = 0; i < 6; ++i) {
         QCOMPARE(rules.isValidMove(i, p1, board), p1_result);

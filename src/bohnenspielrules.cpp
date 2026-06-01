@@ -22,7 +22,8 @@ struct BohnenspielRules::BohnenspielRulesImpl {
         // Capture is only possible if the pebbles in the hole are 2, 4 or 6
         while (pebbles % 2 == 0 && pebbles < 7 && pebbles > 0) {
             // Capturing
-            state.stores.at(player) += state.holes.at(position);
+            state.stores.at(static_cast<int>(player)) +=
+                state.holes.at(position);
             state.holes.at(position) = 0;
 
             // Go to the preceding hole

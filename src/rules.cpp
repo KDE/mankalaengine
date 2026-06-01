@@ -42,10 +42,11 @@ int Rules::player_holes() const { return _impl->_player_holes; }
 QString Rules::description() const { return _impl->_description; }
 
 void Rules::finishGame(Player player, Board& state) const {
-    const Player winner = player == player_1 ? player_2 : player_1;
+    const Player winner =
+        player == Player::player_1 ? Player::player_2 : Player::player_1;
     for (int i = 0; i < _impl->_player_holes; i++) {
         const int pos = position(i, winner);
-        state.stores.at(winner) += state.holes.at(pos);
+        state.stores.at(static_cast<int>(winner)) += state.holes.at(pos);
         state.holes.at(pos) = 0;
     }
 }

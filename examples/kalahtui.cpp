@@ -36,8 +36,9 @@ void print_board(const MankalaEngine::Board& board) {
         std::cout << "|";
     }
     std::cout << "   |";
-    std::cout << "\n| " << board.stores.at(MankalaEngine::player_2);
-    if (board.stores.at(MankalaEngine::player_2) / 10 < 1) {
+    std::cout << "\n| "
+              << board.stores.at((int)MankalaEngine::Player::player_2);
+    if (board.stores.at((int)MankalaEngine::Player::player_2) / 10 < 1) {
         std::cout << " ";
     }
     std::cout << "|";
@@ -45,8 +46,8 @@ void print_board(const MankalaEngine::Board& board) {
         std::cout << "--- ";
     }
     std::cout << "---";
-    std::cout << "| " << board.stores.at(MankalaEngine::player_1);
-    if (board.stores.at(MankalaEngine::player_1) / 10 < 1) {
+    std::cout << "| " << board.stores.at((int)MankalaEngine::Player::player_1);
+    if (board.stores.at((int)MankalaEngine::Player::player_1) / 10 < 1) {
         std::cout << " ";
     }
     std::cout << "|";
@@ -75,8 +76,8 @@ int main() {
     MankalaEngine::MankalaEngine opponent(MankalaEngine::random);
     MankalaEngine::KalahBoard board;
     MankalaEngine::KalahRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     print_board(board);
     while (user.play(p1, rules, board)) {
@@ -91,9 +92,9 @@ int main() {
     }
 
     std::cout << "\nGame finished.\n";
-    if (board.stores.at(p1) > board.stores.at(p2)) {
+    if (board.stores.at((int)p1) > board.stores.at((int)p2)) {
         std::cout << "Player 1 wins.\n";
-    } else if (board.stores.at(p2) > board.stores.at(p1)) {
+    } else if (board.stores.at((int)p2) > board.stores.at((int)p1)) {
         std::cout << "Player 2 wins.\n";
     } else {
         std::cout << "Tie.\n";

@@ -31,7 +31,7 @@ void TestPallanguliRules::move_data() {
 
     // Testing a simple single move
     int played_move = 0;
-    MankalaEngine::Player player = MankalaEngine::player_1;
+    MankalaEngine::Player player = MankalaEngine::Player::player_1;
     MankalaEngine::PallanguliBoard board;
     MankalaEngine::PallanguliBoard result;
 
@@ -53,7 +53,7 @@ void TestPallanguliRules::move_data() {
 
     // Testing single lap move
     played_move = 5;
-    player = MankalaEngine::player_2;
+    player = MankalaEngine::Player::player_2;
     result = MankalaEngine::PallanguliBoard();
 
     board.holes = std::vector<int>(14, 0);
@@ -73,7 +73,7 @@ void TestPallanguliRules::move_data() {
 
     // Testing a move with a single capture
     played_move = 0;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
 
     board.holes = std::vector<int>(14, 0);
     result.holes = std::vector<int>(14, 0);
@@ -94,7 +94,7 @@ void TestPallanguliRules::move_data() {
 
     // Testing a move with a capture with a lap
     played_move = 3;
-    player = MankalaEngine::player_2;
+    player = MankalaEngine::Player::player_2;
     board.holes = std::vector<int>(14, 0);
     result.holes = std::vector<int>(14, 0);
 
@@ -116,7 +116,7 @@ void TestPallanguliRules::move_data() {
 
     // Testing capture after empty pit
     played_move = 5;
-    player = MankalaEngine::player_2;
+    player = MankalaEngine::Player::player_2;
 
     board.holes = std::vector<int>(14, 0);
     result.holes = std::vector<int>(14, 0);
@@ -180,8 +180,8 @@ void TestPallanguliRules::isValidMove() {
     QFETCH(bool, p1_result);
     QFETCH(bool, p2_result);
     MankalaEngine::PallanguliRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     for (int i = 0; i < 7; ++i) {
         QCOMPARE(rules.isValidMove(i, p1, board), p1_result);

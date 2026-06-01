@@ -32,7 +32,7 @@ void TestKalahRules::move_data() {
 
     // Testing a simple move
     int played_move = 0;
-    MankalaEngine::Player player = MankalaEngine::player_1;
+    MankalaEngine::Player player = MankalaEngine::Player::player_1;
     MankalaEngine::KalahBoard board;
     MankalaEngine::KalahBoard result;
 
@@ -42,13 +42,13 @@ void TestKalahRules::move_data() {
     result.holes.at(3) += 1;
     result.holes.at(4) += 1;
     result.holes.at(5) += 1;
-    result.stores.at(player) += 1;
+    result.stores.at((int)player) += 1;
 
     QTest::newRow("simple-move") << played_move << player << board << result;
 
     // Testing a move with a lap
     played_move = 0;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::KalahBoard();
     result = MankalaEngine::KalahBoard();
 
@@ -64,7 +64,7 @@ void TestKalahRules::move_data() {
 
     // Testing a move with a single capture
     played_move = 3;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::KalahBoard();
     result = MankalaEngine::KalahBoard();
 
@@ -85,7 +85,7 @@ void TestKalahRules::move_data() {
 
     // Testing a move with a capture with passing over kalahs
     played_move = 4;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::KalahBoard();
     result = MankalaEngine::KalahBoard();
 
@@ -103,7 +103,7 @@ void TestKalahRules::move_data() {
     result.holes.at(0) = 7;
     result.holes.at(1) = 0;
 
-    result.stores.at(player) = 9;
+    result.stores.at((int)player) = 9;
 
     QTest::newRow("capture-with-passing-over-kalahs-move")
         << played_move << player << board << result;
@@ -123,10 +123,10 @@ void TestKalahRules::move() {
                   << result.holes.at(i) << "\n";
         QCOMPARE(board.holes.at(i), result.holes.at(i));
     }
-    QCOMPARE(board.stores.at(MankalaEngine::player_1),
-             result.stores.at(MankalaEngine::player_1));
-    QCOMPARE(board.stores.at(MankalaEngine::player_2),
-             result.stores.at(MankalaEngine::player_2));
+    QCOMPARE(board.stores.at((int)MankalaEngine::Player::player_1),
+             result.stores.at((int)MankalaEngine::Player::player_1));
+    QCOMPARE(board.stores.at((int)MankalaEngine::Player::player_2),
+             result.stores.at((int)MankalaEngine::Player::player_2));
 }
 
 void TestKalahRules::isValidMove_data() {
@@ -152,8 +152,8 @@ void TestKalahRules::isValidMove() {
     QFETCH(bool, p1_result);
     QFETCH(bool, p2_result);
     MankalaEngine::KalahRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     for (int i = 0; i < 6; ++i) {
         QCOMPARE(rules.isValidMove(i, p1, board), p1_result);

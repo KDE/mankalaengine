@@ -35,8 +35,8 @@ void TestMankalaEngine::play() {
     QFETCH(MankalaEngine::MankalaEngine, engine);
     MankalaEngine::BohnenspielBoard board;
     MankalaEngine::BohnenspielRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     while (engine.play(p1, rules, board) && engine.play(p2, rules, board)) {
     }
@@ -46,7 +46,7 @@ void TestMankalaEngine::play() {
         QVERIFY(!rules.isValidMove(i, p1, board));
         QVERIFY(!rules.isValidMove(i, p2, board));
     }
-    QCOMPARE(board.stores.at(p1) + board.stores.at(p2), 6 * 6 * 2);
+    QCOMPARE(board.stores.at((int)p1) + board.stores.at((int)p2), 6 * 6 * 2);
 }
 
 QTEST_MAIN(TestMankalaEngine)

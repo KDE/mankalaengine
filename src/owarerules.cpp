@@ -18,13 +18,13 @@ namespace MankalaEngine {
 
 struct OwareRules::OwareRulesImpl {
     bool is_opponents_hole(int position, Player player) const {
-        return (player == player_1 && position > 5 && position < 12) ||
-               (player == player_2 && position > -1 && position < 6);
+        return (player == Player::player_1 && position > 5 && position < 12) ||
+               (player == Player::player_2 && position > -1 && position < 6);
     }
 
     bool opponent_has_pebbles(Player player, const Board& state) const {
-        const int finish = player == player_1 ? 12 : 6;
-        for (int i = player == player_1 ? 6 : 0; i < finish; ++i) {
+        const int finish = player == Player::player_1 ? 12 : 6;
+        for (int i = player == Player::player_1 ? 6 : 0; i < finish; ++i) {
             if (state.holes.at(i) != 0) {
                 return true;
             }
@@ -39,7 +39,8 @@ struct OwareRules::OwareRulesImpl {
         while ((pebbles == 2 || pebbles == 3) &&
                is_opponents_hole(position, player)) {
             // Capturing
-            new_state.stores.at(player) += new_state.holes.at(position);
+            new_state.stores.at(static_cast<int>(player)) +=
+                new_state.holes.at(position);
             new_state.holes.at(position) = 0;
 
             // Go to the preceding hole
@@ -82,7 +83,8 @@ void OwareRules::move(int move, Player player, Board& state) const {
 }
 
 bool OwareRules::isGameOver(Player player, const Board& state) const {
-    return state.stores.at(player) > 24 || Rules::isGameOver(player, state);
+    return state.stores.at(static_cast<int>(player)) > 24 ||
+           Rules::isGameOver(player, state);
 }
 
 bool OwareRules::isValidMove(int pos, Player player, const Board& state) const {
@@ -98,7 +100,8 @@ bool OwareRules::isValidMove(int pos, Player player, const Board& state) const {
 void OwareRules::finishGame(Player player, Board& state) const {
     // finishGame assumes the player whose turn ends the game is the loser, but
     // in Oware, it's actually the opposite
-    const Player flipped_player = player == player_1 ? player_2 : player_1;
+    const Player flipped_player =
+        player == Player::player_1 ? Player::player_2 : Player::player_1;
     Rules::finishGame(flipped_player, state);
 }
 

@@ -18,15 +18,15 @@ namespace MankalaEngine {
 
 struct KalahRules::KalahRulesImpl {
     bool is_opponents_hole(int pos, Player player) const {
-        return (player == player_1 && pos >= 6 && pos < 12) ||
-               (player == player_2 && pos >= 0 && pos < 6);
+        return (player == Player::player_1 && pos >= 6 && pos < 12) ||
+               (player == Player::player_2 && pos >= 0 && pos < 6);
     }
 
     void try_capture(int pos, Player player, Board& state) const {
         if (state.holes.at(pos) != 1) {
             return;
         }
-        state.stores.at(player) +=
+        state.stores.at(static_cast<int>(player)) +=
             state.holes.at(11 - pos) + state.holes.at(pos);
         state.holes.at(11 - pos) = 0;
         state.holes.at(pos) = 0;
@@ -49,8 +49,8 @@ void KalahRules::move(int pos, Player player, Board& state) const {
             current_position = 0;
         }
         // Check if need to drop in own kalah
-        if (current_position == ((player == player_1) ? 6 : 0)) {
-            state.stores.at(player) += 1;
+        if (current_position == ((player == Player::player_1) ? 6 : 0)) {
+            state.stores.at(static_cast<int>(player)) += 1;
             if (--pebbles == 0) {
                 own_kalah_last = true;
             }
@@ -74,7 +74,8 @@ void KalahRules::move(int pos, Player player, Board& state) const {
 }
 
 bool KalahRules::isGameOver(Player player, const Board& state) const {
-    return state.stores.at(player) > 36 || Rules::isGameOver(player, state);
+    return state.stores.at(static_cast<int>(player)) > 36 ||
+           Rules::isGameOver(player, state);
 }
 
 bool KalahRules::isValidMove(int pos, Player player, const Board& state) const {

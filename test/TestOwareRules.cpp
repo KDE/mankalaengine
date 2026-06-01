@@ -31,7 +31,7 @@ void TestOwareRules::move_data() {
 
     // Testing a simple move
     int played_move = 0;
-    MankalaEngine::Player player = MankalaEngine::player_1;
+    MankalaEngine::Player player = MankalaEngine::Player::player_1;
     MankalaEngine::OwareBoard board;
     MankalaEngine::OwareBoard result;
 
@@ -45,7 +45,7 @@ void TestOwareRules::move_data() {
 
     // Testing a move with a lap
     played_move = 0;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::OwareBoard();
     result = MankalaEngine::OwareBoard();
 
@@ -60,7 +60,7 @@ void TestOwareRules::move_data() {
 
     // Testing a move with a single capture
     played_move = 5;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::OwareBoard();
     result = MankalaEngine::OwareBoard();
 
@@ -78,7 +78,7 @@ void TestOwareRules::move_data() {
 
     // Testing a move with mutiple captures
     played_move = 5;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::OwareBoard();
     result = MankalaEngine::OwareBoard();
 
@@ -98,7 +98,7 @@ void TestOwareRules::move_data() {
 
     // Testing a Grand Slam
     played_move = 5;
-    player = MankalaEngine::player_1;
+    player = MankalaEngine::Player::player_1;
     board = MankalaEngine::OwareBoard();
     result = MankalaEngine::OwareBoard();
 
@@ -155,8 +155,8 @@ void TestOwareRules::isValidMove() {
     QFETCH(bool, p1_result);
     QFETCH(bool, p2_result);
     MankalaEngine::OwareRules rules;
-    MankalaEngine::Player p1 = MankalaEngine::player_1;
-    MankalaEngine::Player p2 = MankalaEngine::player_2;
+    MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     for (int i = 0; i < 6; ++i) {
         QCOMPARE(rules.isValidMove(i, p1, board), p1_result);

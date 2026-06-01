@@ -23,7 +23,7 @@ namespace MankalaEngine {
 /**
  * @brief Used to define the two players that play a game.
  */
-enum MANKALAENGINE_EXPORT Player { player_1, player_2 };
+enum class MANKALAENGINE_EXPORT Player { player_1, player_2 };
 
 /**
  * @brief Used to define the board in which the game is played.
@@ -85,7 +85,7 @@ class MANKALAENGINE_EXPORT Rules {
      * @returns The index corresponding to the move.
      */
     int position(int move, Player player) const {
-        return player * player_holes() + move;
+        return static_cast<int>(player) * player_holes() + move;
     }
 
   public:

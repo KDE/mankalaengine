@@ -31,7 +31,8 @@ struct PallanguliRules::PallanguliRulesImpl {
 
             // Check for immediate capture if the pit reaches 4 counters
             if (state.holes.at(current_position) == 4) {
-                state.stores.at(player) += state.holes.at(current_position);
+                state.stores.at(static_cast<int>(player)) +=
+                    state.holes.at(current_position);
                 state.holes.at(current_position) = 0;
             }
         }
@@ -56,7 +57,8 @@ struct PallanguliRules::PallanguliRulesImpl {
         // check for Capture
         if (state.holes.at(next_position) == 0 &&
             state.holes.at(next2_position) > 0) {
-            state.stores.at(player) += state.holes.at(next2_position);
+            state.stores.at(static_cast<int>(player)) +=
+                state.holes.at(next2_position);
             state.holes.at(next2_position) = 0;
         }
         // check for Continue

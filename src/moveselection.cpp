@@ -30,7 +30,7 @@ bool _less(int x, int y) { return x < y; }
 // This function was adapted from the following Stack Overflow answer:
 // https://stackoverflow.com/questions/20511347/a-good-hash-function-for-a-vector/72073933#72073933
 unsigned int _hash(Player player, const Board& state) {
-    unsigned int hash = player;
+    unsigned int hash = static_cast<int>(player);
     for (auto x : state.holes) {
         x = ((x >> 16) ^ x) * 0x45d9f3b;
         x = ((x >> 16) ^ x) * 0x45d9f3b;
@@ -41,7 +41,8 @@ unsigned int _hash(Player player, const Board& state) {
 }
 
 int _eval(const Board& state) {
-    return state.stores.at(player_1) - state.stores.at(player_2);
+    return state.stores.at(static_cast<int>(Player::player_1)) -
+           state.stores.at(static_cast<int>(Player::player_2));
 }
 
 // Allow a cognitive complexity greater than 25, since that's how the referenced
@@ -73,7 +74,7 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
 
     if (depth == 0 || rules.isGameOver(player, state)) { // Leaf node
         result.eval = _eval(state);
-    } else if (player == player_1) { // Max node
+    } else if (player == Player::player_1) { // Max node
         int a = alpha;
         result.eval = N_INFINITY;
 
@@ -82,8 +83,8 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
         for (const auto& move : moves) {
             Board new_state = state;
             rules.move(move, player, new_state);
-            const int eval = _alphaBeta(player_2, rules, new_state, depth - 1,
-                                        a, beta, table)
+            const int eval = _alphaBeta(Player::player_2, rules, new_state,
+                                        depth - 1, a, beta, table)
                                  .eval;
 
             if (eval > result.eval) {
@@ -106,8 +107,8 @@ SearchResult _alphaBeta(Player player, const Rules& rules, const Board& state,
         for (const auto& move : moves) {
             Board new_state = state;
             rules.move(move, player, new_state);
-            const int eval = _alphaBeta(player_1, rules, new_state, depth - 1,
-                                        alpha, b, table)
+            const int eval = _alphaBeta(Player::player_1, rules, new_state,
+                                        depth - 1, alpha, b, table)
                                  .eval;
 
             if (eval < result.eval) {

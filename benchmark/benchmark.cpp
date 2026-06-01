@@ -80,8 +80,9 @@ void print_board(const MankalaEngine::Board& board) {
         std::cout << "|";
     }
     std::cout << "   |";
-    std::cout << "\n| " << board.stores.at(MankalaEngine::player_2);
-    if (board.stores.at(MankalaEngine::player_2) / 10 < 1) {
+    std::cout << "\n| "
+              << board.stores.at((int)MankalaEngine::Player::player_2);
+    if (board.stores.at((int)MankalaEngine::Player::player_2) / 10 < 1) {
         std::cout << " ";
     }
     std::cout << "|";
@@ -89,8 +90,8 @@ void print_board(const MankalaEngine::Board& board) {
         std::cout << "--- ";
     }
     std::cout << "---";
-    std::cout << "| " << board.stores.at(MankalaEngine::player_1);
-    if (board.stores.at(MankalaEngine::player_1) / 10 < 1) {
+    std::cout << "| " << board.stores.at((int)MankalaEngine::Player::player_1);
+    if (board.stores.at((int)MankalaEngine::Player::player_1) / 10 < 1) {
         std::cout << " ";
     }
     std::cout << "|";
@@ -118,8 +119,8 @@ int run_games(int games, const int engine1_id, const int engine2_id,
               const int rules_id, bool verbose) {
 
     int p1_wins = 0;
-    const MankalaEngine::Player p1 = MankalaEngine::player_1;
-    const MankalaEngine::Player p2 = MankalaEngine::player_2;
+    const MankalaEngine::Player p1 = MankalaEngine::Player::player_1;
+    const MankalaEngine::Player p2 = MankalaEngine::Player::player_2;
 
     std::cout << "\nRunning games.\n";
     for (int game = 0; game < games; ++game) {
@@ -134,10 +135,10 @@ int run_games(int games, const int engine1_id, const int engine2_id,
         }
 
         std::cout << "Game " << game << ": ";
-        if (board.stores.at(p1) > board.stores.at(p2)) {
+        if (board.stores.at((int)p1) > board.stores.at((int)p2)) {
             std::cout << "Player 1 won.\n";
             ++p1_wins;
-        } else if (board.stores.at(p1) < board.stores.at(p2)) {
+        } else if (board.stores.at((int)p1) < board.stores.at((int)p2)) {
             std::cout << "Player 2 won.\n";
         } else {
             std::cout << "Tie.\n";
