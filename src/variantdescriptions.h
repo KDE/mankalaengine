@@ -150,7 +150,7 @@ inline QString vamanaguntaluDescription() {
         "A player's turn ends if they must pick up seeds from a kaashi to "
         "continue. Seeds in a kaashi can be captured but remain on the board "
         "as 'shared' assets. Whenever a pit reaches exactly 4 seeds, those "
-        "seeds are"
+        "seeds are "
         "captured instantly.\n"
         "The round ends when only kaashis contain seeds. Players then attempt "
         "to refill pits with 12 seeds from their winnings. Pits that cannot "
