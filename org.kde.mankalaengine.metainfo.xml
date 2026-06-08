@@ -16,6 +16,7 @@
   <name xml:lang="he">MankalaEngine</name>
   <name xml:lang="it">MankalaEngine</name>
   <name xml:lang="ka">MankalaEngine</name>
+  <name xml:lang="ko">MankalaEngine</name>
   <name xml:lang="nl">Mankala-engine</name>
   <name xml:lang="pt-BR">MankalaEngine</name>
   <name xml:lang="sk">MankalaEngine</name>
@@ -32,6 +33,7 @@
   <summary xml:lang="he">דוגמאות ממשק טקסט לספריית משחקים</summary>
   <summary xml:lang="it">Demo TUI per una libreria di giochi</summary>
   <summary xml:lang="ka">TUI დემოები თამაშის ბიბლიოთეკისთვის</summary>
+  <summary xml:lang="ko">게임 라이브러리용 TUI 데모</summary>
   <summary xml:lang="nl">TUI-demo's voor een spelbibliotheek</summary>
   <summary xml:lang="pt-BR">Demonstrações de TUI para uma biblioteca de jogos</summary>
   <summary xml:lang="sk">TUI ukážky pre hernú knižnicu</summary>
