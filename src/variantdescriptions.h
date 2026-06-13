@@ -158,4 +158,29 @@ inline QString vamanaguntaluDescription() {
         "cannot fill even a single pit.and the loser is the one with fewer "
         "captured seeds.");
 }
+
+inline QString igisorodescription() {
+    return i18n(
+        "Igisoro is played by 2 players on a board with 4 rows of 8 holes per "
+        "row.  Each player owns the 2 rows closest to them.\n"
+        "At the beginning, the holes in the rows furthest from the players are"
+        "filled with four seeds each for a total of 72 seeds on the board.\n"
+        "To play, a player picks seeds from one of the holes on their side"
+        "and sows them counter clockwise on their own side.  If the hole where"
+        "the last seed is sown is empty, the turn ends.  If it is not empty,"
+        "the player can choose to pick up the seeds in that hole and continue"
+        "sowing.  If both the holes on the opponents side are not empty, and if"
+        "the last hole in which the last seed has been sown is not empty, the"
+        "player may choose to capture the seeds in the opponents holes and sow "
+        "starting from the first hole where sowing began on that turn. If the"
+        "player chooses not to capture, they must say `ndahise` and continue"
+        "playing. The opponent may choose to reply `ndakubye` and then take the"
+        "seeds in the furthest hole from them that could have been captured and"
+        "put them in the hole closest to them that could have been captured.\n"
+        "Players can only sow clockwise when picking seeds in the holes on the"
+        "ends of the row closest to them on their side, or from the holes next"
+        "to the end holes from the row furthest from them on their side.\n"
+        "The game ends when one of the players cannot sow any seeds, and that"
+        "player is the loser.\n");
+}
 } // namespace MankalaEngine
