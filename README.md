@@ -69,3 +69,12 @@ target_link_libraries(MyApp MankalaEngine::MankalaEngine)
 
 The `benchmark/` folder contains a utility that can be used
 to compare different move selection functions.
+
+## AI policy
+
+Contributions are welcome, however AI generated code is not welcome due to
+copyright concerns.  Please ensure that any code contributions to this
+repository can be made available under the GPL-3.0-or-later license.  AI
+tools are often trained on a wide variety of other software and at present
+it is unclear if the code generated can be distributed under specific
+licenses.
