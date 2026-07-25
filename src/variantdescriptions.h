@@ -3,6 +3,7 @@
     SPDX-FileCopyrightText: 2025 Rishav Ray Chaudhury <rrcemon@gmail.com>
     SPDX-FileCopyrightText: 2025 Srisharan V S <srisharan.psgtech@gmail.com>
     SPDX-FileCopyrightText: 2025 Benson Muite <benson_muite@emailplus.org>
+    SPDX-FileCopyrightText: 2026 Samson NIYIZURUGERO <sniyizurugero@aimsric.org>
 
     SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -161,26 +162,30 @@ inline QString vamanaguntaluDescription() {
 
 inline QString igisorodescription() {
     return i18n(
-        "Igisoro is played by 2 players on a board with 4 rows of 8 holes per "
-        "row.  Each player owns the 2 rows closest to them.\n"
-        "At the beginning, the holes in the rows furthest from the players are"
-        "filled with four seeds each for a total of 72 seeds on the board.\n"
-        "To play, a player picks seeds from one of the holes on their side"
-        "and sows them counter clockwise on their own side.  If the hole where"
-        "the last seed is sown is empty, the turn ends.  If it is not empty,"
-        "the player can choose to pick up the seeds in that hole and continue"
-        "sowing.  If both the holes on the opponents side are not empty, and if"
-        "the last hole in which the last seed has been sown is not empty, the"
-        "player may choose to capture the seeds in the opponents holes and sow "
-        "starting from the first hole where sowing began on that turn. If the"
-        "player chooses not to capture, they must say `ndahise` and continue"
-        "playing. The opponent may choose to reply `ndakubye` and then take the"
-        "seeds in the furthest hole from them that could have been captured and"
-        "put them in the hole closest to them that could have been captured.\n"
-        "Players can only sow clockwise when picking seeds in the holes on the"
-        "ends of the row closest to them on their side, or from the holes next"
-        "to the end holes from the row furthest from them on their side.\n"
-        "The game ends when one of the players cannot sow any seeds, and that"
-        "player is the loser.\n");
+        "Igisoro is a traditional two-player strategy game from Rwanda, "
+	"belonging to the Mancala family of board games.\n"
+        "The game is played on a board with 4 rows of 8 holes per row "
+        "(32 holes in total). Each player owns the two rows closest to them.\n"
+        "The traditional game is typically played with 64 seeds, with 4 seeds "
+        "placed in each hole at the beginning of the game.\n"
+        "Players take turns selecting a hole on their side and sowing seeds "
+        "one by one into subsequent holes according to the rules of movement.\n"
+        "If the last seed lands in an empty hole, the turn ends. If it lands in a "
+        "non-empty hole, the player may continue sowing depending on the rules of "
+	"the variant.\n"
+        "Capturing is an important strategic element of Igisoro and depends on the "
+        "position of seeds on both sides of the board, especially the opponent’s"
+        "front row.\n"
+        "The game includes traditional strategic rules such as 'gutera',"
+	"'ndahise', and 'ndakubye', which influence capturing decisions and"
+        "turn outcomes.\n"
+        "In some situations, players may choose not to capture using 'ndahise',"
+        "and the opponent may respond with 'ndakubye' depending on the"
+        "situation.\n"
+        "The game ends when a player can no longer make a legal move, making"
+	"that player the loser.\n"
+        "This implementation represents a software variant of Igisoro and may"
+        "simplify or adapt some traditional rules for gameplay and AI"
+	"purposes.\n");
 }
 } // namespace MankalaEngine
