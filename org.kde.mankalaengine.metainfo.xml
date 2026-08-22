@@ -28,8 +28,9 @@
   <summary xml:lang="ar">عروض TUI لمكتبة ألعاب</summary>
   <summary xml:lang="ca">Mostre de TUI per a la biblioteca de jocs</summary>
   <summary xml:lang="ca-valencia">Mostre de TUI per a la biblioteca de jocs</summary>
+  <summary xml:lang="cs">Ukázky TUI pro herní knihovnu</summary>
   <summary xml:lang="es">Demostraciones TUI para una biblioteca de juego</summary>
-  <summary xml:lang="eu">Joko-liburutegi baterako TUI erakusleak</summary>
+  <summary xml:lang="eu">Joko-liburutegi baterako TUI erakustaldiak</summary>
   <summary xml:lang="fr">Démonstrations TUI pour une bibliothèque de jeux</summary>
   <summary xml:lang="he">דוגמאות ממשק טקסט לספריית משחקים</summary>
   <summary xml:lang="it">Demo TUI per una libreria di giochi</summary>
@@ -48,8 +49,9 @@
     <p xml:lang="ar">ألعاب توضيحية للمحرك المستخدم للتحقق من القواعد وإنشاء خصوم محوسبين لمتغيرات لعبة منقلة.</p>
     <p xml:lang="ca">Jocs de mostra per al motor utilitzats per a verificar regles i crear oponents informatitzats de variants del Mancala.</p>
     <p xml:lang="ca-valencia">Jocs de mostra per al motor utilitzats per a verificar regles i crear oponents informatitzats de variants de Mancala.</p>
+    <p xml:lang="cs">Ukázkové hry pro jádro sloužící k ověřování pravidel a vytváření počítačových soupeřů pro varianty hry Mancala.</p>
     <p xml:lang="es">Partidas de demostración para el motor que se usa para verificar las reglas y crear oponentes informatizados para las variantes de mancala.</p>
-    <p xml:lang="eu">Mancala aldaeretarako arauak egiaztatzeko eta ordenagailuz kontrolatutako aurkariak sortzeko erabiltzen den motorrerako erakustaldi-jokoak</p>
+    <p xml:lang="eu">Mancalaren aldaeren arauak egiaztatzeko eta ordenagailuz kontrolatutako aurkariak sortzeko motor baten erakustaldi-jokoak.</p>
     <p xml:lang="fr">Jeux de démonstration pour un moteur utilisé pour la vérification des règles et la création d'adversaires informatiques pour les variantes de Mancala.</p>
     <p xml:lang="he">משחקי הדגמה למנוע שמשמש לאימות הכלים ויצירת רכיבים ממוחשבים להגווני Mancala.</p>
     <p xml:lang="it">Partite dimostrative per motori utilizzate per la verifica delle regole e la creazione di avversari digitali per le varianti del Mancala.</p>
