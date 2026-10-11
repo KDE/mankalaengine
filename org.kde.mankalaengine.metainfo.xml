@@ -23,6 +23,10 @@
   <name xml:lang="pt-BR">MankalaEngine</name>
   <name xml:lang="sk">MankalaEngine</name>
   <name xml:lang="sl">MankalaEngine</name>
+  <name xml:lang="sr">MankalaEngine</name>
+  <name xml:lang="sr-Latn">MankalaEngine</name>
+  <name xml:lang="sr-ijekavian">MankalaEngine</name>
+  <name xml:lang="sr-ijekavianlatin">MankalaEngine</name>
   <name xml:lang="tr">Mankala İşletkesi</name>
   <name xml:lang="uk">MankalaEngine</name>
   <summary>TUI demos for a game library</summary>
@@ -43,6 +47,10 @@
   <summary xml:lang="pt-BR">Demonstrações de TUI para uma biblioteca de jogos</summary>
   <summary xml:lang="sk">TUI ukážky pre hernú knižnicu</summary>
   <summary xml:lang="sl">Demo različice TUI za knjižnico iger</summary>
+  <summary xml:lang="sr">Демонстрације у текстуалном сучељу за библиотеку игара</summary>
+  <summary xml:lang="sr-Latn">Demonstracije u tekstualnom sučelju za biblioteku igara</summary>
+  <summary xml:lang="sr-ijekavian">Демонстрације у текстуалном сучељу за библиотеку игара</summary>
+  <summary xml:lang="sr-ijekavianlatin">Demonstracije u tekstualnom sučelju za biblioteku igara</summary>
   <summary xml:lang="tr">Oyun kitaplığı için metin tabanlı arayüz tanıtımları</summary>
   <summary xml:lang="ug">ئويۇن ئامبىرى ئۈچۈن TUI كۆرگەزمىسى</summary>
   <summary xml:lang="uk">Демонстрації ігрової бібліотеки</summary>
@@ -65,6 +73,10 @@
     <p xml:lang="pt-BR">Jogos de demonstração para o motor utilizado na verificação de regras e na criação de oponentes computadorizados para variantes de Mancala.</p>
     <p xml:lang="sk">Ukážkové hry pre engine používaný na overovanie pravidiel a vytváranie počítačových súperov pre varianty Mankaly.</p>
     <p xml:lang="sl">Demonstracijske igre za mehanizem, ki se uporablja za preverjanje pravil in ustvarjanje računalniških nasprotnikov za različice Mancale.</p>
+    <p xml:lang="sr">Демонстрационе игре за мотор који служи за проверу правила и стварање рачунарских противника за варијанте манкале.</p>
+    <p xml:lang="sr-Latn">Demonstracione igre za motor koji služi za proveru pravila i stvaranje računarskih protivnika za varijante mankale.</p>
+    <p xml:lang="sr-ijekavian">Демонстрационе игре за мотор који служи за провјеру правила и стварање рачунарских противника за варијанте манкале.</p>
+    <p xml:lang="sr-ijekavianlatin">Demonstracione igre za motor koji služi za provjeru pravila i stvaranje računarskih protivnika za varijante mankale.</p>
     <p xml:lang="tr">Mancala çeşitleri için kuralları doğrulamak ve bilgisayar rakipleri oluşturmak üzere kullanılan işletke için tanıtım oyunları.</p>
     <p xml:lang="uk">Ігри-демонстрації для рушія, які використовують для перевірки правил та створення комп'ютерних суперників для варіантів манкали.</p>
   </description>
